@@ -77,13 +77,15 @@ input, select { font-family: inherit; }
 .nav-inner {
   max-width: 1440px;
   margin: 0 auto;
-  height: 64px;
-  padding: 0 56px;
+  height: 56px;
+  padding: 0 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 0;
 }
+.nav-inner .brand { margin-right: auto; }
+.nav-inner .nav-left { margin-right: auto; }
+.nav-inner .nav-right { margin-left: 0; }
 .brand {
   display: flex;
   align-items: center;
@@ -105,20 +107,29 @@ input, select { font-family: inherit; }
   width: 26px;
   height: 26px;
 }
-.nav-center {
+/* Nav left group — logo + links */
+.nav-left {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 32px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 .nav-link {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--ink-3);
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: var(--radius-pill);
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 .nav-link:hover { color: var(--ink); background: var(--bg-card); }
+.nav-link.active { color: var(--ink); }
+/* Nav right group — search + actions */
 .nav-right {
   display: flex;
   align-items: center;
@@ -128,8 +139,8 @@ input, select { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 6px;
-  height: 34px;
-  padding: 0 12px;
+  height: 36px;
+  padding: 0 14px;
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
@@ -144,10 +155,28 @@ input, select { font-family: inherit; }
   font-size: 13px;
   color: var(--ink);
   outline: none;
-  width: 140px;
+  width: 160px;
   font-family: inherit;
 }
 .nav-search-input::placeholder { color: var(--ink-5); }
+.nav-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--line);
+  margin: 0 4px;
+}
+.nav-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.nav-icon-btn:hover { background: var(--bg-card); color: var(--ink); }
 .nav-avatar {
   width: 32px;
   height: 32px;
@@ -157,7 +186,7 @@ input, select { font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.15s ease;
@@ -1876,11 +1905,15 @@ main {
 /* ============ DEMO STATE BAR (dev only) ============ */
 
 @media (max-width: 1024px) {
-  main, .nav-inner { padding-left: 32px; padding-right: 32px; }
-  .hero-grid { gap: 24px; }
+  main, .nav-inner { padding-left: 24px; padding-right: 24px; }
+  .nav-links { display: none; }
+  .nav-search-input { width: 100px; }
+  .nav-divider { display: none; }
   .hero-illust { display: none; }
   .hero-layout { grid-template-columns: 1fr; }
-  .scan-grid, .results-body { grid-template-columns: 1fr; }
+  .results-layout { grid-template-columns: 1fr; }
+  .results-sidebar { position: static; }
+  .token-grid { grid-template-columns: repeat(2, 1fr); }
   .features { grid-template-columns: 1fr; gap: 40px; }
   .examples-grid { grid-template-columns: repeat(2, 1fr); }
   .examples-header { flex-direction: column; align-items: flex-start; }
@@ -2063,27 +2096,40 @@ main {
       </span>
       DesignGrab
     </a>
-    <!-- Center nav links -->
-    <div class="nav-center">
-      <a class="nav-link" onclick="goLanding()" href="#">Explore</a>
-      <a class="nav-link" onclick="openModal()" href="#">CLI</a>
-      <a class="nav-link" href="#" id="nav-my-grabs" style="display:none" onclick="showMyGrabs()">My Grabs</a>
+    <!-- Left: logo + nav links -->
+    <div class="nav-left">
+      <div class="nav-links">
+        <a class="nav-link" onclick="goLanding()" href="#">Explore</a>
+        <a class="nav-link" href="#" id="nav-my-grabs" style="display:none" onclick="showMyGrabs()">My Grabs</a>
+      </div>
     </div>
-    <!-- Right actions -->
+
+    <!-- Right: search + utilities + auth -->
     <div class="nav-right">
       <div class="nav-search" id="nav-search">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input class="nav-search-input" id="nav-search-input" type="text" placeholder="Search..." oninput="filterGallery(this.value)" />
+        <input class="nav-search-input" id="nav-search-input" type="text" placeholder="Search sites..." oninput="filterGallery(this.value)" />
       </div>
+
+      <span class="nav-divider"></span>
+
+      <!-- Language -->
       <div class="lang-dropdown" id="lang-dropdown">
-        <button class="lang-trigger" onclick="toggleLangMenu()">
-          <span id="lang-label">EN</span>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        <button class="nav-icon-btn" onclick="toggleLangMenu()" title="Language">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
         </button>
         <div class="lang-menu" id="lang-menu"></div>
       </div>
-      <button class="btn-pill ghost" onclick="openUploadModal()" id="nav-upload-btn" style="display:none">Upload</button>
-      <button class="btn-pill dark" id="nav-login-btn" onclick="openLoginModal()">Sign in</button>
+
+      <!-- Settings -->
+      <button class="nav-icon-btn" onclick="openModal()" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </button>
+
+      <span class="nav-divider"></span>
+
+      <!-- Auth -->
+      <button class="btn-pill dark" id="nav-login-btn" onclick="openLoginModal()" style="height:34px;font-size:13px">Sign in</button>
       <div class="nav-avatar" id="nav-user-avatar" style="display:none" onclick="toggleUserMenu()">
         <span id="nav-user-initial"></span>
       </div>
