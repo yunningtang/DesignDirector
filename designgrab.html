@@ -105,11 +105,64 @@ input, select { font-family: inherit; }
   width: 26px;
   height: 26px;
 }
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  transition: all 0.15s ease;
+}
+.nav-link:hover { color: var(--ink); background: var(--bg-card); }
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--ink-4);
+  transition: all 0.18s ease;
+}
+.nav-search:focus-within { border-color: var(--ink-3); background: var(--bg-inner); }
+.nav-search svg { flex-shrink: 0; }
+.nav-search-input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  width: 140px;
+  font-family: inherit;
+}
+.nav-search-input::placeholder { color: var(--ink-5); }
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.nav-avatar:hover { opacity: 0.8; }
 .btn-pill {
   height: 40px;
   padding: 0 22px;
@@ -1186,47 +1239,168 @@ main {
   animation: rise 0.5s var(--ease-decel) both;
 }
 .results.active { display: block; }
-.results-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 48px;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-.results-eyebrow {
-  font-size: 13px;
-  color: var(--ink-4);
-  margin-bottom: 14px;
-  font-family: var(--font-mono);
+.results-title-row {
+  margin-bottom: 16px;
 }
 .results-title {
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: 28px;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--ink);
-  line-height: 1.0;
-  margin-bottom: 12px;
 }
-.results-meta {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--ink-3);
-}
-.results-actions {
+/* View tabs */
+.view-tabs {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: -1px;
+}
+.view-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.view-tab:hover { color: var(--ink); }
+.view-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+.view-tab svg { opacity: 0.5; }
+.view-tab.active svg { opacity: 1; }
+
+/* Two-column layout: main + sidebar */
+.results-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 32px;
+  align-items: start;
+}
+.results-main {
+  min-width: 0;
+}
+.results-preview {
+  margin-bottom: 24px;
+}
+.results-description {
+  font-size: 14.5px;
+  color: var(--ink-3);
+  line-height: 1.6;
+  margin-top: 24px;
 }
 
-.results-card {
+/* Token editor (visual tab) */
+.token-editor {
   background: var(--bg-card);
-  border-radius: 28px;
-  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 20px;
 }
-.results-body {
+.token-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.token-editor-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+.token-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.token-col {}
+
+/* Right sidebar */
+.results-sidebar {
+  position: sticky;
+  top: 80px;
+}
+.sidebar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: all 0.15s ease;
+}
+.sidebar-btn:hover { border-color: var(--line-2); background: var(--bg-card); }
+.sidebar-btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.sidebar-btn-primary:hover { opacity: 0.9; background: var(--ink); border-color: var(--ink); }
+
+/* Metadata */
+.sidebar-meta {
+  margin: 20px 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 13px;
+}
+.meta-label { color: var(--ink-4); }
+.meta-value { color: var(--ink); font-weight: 500; }
+
+/* Tags */
+.sidebar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.sidebar-tag {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.sidebar-tag:hover { border-color: var(--ink-4); color: var(--ink); }
+
+/* Sidebar actions */
+.results-sidebar .sidebar-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.results-sidebar .action-btn { height: 36px; font-size: 12.5px; }
+
+.sidebar-screenshot {
+  margin-top: 16px;
+}
+
+/* Code panel — full width in main area */
+.code-panel {
+  background: var(--bg-inner);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .token-panel {
@@ -1889,23 +2063,29 @@ main {
       </span>
       DesignGrab
     </a>
+    <!-- Center nav links -->
+    <div class="nav-center">
+      <a class="nav-link" onclick="goLanding()" href="#">Explore</a>
+      <a class="nav-link" onclick="openModal()" href="#">CLI</a>
+      <a class="nav-link" href="#" id="nav-my-grabs" style="display:none" onclick="showMyGrabs()">My Grabs</a>
+    </div>
+    <!-- Right actions -->
     <div class="nav-right">
-      <a class="nav-my-grabs" onclick="showMyGrabs()" id="nav-my-grabs" style="display:none" data-i18n="nav.mygrabs">My Grabs</a>
+      <div class="nav-search" id="nav-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="nav-search-input" id="nav-search-input" type="text" placeholder="Search..." oninput="filterGallery(this.value)" />
+      </div>
       <div class="lang-dropdown" id="lang-dropdown">
         <button class="lang-trigger" onclick="toggleLangMenu()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           <span id="lang-label">EN</span>
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="lang-menu" id="lang-menu"></div>
       </div>
-      <button class="btn-pill ghost" onclick="openModal()" data-i18n="nav.api">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-        Settings
-      </button>
-      <button class="btn-pill dark" id="nav-login-btn" onclick="openLoginModal()" data-i18n="nav.login">Log in</button>
-      <div class="btn-pill ghost" id="nav-user-avatar" style="display:none" onclick="toggleUserMenu()">
-        <span id="nav-user-name"></span>
+      <button class="btn-pill ghost" onclick="openUploadModal()" id="nav-upload-btn" style="display:none">Upload</button>
+      <button class="btn-pill dark" id="nav-login-btn" onclick="openLoginModal()">Sign in</button>
+      <div class="nav-avatar" id="nav-user-avatar" style="display:none" onclick="toggleUserMenu()">
+        <span id="nav-user-initial"></span>
       </div>
     </div>
   </div>
@@ -2103,114 +2283,143 @@ main {
   <section class="results" id="state-results">
     <!-- Breadcrumb -->
     <nav class="breadcrumb" id="breadcrumb">
-      <a href="#" onclick="goLanding();return false" data-i18n="bc.home">Home</a>
+      <a href="#" onclick="goLanding();return false">Home</a>
       <span class="bc-sep">/</span>
-      <a href="#" id="bc-back" onclick="goBack();return false" data-i18n="bc.gallery">Gallery</a>
+      <a href="#" id="bc-back" onclick="goBack();return false">Explore</a>
       <span class="bc-sep">/</span>
       <span class="bc-current" id="bc-current"></span>
     </nav>
 
-    <div class="results-header">
-      <div>
-        <div class="results-eyebrow" id="results-eyebrow"></div>
-        <h1 class="results-title" id="results-title"></h1>
-        <div class="results-meta" id="results-meta"></div>
-      </div>
-      <div class="results-actions">
-        <button class="btn-pill ghost" onclick="goBack()">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          <span data-i18n="results.back">Back</span>
-        </button>
-        <button class="btn-pill ghost" onclick="goLanding()" data-i18n="results.new">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-          New grab
-        </button>
-        <button class="btn-pill ghost" id="copy-btn" data-i18n="results.copy">Copy</button>
-        <button class="btn-pill dark" id="download-btn">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          <span data-i18n="results.download">Download .md</span>
-        </button>
-      </div>
+    <!-- Title row -->
+    <div class="results-title-row">
+      <h1 class="results-title" id="results-title"></h1>
     </div>
 
-    <div class="results-card">
-      <div class="results-body">
-        <aside class="token-panel">
-          <div class="panel-header">
-            <div class="panel-title" data-i18n="results.tokens">Extracted tokens</div>
-            <button class="panel-reset-btn" id="reset-tokens-btn" onclick="resetTokens()" title="Reset to original">
+    <!-- View tabs: Light / Dark / Visual / Raw -->
+    <div class="view-tabs">
+      <button class="view-tab active" onclick="showTab('md')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        DESIGN.md
+      </button>
+      <button class="view-tab" onclick="showTab('json')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+        tokens.json
+      </button>
+      <button class="view-tab" onclick="showTab('visual')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+        Visual
+      </button>
+    </div>
+
+    <!-- Main content: left + right sidebar -->
+    <div class="results-layout">
+      <!-- LEFT: Main content area -->
+      <div class="results-main">
+        <!-- Screenshot preview (for visual tab) -->
+        <div class="results-preview" id="results-preview" style="display:none">
+          <img id="result-screenshot" onclick="openLightbox()" style="width:100%;border-radius:12px;border:1px solid var(--line);cursor:zoom-in" />
+        </div>
+
+        <!-- Token editor (for visual tab) -->
+        <div class="token-editor" id="token-editor" style="display:none">
+          <div class="token-editor-header">
+            <h3>Edit tokens</h3>
+            <button class="panel-reset-btn" id="reset-tokens-btn" onclick="resetTokens()">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg>
               Reset
             </button>
           </div>
-          <div class="edit-hint">Click any color to edit. Changes auto-update the DESIGN.md.</div>
-
-          <div class="token-section">
-            <div class="token-section-head">Backgrounds</div>
-            <div class="swatches" id="swatches-bg"></div>
-            <button class="add-token-btn" onclick="addToken('bg')">+ Add background</button>
+          <div class="token-grid">
+            <div class="token-col">
+              <div class="token-section-head">Backgrounds</div>
+              <div class="swatches" id="swatches-bg"></div>
+              <button class="add-token-btn" onclick="addToken('bg')">+ Add</button>
+            </div>
+            <div class="token-col">
+              <div class="token-section-head">Ink</div>
+              <div class="swatches" id="swatches-ink"></div>
+              <button class="add-token-btn" onclick="addToken('ink')">+ Add</button>
+            </div>
+            <div class="token-col">
+              <div class="token-section-head">Accent / Status</div>
+              <div class="swatches" id="swatches-accent"></div>
+              <button class="add-token-btn" onclick="addToken('accent')">+ Add</button>
+            </div>
+            <div class="token-col">
+              <div class="token-section-head">Lines</div>
+              <div class="swatches" id="swatches-line"></div>
+            </div>
           </div>
-
-          <div class="token-section">
-            <div class="token-section-head">Ink</div>
-            <div class="swatches" id="swatches-ink"></div>
-            <button class="add-token-btn" onclick="addToken('ink')">+ Add ink color</button>
+          <div class="token-grid" style="margin-top:16px">
+            <div class="token-col">
+              <div class="token-section-head">Typography</div>
+              <div id="font-list"></div>
+            </div>
+            <div class="token-col">
+              <div class="token-section-head">Spacing & Radii</div>
+              <div id="spacing-info"></div>
+            </div>
           </div>
-
-          <div class="token-section">
-            <div class="token-section-head">Accent / Status</div>
-            <div class="swatches" id="swatches-accent"></div>
-            <button class="add-token-btn" onclick="addToken('accent')">+ Add accent</button>
-          </div>
-
-          <div class="token-section">
-            <div class="token-section-head">Lines / Borders</div>
-            <div class="swatches" id="swatches-line"></div>
-          </div>
-
-          <div class="token-section">
-            <div class="token-section-head">Typography</div>
-            <div id="font-list"></div>
-          </div>
-
-          <div class="token-section">
-            <div class="token-section-head">Spacing & Radii</div>
-            <div id="spacing-info"></div>
-          </div>
-
-          <div class="token-section">
-            <div class="token-section-head">Screenshot</div>
-            <img id="result-screenshot" onclick="openLightbox()" style="width:100%;border-radius:8px;border:1px solid var(--line);margin-top:8px;cursor:zoom-in" title="Click to enlarge" />
-          </div>
-
           <div class="regen-bar" id="regen-bar">
             Tokens modified
-            <button onclick="regenerateMarkdown()">Re-generate .md</button>
+            <button onclick="regenerateMarkdown()">Re-generate</button>
           </div>
+        </div>
 
-          <div class="save-share-bar">
-            <button class="action-btn action-btn-primary" onclick="saveGrab()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
-              Save
-            </button>
-            <button class="action-btn action-btn-secondary" onclick="shareGrab()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16,6 12,2 8,6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-              Share
-            </button>
-          </div>
-          <div class="saved-count" id="saved-count" style="padding:0 24px 12px"></div>
-        </aside>
-
-        <div class="code-panel">
-          <div class="code-tabs">
-            <div class="tab active" onclick="showTab('md')">DESIGN.md</div>
-            <div class="tab" onclick="showTab('json')">tokens.json</div>
-            <div class="tab-spacer"></div>
-            <div class="tab-meta" id="results-mode"></div>
-          </div>
+        <!-- Code display (for md / json tabs) -->
+        <div class="code-panel" id="code-panel">
           <div class="code-body" id="code-body"></div>
         </div>
+
+        <!-- Description -->
+        <div class="results-description" id="results-description"></div>
       </div>
+
+      <!-- RIGHT: Sidebar -->
+      <aside class="results-sidebar">
+        <!-- Primary actions -->
+        <button class="sidebar-btn sidebar-btn-primary" id="download-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .md
+        </button>
+        <button class="sidebar-btn" id="copy-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy to Clipboard
+        </button>
+        <button class="sidebar-btn" onclick="likeGrab()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Like <span id="like-count">(0)</span>
+        </button>
+
+        <!-- Metadata -->
+        <div class="sidebar-meta">
+          <div class="meta-row"><span class="meta-label">Theme</span><span class="meta-value" id="meta-theme"></span></div>
+          <div class="meta-row"><span class="meta-label">Font</span><span class="meta-value" id="meta-font"></span></div>
+          <div class="meta-row"><span class="meta-label">Colors</span><span class="meta-value" id="meta-colors"></span></div>
+          <div class="meta-row"><span class="meta-label">Spacings</span><span class="meta-value" id="meta-spacings"></span></div>
+          <div class="meta-row"><span class="meta-label">Source</span><span class="meta-value" id="meta-source"></span></div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-tags" id="sidebar-tags"></div>
+
+        <!-- Quick actions -->
+        <div class="sidebar-actions">
+          <button class="action-btn action-btn-primary" onclick="saveGrab()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+            Save
+          </button>
+          <button class="action-btn action-btn-secondary" onclick="shareGrab()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16,6 12,2 8,6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            Share
+          </button>
+        </div>
+
+        <!-- Screenshot thumb -->
+        <div class="sidebar-screenshot">
+          <img id="sidebar-screenshot" onclick="openLightbox()" style="width:100%;border-radius:8px;border:1px solid var(--line);cursor:zoom-in" />
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -3065,39 +3274,86 @@ async function regenerateMarkdown() {
 function showTab(tab) {
   if (!lastGrabData) return;
   const body = document.getElementById('code-body');
-  const tabs = document.querySelectorAll('.code-tabs .tab');
-  tabs.forEach((t, i) => t.classList.toggle('active', (tab === 'md' && i === 0) || (tab === 'json' && i === 1)));
+  const codePanel = document.getElementById('code-panel');
+  const preview = document.getElementById('results-preview');
+  const editor = document.getElementById('token-editor');
 
-  if (tab === 'md') {
-    body.innerHTML = highlightMarkdown(lastGrabData.markdown);
+  // Update tab active states
+  document.querySelectorAll('.view-tab').forEach(t => {
+    const tabName = t.textContent.trim().includes('DESIGN') ? 'md' :
+                    t.textContent.trim().includes('tokens') ? 'json' : 'visual';
+    t.classList.toggle('active', tabName === tab);
+  });
+
+  // Show/hide panels
+  if (tab === 'visual') {
+    codePanel.style.display = 'none';
+    if (preview) preview.style.display = '';
+    if (editor) editor.style.display = '';
   } else {
-    body.innerHTML = '<span class="k">' +
-      JSON.stringify(lastGrabData.tokens, null, 2)
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-        .replace(/(#[0-9a-fA-F]{6,8})/g, '<span class="s">$1</span>')
-      + '</span>';
+    codePanel.style.display = '';
+    if (preview) preview.style.display = 'none';
+    if (editor) editor.style.display = 'none';
+
+    if (tab === 'md') {
+      body.innerHTML = highlightMarkdown(lastGrabData.markdown);
+    } else {
+      body.innerHTML = '<span class="k">' +
+        JSON.stringify(lastGrabData.tokens, null, 2)
+          .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/(#[0-9a-fA-F]{6,8})/g, '<span class="s">$1</span>')
+        + '</span>';
+    }
   }
 }
 
 function renderResults(data) {
   lastGrabData = data;
-  // Snapshot for reset (only on first render, not on re-renders after edit)
   if (!tokensModified) {
     originalTokensSnapshot = JSON.stringify(data.tokens);
   }
   const { markdown, tokens, stats, screenshot } = data;
   const t = tokens;
+  const siteName = t.meta.siteName?.split(/[:|–—]/)[0]?.trim() || 'Unknown';
 
-  // Header
-  document.getElementById('results-eyebrow').textContent =
-    `Grab complete · ${stats.elements.toLocaleString()} elements`;
-  document.getElementById('results-title').textContent = `${t.meta.siteName}.md`;
-  document.getElementById('results-meta').textContent =
-    `${stats.colors} colors · ${stats.fonts} fonts · ${stats.spacings} spacings · theme: ${t.theme}`;
-  document.getElementById('results-mode').innerHTML =
-    data.narrative?.source === 'llm'
-      ? '<span class="ok-dot"></span> AI-authored'
-      : '<span class="ok-dot"></span> Template mode';
+  // Title
+  document.getElementById('results-title').textContent = `${siteName} Design System`;
+
+  // Sidebar metadata
+  document.getElementById('meta-theme').textContent = t.theme;
+  document.getElementById('meta-font').textContent = t.typography.display.family;
+  document.getElementById('meta-colors').textContent = stats.colors || Object.values(t.palette).filter(Boolean).length;
+  document.getElementById('meta-spacings').textContent = stats.spacings || t.spacing.scale.length;
+  const sourceEl = document.getElementById('meta-source');
+  sourceEl.innerHTML = `<a href="${t.meta.url}" target="_blank" style="color:var(--ink);text-decoration:underline">${new URL(t.meta.url).hostname}</a>`;
+
+  // Tags
+  const tags = [t.theme, t.typography.display.family];
+  if (t.meta.monochrome) tags.push('monochrome');
+  if (t.palette['accent-primary']) tags.push('accent');
+  if (t.typography.mono) tags.push('monospace');
+  document.getElementById('sidebar-tags').innerHTML = tags.map(tag =>
+    `<span class="sidebar-tag">${tag}</span>`
+  ).join('');
+
+  // Screenshot in sidebar
+  const sidebarImg = document.getElementById('sidebar-screenshot');
+  const previewImg = document.getElementById('result-screenshot');
+  if (screenshot) {
+    const src = 'data:image/png;base64,' + screenshot;
+    if (sidebarImg) { sidebarImg.src = src; sidebarImg.style.display = ''; }
+    if (previewImg) { previewImg.src = src; }
+  } else {
+    if (sidebarImg) sidebarImg.style.display = 'none';
+  }
+
+  // Description
+  const descEl = document.getElementById('results-description');
+  if (descEl && data.narrative?.narrative?.mood?.summary) {
+    descEl.textContent = data.narrative.narrative.mood.summary;
+  } else {
+    descEl.textContent = '';
+  }
 
   // Editable swatches
   renderEditableSwatches('swatches-bg', ['bg-base','bg-surface-1','bg-surface-2','bg-surface-3'], t.palette);
@@ -3369,6 +3625,32 @@ async function startGrab() {
 }
 
 // ─── Hand interaction ────────────────────────
+// ─── Search filter ────────────────────────────
+function filterGallery(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) { renderExampleCards(allExamples); return; }
+  const filtered = allExamples.filter(ex =>
+    ex.siteName.toLowerCase().includes(q) ||
+    ex.hostname.toLowerCase().includes(q) ||
+    ex.displayFont.toLowerCase().includes(q) ||
+    ex.category.toLowerCase().includes(q) ||
+    ex.theme.includes(q)
+  );
+  renderExampleCards(filtered);
+}
+
+// ─── Like ────────────────────────────────────
+function likeGrab() {
+  const el = document.getElementById('like-count');
+  const current = parseInt(el.textContent.replace(/[()]/g,'')) || 0;
+  el.textContent = `(${current + 1})`;
+}
+
+// ─── Upload modal stub ──────────────────────
+function openUploadModal() {
+  alert('Upload feature coming soon! For now, use the CLI:\nnpm run grab -- https://your-site.com');
+}
+
 function handGrab() {
   const hand = document.getElementById('hero-hand');
   if (!hand) return;
@@ -3402,15 +3684,18 @@ function updateUserUI() {
   const loginBtn = document.getElementById('nav-login-btn');
   const avatar = document.getElementById('nav-user-avatar');
   const myGrabs = document.getElementById('nav-my-grabs');
+  const uploadBtn = document.getElementById('nav-upload-btn');
   if (currentUser) {
     loginBtn.style.display = 'none';
     avatar.style.display = 'flex';
-    document.getElementById('nav-user-name').textContent = currentUser.name;
+    document.getElementById('nav-user-initial').textContent = currentUser.name.charAt(0).toUpperCase();
     myGrabs.style.display = '';
+    if (uploadBtn) uploadBtn.style.display = '';
   } else {
     loginBtn.style.display = '';
     avatar.style.display = 'none';
     myGrabs.style.display = 'none';
+    if (uploadBtn) uploadBtn.style.display = 'none';
   }
   // Update saved count
   const saved = JSON.parse(localStorage.getItem('designgrab.saved') || '[]');
