@@ -238,31 +238,38 @@ function classifyPalette(
   }
 
   // ── Accent colors ──
-  // Saturated colors that appear on interactive elements (as bg OR text).
-  // Key insight: accent can be a text color on buttons/links (e.g. Stripe purple),
-  // not just a background color.
+  // Browser default link colors to reject
+  const BROWSER_DEFAULTS = new Set([
+    "#0000ee", "#0000ff", "#551a8b", // unvisited, blue, visited purple
+  ]);
+
   const accentCandidates = colors
     .filter((c) => {
       if (!isSaturated(c, 25)) return false;
       if (claimed.has(c.hex)) return false;
-      // Exclude colors that are used as large backgrounds (full-page hero etc.)
-      // Check max single-usage area, not total (many small buttons add up > viewport)
+      // Reject browser default link colors
+      if (BROWSER_DEFAULTS.has(c.hex)) return false;
+      // Reject near-white and near-black — these aren't real accents
+      if (c.hsl[2] > 95 || c.hsl[2] < 5) return false;
+      // On light themes, accent should be dark enough to read; on dark, light enough
+      if (theme === "light" && c.hsl[2] > 85) return false;
+      if (theme === "dark" && c.hsl[2] < 15) return false;
+      // Exclude large background colors
       const maxSingleBgArea = Math.max(
         0,
         ...c.usages
           .filter((u) => u.role === "background")
-          .map((u) => u.areaPx / u.count) // average area per element
+          .map((u) => u.areaPx / u.count)
       );
       if (maxSingleBgArea / totalPageArea > 0.3) return false;
       return true;
     })
     .sort((a, b) => {
-      // Score = interactive count * saturation multiplier
-      // A vivid color (sat 90) on 100 buttons beats a pale color (sat 40) on 100 buttons
-      const aSat = a.hsl[1] / 100; // 0..1
+      const aSat = a.hsl[1] / 100;
       const bSat = b.hsl[1] / 100;
-      const aScore = interactiveWeight(a) * (0.5 + aSat) + a.hsl[1] * 3;
-      const bScore = interactiveWeight(b) * (0.5 + bSat) + b.hsl[1] * 3;
+      // Penalize colors that are too close to pure gray (low saturation)
+      const aScore = interactiveWeight(a) * (0.3 + aSat * 0.7) + a.hsl[1] * 3;
+      const bScore = interactiveWeight(b) * (0.3 + bSat * 0.7) + b.hsl[1] * 3;
       return bScore - aScore;
     });
 
@@ -276,22 +283,24 @@ function classifyPalette(
   }
 
   // ── Status colors (heuristic by hue) ──
-  // Only assign if not already claimed as accent
-  const saturatedColors = colors.filter(
+  // Only assign if not already claimed, not a browser default, and fits hue range
+  const statusCandidates = colors.filter(
     (c) => isSaturated(c, 40) && !claimed.has(c.hex)
+      && !BROWSER_DEFAULTS.has(c.hex)
+      && c.hsl[2] > 10 && c.hsl[2] < 90 // not near-black or near-white
   );
-  for (const c of saturatedColors) {
+  for (const c of statusCandidates) {
     const [h, s] = c.hsl;
-    // Red/error: hue 340-360 or 0-20
-    if (!palette["status-error"] && ((h >= 340 && s > 50) || (h <= 20 && s > 50))) {
+    // Red/error: hue 340-360 or 0-15
+    if (!palette["status-error"] && ((h >= 340 && s > 50) || (h <= 15 && s > 50))) {
       palette["status-error"] = c.hex;
     }
-    // Green/success: hue 90-170
-    if (!palette["status-success"] && h >= 90 && h <= 170 && s > 30) {
+    // Green/success: hue 100-160
+    if (!palette["status-success"] && h >= 100 && h <= 160 && s > 30) {
       palette["status-success"] = c.hex;
     }
-    // Yellow-orange/warning: hue 30-55
-    if (!palette["status-warning"] && h >= 30 && h <= 55 && s > 40) {
+    // Yellow-orange/warning: hue 35-55
+    if (!palette["status-warning"] && h >= 35 && h <= 55 && s > 40) {
       palette["status-warning"] = c.hex;
     }
   }
@@ -570,13 +579,21 @@ export function classify(
   const radii = classifyRadii(normalized.radii);
   const components = extractComponents(raw, palette, theme);
 
-  // Detect monochrome: accent is same as ink-primary
+  // Detect monochrome: no accent found, or accent is same as ink/bg
+  const accentIsSameAsInk = palette["accent-primary"] === palette["ink-primary"];
+  const accentIsSameAsBg = palette["accent-primary"] === palette["bg-base"];
   const monochrome =
-    !palette["accent-primary"] ||
-    palette["accent-primary"] === palette["ink-primary"];
+    !palette["accent-primary"] || accentIsSameAsInk || accentIsSameAsBg;
 
-  if (monochrome && !palette["accent-primary"]) {
-    palette["accent-primary"] = palette["ink-primary"];
+  if (monochrome) {
+    // Clear the bad accent so it doesn't confuse downstream
+    if (accentIsSameAsInk || accentIsSameAsBg) {
+      palette["accent-primary"] = null;
+    }
+    // Set accent = ink for monochrome designs
+    if (!palette["accent-primary"]) {
+      palette["accent-primary"] = palette["ink-primary"];
+    }
   }
 
   // Extract site name from title
