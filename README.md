@@ -64,31 +64,99 @@ Features:
 
 ## Pre-grabbed sites (52)
 
-All grabbed with our own pipeline — real computed styles, not copied.
+All grabbed with our own pipeline — real `getComputedStyle()`, not copied.
 
 ### AI (9)
-Anthropic · Cohere · Mistral · Replicate · Together · Ollama · OpenCode · RunwayML · VoltAgent
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Anthropic** | light | Anthropic Sans | `#d97757` | 9 |
+| **Cohere** | dark | Unica77 Cohere Web | `#ff7759` | 11 |
+| **Mistral** | dark | Arial | `#fffaeb` | 10 |
+| **Ollama** | light | SF Pro Rounded | `#facc15` | 11 |
+| **OpenCode** | light | sans-serif | `#0f0000` | 9 |
+| **Replicate** | light | basier-square | `#ea2804` | 16 |
+| **Runway** | dark | abcNormal | `#2b22fa` | 10 |
+| **Together AI** | light | The Future | `#ffdccd` | 4 |
+| **VoltAgent** | dark | system-ui | `#10b981` | 16 |
 
 ### Dev Tools (12)
-GitHub · Vercel · Supabase · Sentry · PostHog · Tailwind CSS · Warp · Expo · HashiCorp · MongoDB · Composio · Cursor
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Composio** | dark | abcDiatype | `#0089ff` | 16 |
+| **Cursor** | light | CursorGothic | `#f54e00` | 14 |
+| **Expo** | light | Inter | `#0090ff` | 12 |
+| **GitHub** | dark | Mona Sans | `#8dd6ff` | 13 |
+| **HashiCorp** | dark | hashicorpSans | `#2264d6` | 10 |
+| **MongoDB** | dark | Euclid Circular A | `#006cfa` | 11 |
+| **PostHog** | light | IBM Plex Sans | `#f54e00` | 15 |
+| **Sentry** | dark | Dammit Sans | `#7553ff` | 9 |
+| **Supabase** | dark | Circular | `#006239` | 14 |
+| **Tailwind CSS** | light | Inter | `#000000` | 3 |
+| **Vercel** | light | Geist | `#0070f3` | 16 |
+| **Warp** | dark | Matter Regular | `#0000ee` | 14 |
 
 ### SaaS (10)
-Linear · Notion · Resend · Cal.com · Intercom · Mintlify · Raycast · Airtable · Clay · Arc
 
-### Fintech (6)
-Stripe · Coinbase · Wise · Revolut · Binance · Kraken
-
-### Consumer (6)
-Airbnb · Spotify · Nike · Pinterest · Meta · Shopify
-
-### Enterprise (4)
-Apple · Nvidia · Tesla · BMW
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Airtable** | light | Haas Groot Disp | `#aa2d00` | 14 |
+| **Arc** | light | Marlin Soft SQ | `#fffadd` | 7 |
+| **Cal.com** | light | Cal Sans | `#0000ee` | 14 |
+| **Clay** | light | Roobert | `#3859f9` | 13 |
+| **Intercom** | light | Saans | `#0007cb` | 10 |
+| **Linear** | dark | Inter Variable | `#00ff05` | 16 |
+| **Mintlify** | light | Inter | `#000000` | 4 |
+| **Notion** | light | NotionInter | `#0075de` | 14 |
+| **Raycast** | dark | Inter | `#8cd6ff` | 15 |
+| **Resend** | dark | aBCFavorit | `#f1f7fe` | 13 |
 
 ### Design (3)
-Framer · Webflow · Miro
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Framer** | dark | GT Walsheim Medium | `#0000ee` | 16 |
+| **Miro** | light | Roobert PRO Medium | `#0000ee` | 14 |
+| **Webflow** | light | WF Visual Sans | `#146ef5` | 8 |
+
+### Fintech (6)
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Binance** | dark | BinanceNova | `#0000ee` | 13 |
+| **Coinbase** | light | CoinbaseSans | `#0052ff` | 10 |
+| **Kraken** | light | Kraken-Product | `#08844f` | 13 |
+| **Revolut** | dark | Inter | `#ffffff` | 10 |
+| **Stripe** | light | sohne-var | `#533afd` | 10 |
+| **Wise** | light | Inter | `#054d28` | 12 |
+
+### Consumer (6)
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Airbnb** | light | Airbnb Cereal VF | `#ff385c` | 13 |
+| **Meta** | light | Optimistic VF | `#0457cb` | 10 |
+| **Nike** | dark | Nike Futura ND | `#ffffff` | 11 |
+| **Pinterest** | light | Pin Sans | `#e60023` | 10 |
+| **Shopify** | dark | NeueHaasGrotesk | `#6b26ff` | 12 |
+| **Spotify** | dark | SpotifyMixUI | `#0000ee` | 16 |
+
+### Enterprise (4)
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Apple** | dark | SF Pro Text | `#2997ff` | 8 |
+| **BMW** | dark | BMWTypeNextLatin | `#ffffff` | 5 |
+| **Nvidia** | dark | NVIDIA-NALA | `#76b900` | 7 |
+| **Tesla** | light | Times New Roman | `#000000` | 3 |
 
 ### Auto (2)
-Lamborghini · Renault
+
+| Site | Theme | Font | Accent | Colors |
+|------|-------|------|--------|--------|
+| **Lamborghini** | dark | LamboType | `#917300` | 13 |
+| **Renault** | dark | RenaultGroup | `#e60000` | 7 |
 
 ## DESIGN.md output (10 sections)
 
