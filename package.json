@@ -1,0 +1,25 @@
+{
+  "name": "designgrab",
+  "version": "0.1.0",
+  "description": "Extract design systems from any website",
+  "type": "module",
+  "bin": {
+    "designgrab": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "grab": "node --enable-source-maps dist/cli.js",
+    "serve": "node --enable-source-maps dist/server.js",
+    "start": "node --enable-source-maps dist/server.js"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0",
+    "zod": "^3.24.0",
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}
