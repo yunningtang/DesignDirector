@@ -193,14 +193,14 @@ input, select { font-family: inherit; }
 }
 .nav-avatar:hover { opacity: 0.8; }
 .btn-pill {
-  height: 40px;
-  padding: 0 22px;
+  height: 36px;
+  padding: 0 18px;
   border-radius: var(--radius-pill);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   transition: all 0.18s ease;
   white-space: nowrap;
 }
@@ -1089,7 +1089,9 @@ main {
   align-items: center;
   justify-content: space-between;
 }
-.modal-actions .btn-pill { min-width: 120px; justify-content: center; height: 44px; }
+.modal-actions .btn-pill { min-width: 100px; justify-content: center; }
+/* Full-width form buttons are taller */
+.btn-pill.btn-full { width: 100%; justify-content: center; height: 40px; }
 .btn-text {
   background: none;
   border: none;
@@ -1357,9 +1359,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
-  height: 40px;
+  height: 36px;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;
@@ -1975,11 +1977,11 @@ main {
 }
 .social-btn {
   width: 100%;
-  height: 44px;
+  height: 40px;
   border-radius: 10px;
   border: 1px solid var(--line);
   background: var(--bg);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink);
   display: flex;
@@ -2099,7 +2101,7 @@ main {
     <!-- Left: logo + nav links -->
     <div class="nav-left">
       <div class="nav-links">
-        <a class="nav-link" onclick="goLanding()" href="#">Explore</a>
+        <a class="nav-link" onclick="goLanding()" href="#">Home</a>
         <a class="nav-link" href="#" id="nav-my-grabs" style="display:none" onclick="showMyGrabs()">My Grabs</a>
       </div>
     </div>
@@ -2115,24 +2117,24 @@ main {
 
       <!-- Language -->
       <div class="lang-dropdown" id="lang-dropdown">
-        <button class="nav-icon-btn" onclick="toggleLangMenu()" title="Language">
+        <button class="nav-icon-btn" onclick="toggleLangMenu()" title="Language" aria-label="Change language" aria-haspopup="menu">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
         </button>
         <div class="lang-menu" id="lang-menu"></div>
       </div>
 
       <!-- Settings -->
-      <button class="nav-icon-btn" onclick="openModal()" title="Settings">
+      <button class="nav-icon-btn" onclick="openModal()" title="Settings" aria-label="Settings">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       </button>
 
       <span class="nav-divider"></span>
 
       <!-- Auth -->
-      <button class="btn-pill dark" id="nav-login-btn" onclick="openLoginModal()" style="height:34px;font-size:13px">Sign in</button>
-      <div class="nav-avatar" id="nav-user-avatar" style="display:none" onclick="toggleUserMenu()">
+      <button class="btn-pill dark" id="nav-login-btn" onclick="openLoginModal()">Sign in</button>
+      <button class="nav-avatar" id="nav-user-avatar" style="display:none" onclick="toggleUserMenu()" aria-label="User menu">
         <span id="nav-user-initial"></span>
-      </div>
+      </button>
     </div>
   </div>
 </nav>
@@ -2331,7 +2333,7 @@ main {
     <nav class="breadcrumb" id="breadcrumb">
       <a href="#" onclick="goLanding();return false">Home</a>
       <span class="bc-sep">/</span>
-      <a href="#" id="bc-back" onclick="goBack();return false">Explore</a>
+      <a href="#" id="bc-back" onclick="goBack();return false">Gallery</a>
       <span class="bc-sep">/</span>
       <span class="bc-current" id="bc-current"></span>
     </nav>
@@ -2578,9 +2580,9 @@ main {
         <input class="field-input" id="login-password" type="password" placeholder="••••••••" />
       </div>
       <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
-        <button class="btn-text" onclick="showAuthView('forgot')" style="font-size:12px">Forgot password?</button>
+        <button class="btn-text" onclick="showAuthView('forgot')">Forgot password?</button>
       </div>
-      <button class="btn-pill dark" style="width:100%;justify-content:center;height:42px" onclick="loginWithEmail()">
+      <button class="btn-pill dark" style="width:100%;justify-content:center" onclick="loginWithEmail()">
         Log in
       </button>
       <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--ink-3)">
@@ -2617,7 +2619,7 @@ main {
         <label class="field-label">Password</label>
         <input class="field-input" id="register-password" type="password" placeholder="At least 8 characters" />
       </div>
-      <button class="btn-pill dark" style="width:100%;justify-content:center;height:42px;margin-top:8px" onclick="registerWithEmail()">
+      <button class="btn-pill dark" style="width:100%;justify-content:center;margin-top:8px" onclick="registerWithEmail()">
         Create account
       </button>
       <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--ink-3)">
@@ -2635,7 +2637,7 @@ main {
         <label class="field-label">Email</label>
         <input class="field-input" id="forgot-email" type="email" placeholder="you@email.com" />
       </div>
-      <button class="btn-pill dark" style="width:100%;justify-content:center;height:42px;margin-top:8px" onclick="sendResetLink()">
+      <button class="btn-pill dark" style="width:100%;justify-content:center;margin-top:8px" onclick="sendResetLink()">
         Send reset link
       </button>
       <p id="forgot-success" style="display:none;text-align:center;margin-top:16px;font-size:13px;color:#4DAA76">
@@ -2839,12 +2841,12 @@ const states = {
   results: document.getElementById('state-results'),
 };
 
-function show(name) {
+function show(name, scrollTop = true) {
   Object.entries(states).forEach(([k, el]) => {
     if (k === name) { el.style.display = ''; el.classList.add('active'); }
     else { el.style.display = 'none'; el.classList.remove('active'); }
   });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (scrollTop) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 let navHistory = ['landing']; // track where user came from
@@ -3310,7 +3312,15 @@ async function regenerateMarkdown() {
     if (res.ok) {
       const data = await res.json();
       lastGrabData.markdown = data.markdown;
-      showTab('md');
+      // Update code body without switching tabs or scrolling
+      const body = document.getElementById('code-body');
+      const activeTab = document.querySelector('.view-tab.active');
+      const isMdVisible = activeTab && activeTab.textContent.includes('DESIGN');
+      if (isMdVisible && body) {
+        const scrollPos = body.scrollTop;
+        body.innerHTML = highlightMarkdown(lastGrabData.markdown);
+        body.scrollTop = scrollPos; // preserve scroll position
+      }
       document.getElementById('regen-bar').classList.remove('visible');
       tokensModified = false;
     }
@@ -3371,7 +3381,7 @@ function renderResults(data) {
   document.getElementById('meta-colors').textContent = stats.colors || Object.values(t.palette).filter(Boolean).length;
   document.getElementById('meta-spacings').textContent = stats.spacings || t.spacing.scale.length;
   const sourceEl = document.getElementById('meta-source');
-  sourceEl.innerHTML = `<a href="${t.meta.url}" target="_blank" style="color:var(--ink);text-decoration:underline">${new URL(t.meta.url).hostname}</a>`;
+  sourceEl.innerHTML = `<a href="${t.meta.url}" target="_blank" rel="noopener noreferrer" style="color:var(--ink);text-decoration:underline">${new URL(t.meta.url).hostname}</a>`;
 
   // Tags
   const tags = [t.theme, t.typography.display.family];
