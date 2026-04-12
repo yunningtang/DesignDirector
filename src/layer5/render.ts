@@ -30,7 +30,11 @@ function componentBlock(
   return lines.join("\n");
 }
 
-export function render(tokens: SemanticTokens, result: NarrateResult): string {
+export function render(
+  tokens: SemanticTokens,
+  result: NarrateResult,
+  customRules?: Array<{ type: string; text: string }>
+): string {
   const { narrative, source, warnings } = result;
   const t = tokens;
   const n = narrative;
@@ -278,6 +282,25 @@ export function render(tokens: SemanticTokens, result: NarrateResult): string {
     s.push(`- **${d.rule}**${d.reason ? ` — *${d.reason}*` : ""}`);
   }
   s.push("");
+
+  // Custom user-defined rules
+  if (customRules && customRules.length > 0) {
+    const userDos = customRules.filter((r) => r.type === "do" && r.text.trim());
+    const userDonts = customRules.filter(
+      (r) => r.type === "dont" && r.text.trim()
+    );
+    if (userDos.length > 0 || userDonts.length > 0) {
+      s.push("### Custom Rules");
+      s.push("");
+      for (const r of userDos) {
+        s.push(`- ✅ ${r.text.trim()}`);
+      }
+      for (const r of userDonts) {
+        s.push(`- ❌ ${r.text.trim()}`);
+      }
+      s.push("");
+    }
+  }
 
   // ═══════════════════════════════════════════
   // 9. Ready-to-Use Prompts

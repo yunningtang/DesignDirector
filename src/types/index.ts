@@ -95,6 +95,11 @@ export interface NormalizedTokens {
   fonts: NormalizedFont[];
   spacings: number[]; // deduplicated, sorted ascending
   radii: number[]; // deduplicated, sorted ascending
+  radiiByComponent: {
+    button: number | null;
+    input: number | null;
+    card: number | null;
+  };
   shadows: string[]; // deduplicated normalized box-shadow strings
   borders: NormalizedBorder[];
   gradients: string[]; // deduplicated CSS gradient strings

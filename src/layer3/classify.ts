@@ -505,11 +505,64 @@ function extractComponents(
     .sort((a, b) => b.secondaryScore - a.secondaryScore)[0];
   if (bestSecondary) secondaryButton = bestSecondary.spec;
 
+  // ── Card detection ──
+  // Cards are large non-interactive elements with visible bg or border + border-radius
+  let card: ComponentSpec | null = null;
+  const cardCandidates = raw.elements.filter(
+    (el) =>
+      !el.isInteractive &&
+      el.boundingRect.width > 200 &&
+      el.boundingRect.height > 100 &&
+      el.boundingRect.y < 1200 &&
+      parsePxSimple(el.styles["borderRadius"]) >= 2 &&
+      (el.tagName === "DIV" || el.tagName === "SECTION" || el.tagName === "ARTICLE") &&
+      (!isTransparentColor(el.styles["backgroundColor"] ?? "transparent") ||
+        (el.styles["borderTopWidth"] && el.styles["borderTopStyle"] !== "none"))
+  );
+  if (cardCandidates.length > 0) {
+    // Pick the one closest to common card size (300-500px wide)
+    const best = cardCandidates.sort(
+      (a, b) => Math.abs(a.boundingRect.width - 400) - Math.abs(b.boundingRect.width - 400)
+    )[0];
+    card = {
+      backgroundColor: best.styles["backgroundColor"] || null,
+      textColor: best.styles["color"] || null,
+      borderRadius: parsePxSimple(best.styles["borderRadius"]),
+      paddingX: parsePxSimple(best.styles["paddingLeft"] || best.styles["paddingRight"]),
+      paddingY: parsePxSimple(best.styles["paddingTop"] || best.styles["paddingBottom"]),
+      fontSize: parsePxSimple(best.styles["fontSize"]),
+      fontWeight: parseInt(best.styles["fontWeight"] ?? "400") || 400,
+      border: formatBorder(best.styles),
+    };
+  }
+
+  // ── Input detection ──
+  const inputs = raw.elements.filter(
+    (el) =>
+      (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") &&
+      el.boundingRect.width > 60 &&
+      el.boundingRect.y < 1200
+  );
+  let input: ComponentSpec | null = null;
+  if (inputs.length > 0) {
+    const best = inputs[0];
+    input = {
+      backgroundColor: best.styles["backgroundColor"] || null,
+      textColor: best.styles["color"] || null,
+      borderRadius: parsePxSimple(best.styles["borderRadius"]),
+      paddingX: parsePxSimple(best.styles["paddingLeft"] || best.styles["paddingRight"]),
+      paddingY: parsePxSimple(best.styles["paddingTop"] || best.styles["paddingBottom"]),
+      fontSize: parsePxSimple(best.styles["fontSize"]),
+      fontWeight: parseInt(best.styles["fontWeight"] ?? "400") || 400,
+      border: formatBorder(best.styles),
+    };
+  }
+
   return {
     primaryButton,
     secondaryButton,
-    card: null, // TODO: detect card patterns
-    input: null, // TODO: detect input patterns
+    card,
+    input,
   };
 }
 

@@ -135,7 +135,8 @@ const server = createServer(async (req, res) => {
 
       // Re-run Layer 4 (template) + Layer 5 (render)
       const narrateResult = await narrate(tokens, Buffer.alloc(0), null);
-      const markdown = render(tokens, narrateResult);
+      const customRules = body.customRules as Array<{ type: string; text: string }> | undefined;
+      const markdown = render(tokens, narrateResult, customRules);
       json(res, 200, { markdown });
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);

@@ -142,12 +142,28 @@ function colorRoleFromProperty(property: string): ColorRole {
 
 // ─── Main normalize function ─────────────────
 
+/** Pick the most frequently used radius from a count map, or null if empty. */
+function getMostCommonRadius(map: Map<number, number>): number | null {
+  if (map.size === 0) return null;
+  let best: number | null = null;
+  let bestCount = 0;
+  for (const [r, count] of map) {
+    if (count > bestCount) { best = r; bestCount = count; }
+  }
+  return best;
+}
+
 export function normalize(raw: RawObservations): NormalizedTokens {
   // Accumulators
   const colorMap = new Map<string, NormalizedColor>();
   const fontMap = new Map<string, NormalizedFont>();
   const spacingSet = new Set<number>();
   const radiiSet = new Set<number>();
+  const radiiByComponent = {
+    button: new Map<number, number>(),
+    input: new Map<number, number>(),
+    card: new Map<number, number>(),
+  };
   const shadowSet = new Set<string>();
   const borderMap = new Map<string, NormalizedBorder>();
   const gradientSet = new Set<string>();
@@ -289,6 +305,26 @@ export function normalize(raw: RawObservations): NormalizedTokens {
       radiiSet.add(Math.round(radius));
     }
 
+    // ── Radii by component type ──
+    if (radius !== null && radius > 0) {
+      const r = Math.round(radius);
+      if (el.isInteractive || el.tagName === "BUTTON" || el.tagName === "A") {
+        if (!radiiByComponent.button.has(r)) radiiByComponent.button.set(r, 0);
+        radiiByComponent.button.set(r, radiiByComponent.button.get(r)! + 1);
+      }
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") {
+        if (!radiiByComponent.input.has(r)) radiiByComponent.input.set(r, 0);
+        radiiByComponent.input.set(r, radiiByComponent.input.get(r)! + 1);
+      }
+      // Larger elements with radius are likely cards/containers
+      const w = el.boundingRect?.width ?? 0;
+      const h = el.boundingRect?.height ?? 0;
+      if (w > 150 && h > 80 && !el.isInteractive) {
+        if (!radiiByComponent.card.has(r)) radiiByComponent.card.set(r, 0);
+        radiiByComponent.card.set(r, radiiByComponent.card.get(r)! + 1);
+      }
+    }
+
     // ── Shadows ──
     const shadow = el.styles["boxShadow"];
     if (shadow && shadow !== "none") {
@@ -326,6 +362,11 @@ export function normalize(raw: RawObservations): NormalizedTokens {
     fonts: Array.from(fontMap.values()).sort((a, b) => b.totalCount - a.totalCount),
     spacings: Array.from(spacingSet).sort((a, b) => a - b),
     radii: Array.from(radiiSet).sort((a, b) => a - b),
+    radiiByComponent: {
+      button: getMostCommonRadius(radiiByComponent.button),
+      input: getMostCommonRadius(radiiByComponent.input),
+      card: getMostCommonRadius(radiiByComponent.card),
+    },
     shadows: Array.from(shadowSet),
     borders: Array.from(borderMap.values()).sort((a, b) => b.count - a.count),
     gradients: Array.from(gradientSet).slice(0, 8),

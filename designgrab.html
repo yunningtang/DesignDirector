@@ -81,11 +81,11 @@ input, select { font-family: inherit; }
   padding: 0 40px;
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 16px;
 }
-.nav-inner .brand { margin-right: auto; }
-.nav-inner .nav-left { margin-right: auto; }
-.nav-inner .nav-right { margin-left: 0; }
+.nav-inner .brand { flex-shrink: 0; }
+.nav-inner > .nav-search { flex: 0 1 240px; }
+.nav-inner .nav-right { margin-left: auto; }
 .brand {
   display: flex;
   align-items: center;
@@ -403,7 +403,7 @@ main {
 .hero-input-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 56px;
+  margin-bottom: 0;
   animation: rise 0.7s var(--ease-decel) 0.28s both;
 }
 .grab-input-row {
@@ -411,6 +411,13 @@ main {
   gap: 8px;
   width: 100%;
   max-width: 520px;
+  align-items: center;
+}
+.grab-input-row .btn-pill {
+  height: 44px;
+  padding: 0 22px;
+  font-size: 14px;
+  border-radius: var(--radius-pill);
 }
 .grab-url-input {
   flex: 1;
@@ -1312,6 +1319,11 @@ main {
   gap: 32px;
   align-items: start;
 }
+/* When editing (Visual tab), hide the browse sidebar and go full width */
+.results-layout.editing {
+  grid-template-columns: 1fr;
+}
+.results-layout.editing .results-sidebar { display: none; }
 .results-main {
   min-width: 0;
 }
@@ -1330,8 +1342,10 @@ main {
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 24px;
   margin-top: 20px;
+  display: flex;
+  overflow: hidden;
+  min-height: 480px;
 }
 .token-editor-header {
   display: flex;
@@ -1343,12 +1357,75 @@ main {
   font-size: 15px;
   font-weight: 600;
 }
+/* Sidebar tabs */
+.te-sidebar {
+  width: 160px;
+  flex-shrink: 0;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.te-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+.te-tab:hover { background: var(--bg-card); color: var(--ink); }
+.te-tab.active { background: var(--bg-card); color: var(--ink); font-weight: 600; }
+.te-tab svg { width: 15px; height: 15px; flex-shrink: 0; opacity: 0.5; }
+.te-tab.active svg { opacity: 1; }
+.te-sidebar-footer {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+/* Main content area */
+.te-content {
+  flex: 1;
+  padding: 24px;
+}
+.te-section { display: none; }
+.te-section.active { display: block; }
+.te-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.te-section-desc {
+  font-size: 12px;
+  color: var(--ink-4);
+  margin-bottom: 20px;
+}
+/* Color groups in 2-col layout */
+.te-color-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.te-color-group {}
 .token-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 .token-col {}
+@media (max-width: 1024px) {
+  .te-sidebar { display: none; }
+  .token-editor { flex-direction: column; }
+  .te-content { max-height: none; }
+}
 
 /* Right sidebar */
 .results-sidebar {
@@ -1361,15 +1438,15 @@ main {
   justify-content: center;
   gap: 6px;
   width: 100%;
-  height: 36px;
-  border-radius: 10px;
-  font-size: 13px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--ink);
   background: var(--bg);
   border: 1px solid var(--line);
   cursor: pointer;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   transition: all 0.15s ease;
 }
 .sidebar-btn:hover { border-color: var(--line-2); background: var(--bg-card); }
@@ -1377,6 +1454,7 @@ main {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
+  height: 34px;
 }
 .sidebar-btn-primary:hover { opacity: 0.9; background: var(--ink); border-color: var(--ink); }
 
@@ -1504,6 +1582,12 @@ main {
   transition: flex 0.2s var(--ease-decel);
   min-width: 0;
 }
+.palette-chip + .palette-chip {
+  border-left: 1px solid rgba(0,0,0,0.06);
+}
+html[data-theme="dark"] .palette-chip + .palette-chip {
+  border-left-color: rgba(255,255,255,0.08);
+}
 .palette-chip:hover { flex: 1.6; }
 /* Token detail rows below the strip */
 .swatch-row {
@@ -1558,14 +1642,16 @@ main {
 .swatch-remove:hover { opacity: 1 !important; color: var(--ink-3); }
 /* ============ CUSTOM COLOR PICKER ============ */
 .cpicker-backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 999;
 }
 .cpicker {
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   width: 240px;
+  max-width: calc(100% - 24px);
+  box-sizing: border-box;
   background: var(--bg-inner);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -1573,6 +1659,9 @@ main {
   box-shadow: 0 20px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.04);
   animation: cpIn 0.18s var(--ease-decel) both;
 }
+.cpicker > * { min-width: 0; max-width: 100%; box-sizing: border-box; }
+/* Ensure token editor allows the picker to overlay within its bounds */
+.token-editor { position: relative; }
 @keyframes cpIn {
   from { opacity: 0; transform: translateY(4px) scale(0.96); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -1582,6 +1671,7 @@ main {
   gap: 10px;
   align-items: center;
   margin-bottom: 12px;
+  min-width: 0;
 }
 .cp-preview {
   width: 40px;
@@ -1593,6 +1683,8 @@ main {
 }
 .cp-hex-input {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   height: 36px;
   background: var(--bg);
   border: 1px solid var(--line);
@@ -1611,27 +1703,73 @@ main {
   color: var(--ink-4);
   margin-bottom: 10px;
 }
+.cp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.cp-header-token {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cp-header-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.cp-header-before {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.cp-header-hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-4);
+}
+.cp-palette-label {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
 /* Hue bar */
 .cp-hue-wrap {
   position: relative;
-  height: 18px;
-  border-radius: 9px;
+  height: 16px;
+  border-radius: 8px;
   margin-bottom: 12px;
   cursor: crosshair;
   background: linear-gradient(to right,
     #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0000ff, #8800ff, #ff00ff, #ff0000);
+  overflow: hidden;
 }
 .cp-hue-thumb {
   position: absolute;
-  top: -1px;
-  width: 12px;
-  height: 20px;
-  border-radius: 6px;
-  border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  top: 1px;
+  bottom: 1px;
+  width: 4px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
   pointer-events: none;
-  transform: translateX(-6px);
+  transform: translateX(-50%);
 }
+/* When saturation is 0 (white/black/gray) hue is meaningless */
+.cp-hue-wrap.is-dim {
+  opacity: 0.4;
+  filter: grayscale(0.5);
+}
+.cp-hue-wrap.is-dim .cp-hue-thumb { display: none; }
 /* Saturation / Lightness area */
 .cp-sl-wrap {
   position: relative;
@@ -1663,18 +1801,18 @@ main {
 /* Preset colors */
 .cp-presets {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 .cp-preset {
-  width: 22px;
-  height: 22px;
-  border-radius: 5px;
-  border: 1px solid rgba(0,0,0,0.06);
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
   cursor: pointer;
   transition: transform 0.12s ease;
 }
-.cp-preset:hover { transform: scale(1.15); }
+.cp-preset:hover { transform: scale(1.15); border-color: var(--ink-3); }
 .cp-actions {
   display: flex;
   justify-content: flex-end;
@@ -1758,7 +1896,6 @@ main {
 }
 .font-name-input::placeholder { color: var(--ink-5); }
 .font-preview {
-  font-size: 13px;
   color: var(--ink-3);
   margin-top: 6px;
   padding: 8px 10px;
@@ -1766,10 +1903,126 @@ main {
   border-radius: 6px;
   line-height: 1.4;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   transition: font-family 0.2s ease;
 }
+.font-preview-main {
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.font-preview-body {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.font-preview-scale {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+.font-scale-sample {
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+.font-loading {
+  font-size: 10px;
+  color: var(--ink-5);
+  margin-left: 8px;
+  font-style: italic;
+}
+
+/* Design rules editor */
+.rules-editor {
+  margin-top: 16px;
+}
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rule-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rule-type-btn {
+  flex-shrink: 0;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  border: 1px solid;
+}
+.rule-type-do {
+  background: var(--bg);
+  color: var(--pop-green);
+  border-color: var(--line);
+}
+.rule-type-dont {
+  background: var(--bg);
+  color: var(--pop-orange);
+  border-color: var(--line);
+}
+.rule-type-btn:hover { border-color: var(--ink-5); }
+.rule-input {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 4px 0;
+  font-size: 12px;
+  color: var(--ink);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.rule-input:focus { border-color: var(--ink-3); }
+.rule-input::placeholder { color: var(--ink-5); }
+.rule-remove {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--ink-5);
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.12s ease;
+}
+.rule-row:hover .rule-remove { opacity: 1; }
+.rule-remove:hover { color: var(--ink); background: var(--bg-card); }
+.add-rule-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.add-rule-btn {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-4);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.add-rule-btn:hover { color: var(--ink); background: var(--bg-card); }
 .spacing-edit-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1794,18 +2047,130 @@ main {
   height: 30px;
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 0 8px;
+  border-radius: 8px;
+  padding: 0 10px;
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--ink);
   outline: none;
-  transition: border-color 0.15s ease;
+  transition: all 0.15s ease;
+  -moz-appearance: textfield;
 }
-.spacing-input:focus { border-color: var(--ink-3); }
+.spacing-input::-webkit-outer-spin-button,
+.spacing-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.spacing-input:focus {
+  border-color: var(--ink-3);
+  box-shadow: 0 0 0 3px rgba(10,10,10,0.05);
+}
+html[data-theme="dark"] .spacing-input:focus {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+}
 .spacing-unit {
   font-size: 10px;
   color: var(--ink-5);
+}
+/* Stepper wrapper: input with +/- buttons */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 30px;
+  background: var(--bg);
+  transition: border-color 0.15s ease;
+}
+.stepper:focus-within {
+  border-color: var(--ink-3);
+  box-shadow: 0 0 0 3px rgba(10,10,10,0.05);
+}
+html[data-theme="dark"] .stepper:focus-within {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+}
+.stepper-btn {
+  width: 26px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-4);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  font-size: 14px;
+  user-select: none;
+}
+.stepper-btn:hover { background: var(--bg-card); color: var(--ink); }
+.stepper-btn:active { background: var(--line); }
+.stepper input {
+  width: 36px;
+  height: 100%;
+  border: none;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background: transparent;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink);
+  outline: none;
+  -moz-appearance: textfield;
+}
+.stepper input::-webkit-outer-spin-button,
+.stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Component preview */
+.component-preview {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  margin-top: 12px;
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.component-preview-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.component-preview-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-5);
+  font-weight: 500;
+}
+.cp-button {
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  cursor: default;
+  transition: border-radius 0.2s ease;
+}
+.cp-card {
+  width: 64px;
+  height: 44px;
+  background: var(--bg-inner);
+  border: 1px solid var(--line);
+  transition: border-radius 0.2s ease;
+}
+.cp-input {
+  width: 72px;
+  height: 28px;
+  background: var(--bg-inner);
+  border: 1px solid var(--line-2);
+  transition: border-radius 0.2s ease;
 }
 .regen-bar {
   display: none;
@@ -1959,7 +2324,17 @@ main {
 /* ============ LOGIN MODAL ============ */
 .login-modal .modal {
   max-width: 400px;
+  text-align: left;
+}
+.login-modal .modal-eyebrow,
+.login-modal .modal-title,
+.login-modal .modal-desc { text-align: left; }
+.login-modal .social-btn { justify-content: center; }
+.login-modal .login-footer {
   text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-3);
 }
 .login-divider {
   display: flex;
@@ -2054,6 +2429,651 @@ main {
 }
 .nav-my-grabs:hover { background: var(--bg-card); color: var(--ink); }
 
+/* ============ HOW IT WORKS ============ */
+.hero-or {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-4);
+  margin-top: 6px;
+}
+.how-strip {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-5);
+  letter-spacing: 0.02em;
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+/* ============ ONBOARDING / GUIDANCE ============ */
+
+/* 1. URL input pulse + hint */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  70% { transform: scale(1.08); opacity: 0; }
+  100% { transform: scale(1.08); opacity: 0; }
+}
+.grab-input-row { position: relative; }
+.grab-hint {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 14px);
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--ink-4);
+  white-space: nowrap;
+  animation: fadeIn 0.4s ease both;
+}
+.grab-hint .hint-arrow {
+  display: inline-block;
+  margin-right: 3px;
+  animation: nudge-left 1.2s ease infinite;
+}
+@keyframes nudge-left {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-3px); }
+}
+.grab-input-row.show-hint .grab-hint { display: block; }
+.grab-input-row.show-hint .grab-url-input {
+  animation: pulse-border 2s ease infinite;
+}
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(10,10,10,0); }
+  50% { box-shadow: 0 0 0 4px rgba(10,10,10,0.06); }
+}
+html[data-theme="dark"] .grab-input-row.show-hint .grab-url-input {
+  animation: pulse-border-dark 2s ease infinite;
+}
+@keyframes pulse-border-dark {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  50% { box-shadow: 0 0 0 4px rgba(255,255,255,0.08); }
+}
+
+/* 2. Results guidance bar */
+.guide-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--ink-3);
+  animation: rise 0.4s var(--ease-decel) both;
+}
+.guide-bar svg { flex-shrink: 0; color: var(--pop-blue); }
+.guide-bar-dismiss {
+  margin-left: auto;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--ink-4);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.guide-bar-dismiss:hover { background: var(--bg-inner); color: var(--ink); }
+
+/* 3. Swatch hover hint */
+.swatch-dot, .palette-chip { position: relative; }
+.swatch-dot::after, .palette-chip::after {
+  content: 'Click to edit';
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--ink);
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  z-index: 10;
+}
+.swatch-dot:hover::after, .palette-chip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.swatch-dot.hint-seen::after, .palette-chip.hint-seen::after { display: none; }
+
+/* 4. My Grabs empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+.empty-state-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--ink-5);
+  margin-bottom: 16px;
+}
+.empty-state-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.empty-state-desc {
+  font-size: 13px;
+  color: var(--ink-4);
+  margin-bottom: 20px;
+  max-width: 280px;
+  line-height: 1.5;
+}
+.empty-state-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.empty-state-cta:hover { opacity: 0.85; }
+
+/* ============ DOCS PAGE ============ */
+.docs-page {
+  max-width: 820px;
+  margin: 48px auto 80px;
+  padding: 0 40px;
+  animation: rise 0.6s var(--ease-decel) both;
+}
+.docs-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-4);
+  margin-bottom: 14px;
+}
+.docs-title {
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.docs-title .mono { font-family: var(--font-mono); font-weight: 500; }
+.docs-lede {
+  font-size: 17px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin-bottom: 40px;
+  max-width: 680px;
+}
+.docs-section {
+  margin-bottom: 48px;
+}
+.docs-h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.docs-body {
+  font-size: 15px;
+  color: var(--ink-3);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.docs-body strong { color: var(--ink); font-weight: 600; }
+.docs-code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--ink-2);
+}
+.docs-cta-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.docs-code-block {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  margin: 16px 0;
+}
+.docs-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.docs-section-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.docs-section-card-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-4);
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.docs-section-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.docs-section-card-desc {
+  font-size: 12.5px;
+  color: var(--ink-4);
+  line-height: 1.5;
+}
+@media (max-width: 720px) {
+  .docs-sections-grid { grid-template-columns: 1fr; }
+  .docs-title { font-size: 32px; }
+  .docs-page { padding: 0 24px; }
+}
+
+/* ============ LIVE PREVIEW ============ */
+.te-preview-col {
+  width: 380px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--line);
+  padding: 20px 18px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+/* Editor toolbar replaces the browse sidebar in Visual mode */
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-inner);
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+  margin-top: 16px;
+}
+.editor-toolbar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-right: auto;
+}
+.editor-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.editor-toolbar-btn:hover { border-color: var(--ink-4); }
+.editor-toolbar-btn.primary {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.editor-toolbar-btn.primary:hover { opacity: 0.9; }
+.token-editor.has-toolbar { border-radius: 0 0 16px 16px; margin-top: 0; border-top: none; }
+.live-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.live-preview-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+}
+.live-preview-themes {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--bg-card);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+}
+.lp-theme-btn {
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-4);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.lp-theme-btn.active { background: var(--bg-inner); color: var(--ink); }
+
+.lp-canvas {
+  /* All design tokens exposed as CSS custom properties */
+  --lp-bg: #ffffff;
+  --lp-bg-surface: #f5f5f5;
+  --lp-ink: #1a1a1a;
+  --lp-ink-2: #666;
+  --lp-accent: #3b82f6;
+  --lp-line: #e5e5e5;
+  --lp-font-display: 'Inter';
+  --lp-font-body: 'Inter';
+  --lp-radius-sm: 6px;
+  --lp-radius-md: 10px;
+  --lp-radius-lg: 16px;
+  --lp-base: 4px; /* driver for all spacing */
+  background: var(--lp-bg);
+  color: var(--lp-ink);
+  border-radius: var(--lp-radius-lg);
+  padding: calc(var(--lp-base) * 6);
+  font-family: var(--lp-font-body), system-ui, sans-serif;
+  border: 1px solid var(--lp-line);
+  transition: padding 0.15s ease, border-radius 0.15s ease;
+  flex: 1;
+  overflow: auto;
+}
+.lp-hero-title {
+  font-family: var(--lp-font-display), system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--lp-ink);
+  margin-bottom: calc(var(--lp-base) * 2);
+  line-height: 1.15;
+}
+.lp-hero-sub {
+  font-size: 12.5px;
+  color: var(--lp-ink-2);
+  margin-bottom: calc(var(--lp-base) * 4);
+  line-height: 1.5;
+}
+.lp-btn-row {
+  display: flex;
+  gap: calc(var(--lp-base) * 2);
+  margin-bottom: calc(var(--lp-base) * 5);
+  flex-wrap: wrap;
+}
+.lp-btn {
+  padding: calc(var(--lp-base) * 2) calc(var(--lp-base) * 4);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--lp-radius-sm);
+  cursor: default;
+  border: 1px solid transparent;
+  transition: padding 0.15s ease, border-radius 0.15s ease;
+}
+.lp-btn-primary { background: var(--lp-accent); color: white; }
+.lp-btn-ghost { background: transparent; border-color: var(--lp-line); color: var(--lp-ink); }
+.lp-card {
+  background: var(--lp-bg-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius-md);
+  padding: calc(var(--lp-base) * 3) calc(var(--lp-base) * 4);
+  margin-bottom: calc(var(--lp-base) * 3);
+  transition: all 0.15s ease;
+}
+.lp-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lp-ink);
+  margin-bottom: calc(var(--lp-base) * 1);
+}
+.lp-card-desc {
+  font-size: 12px;
+  color: var(--lp-ink-2);
+  line-height: 1.45;
+}
+.lp-modal {
+  background: var(--lp-bg-surface);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius-lg);
+  padding: calc(var(--lp-base) * 4);
+  margin-bottom: calc(var(--lp-base) * 3);
+  transition: all 0.15s ease;
+}
+.lp-modal-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lp-ink-2);
+  margin-bottom: calc(var(--lp-base) * 1);
+}
+.lp-modal-title {
+  font-family: var(--lp-font-display), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--lp-ink);
+}
+.lp-input {
+  width: 100%;
+  height: calc(var(--lp-base) * 8);
+  min-height: 28px;
+  padding: 0 calc(var(--lp-base) * 3);
+  font-size: 12px;
+  background: var(--lp-bg);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius-sm);
+  color: var(--lp-ink);
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+  margin-bottom: calc(var(--lp-base) * 3);
+}
+.lp-tag-row {
+  display: flex;
+  gap: calc(var(--lp-base) * 1.5);
+  flex-wrap: wrap;
+}
+.lp-tag {
+  font-size: 10px;
+  padding: calc(var(--lp-base) * 0.75) calc(var(--lp-base) * 2);
+  border-radius: 99px;
+  border: 1px solid var(--lp-line);
+  color: var(--lp-ink-2);
+}
+
+@media (max-width: 1100px) {
+  .te-preview-col { display: none; }
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 20px 40px;
+  font-size: 13px;
+  color: var(--ink-4);
+}
+.footer-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-brand { font-weight: 600; color: var(--ink-3); }
+.footer-copy { margin-left: 8px; }
+.footer-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-4);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.footer-lang-btn:hover { color: var(--ink); background: var(--bg-card); }
+
+/* ============ RADIUS PREVIEW ============ */
+.radius-preview {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.radius-preview-box {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--ink-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-radius 0.2s ease;
+}
+.radius-preview-box span {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-4);
+}
+
+/* ============ SPACING SCALE VISUAL ============ */
+.spacing-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.spacing-scale-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.spacing-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.spacing-bar {
+  height: 8px;
+  background: var(--ink-3);
+  border-radius: 2px;
+  min-width: 4px;
+  transition: width 0.2s ease;
+  opacity: 0.7;
+  flex: 0 0 auto;
+  max-width: 140px;
+}
+.spacing-bar-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-left: auto;
+}
+.spacing-bar-unit {
+  font-size: 9px;
+  color: var(--ink-5);
+  margin-left: 2px;
+  font-weight: 400;
+}
+.spacing-section-sublabel {
+  font-size: 10px;
+  color: var(--ink-4);
+  margin: 12px 0 8px;
+}
+
+/* Base unit presets */
+.base-presets {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.base-preset {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.base-preset:hover { border-color: var(--ink-4); color: var(--ink); }
+.base-preset.active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.base-custom {
+  margin-left: auto;
+}
+
+/* ============ DARK MODE ============ */
+html[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --bg-card: #252525;
+  --bg-inner: #2a2a2a;
+  --bg-elevated: #2f2f2f;
+  --ink: #f0f0ef;
+  --ink-2: #e0e0de;
+  --ink-3: #a8a8a5;
+  --ink-4: #737370;
+  --ink-5: #4a4a48;
+  --line: #333331;
+  --line-2: #444442;
+  --accent: #f0f0ef;
+  --accent-hover: #e0e0de;
+}
+html[data-theme="dark"] .nav {
+  background: rgba(26, 26, 26, 0.88);
+}
+html[data-theme="dark"] .social-btn {
+  background: var(--bg-card);
+  border-color: var(--line);
+}
+html[data-theme="dark"] .hero-illust svg ellipse[fill="white"],
+html[data-theme="dark"] .hero-illust svg rect[fill="white"],
+html[data-theme="dark"] .hero-illust svg path[fill="white"] {
+  fill: var(--bg-card);
+}
+html[data-theme="dark"] .brand-logo svg ellipse[fill="white"],
+html[data-theme="dark"] .brand-logo svg rect[fill="white"],
+html[data-theme="dark"] .brand-logo svg path[fill="white"] {
+  fill: var(--bg-card);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -2098,20 +3118,18 @@ main {
       </span>
       DesignGrab
     </a>
-    <!-- Left: logo + nav links -->
-    <div class="nav-left">
-      <div class="nav-links">
-        <a class="nav-link" onclick="goLanding()" href="#">Home</a>
-        <a class="nav-link" href="#" id="nav-my-grabs" style="display:none" onclick="showMyGrabs()">My Grabs</a>
-      </div>
+    <!-- Search: right next to logo -->
+    <div class="nav-search" id="nav-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="nav-search-input" id="nav-search-input" type="text" placeholder="Search sites..." oninput="filterGallery(this.value)" />
     </div>
 
-    <!-- Right: search + utilities + auth -->
+    <!-- Right: nav links + tools + auth -->
     <div class="nav-right">
-      <div class="nav-search" id="nav-search">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input class="nav-search-input" id="nav-search-input" type="text" placeholder="Search sites..." oninput="filterGallery(this.value)" />
-      </div>
+      <a class="nav-link" href="#" onclick="scrollToGallery();return false">Gallery</a>
+      <a class="nav-link" href="#" onclick="openBlankEditor();return false">Create</a>
+      <a class="nav-link" href="#" onclick="openDocs();return false">DESIGN.md</a>
+      <a class="nav-link" href="#" id="nav-my-grabs" style="display:none" onclick="showMyGrabs()">My Grabs</a>
 
       <span class="nav-divider"></span>
 
@@ -2122,6 +3140,12 @@ main {
         </button>
         <div class="lang-menu" id="lang-menu"></div>
       </div>
+
+      <!-- Dark mode toggle -->
+      <button class="nav-icon-btn" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-sun" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
 
       <!-- Settings -->
       <button class="nav-icon-btn" onclick="openModal()" title="Settings" aria-label="Settings">
@@ -2152,9 +3176,9 @@ main {
             <span class="line2">of any website.</span>
           </h1>
           <p class="hero-sub" data-i18n="hero.sub">
-            Paste a URL. DesignGrab runs a real browser, reads computed
-            styles, and writes a clean DESIGN.md your AI agent can use
-            to build matching UI in minutes.
+            Paste a URL to extract any site's design system, or create
+            your own from scratch. Edit tokens visually — colors, fonts,
+            spacing, rules — and export a clean DESIGN.md.
           </p>
         </div>
 
@@ -2228,15 +3252,18 @@ main {
 
       <!-- Centered URL input below -->
       <div class="hero-input-section">
-        <div class="grab-input-row">
+        <div class="grab-input-row" id="grab-input-row">
           <input id="url-input" class="grab-url-input" type="url" placeholder="https://stripe.com" spellcheck="false" />
           <button class="btn-pill dark" id="grab-btn" onclick="startGrab()" data-i18n="hero.grab">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             Grab
           </button>
+          <span class="grab-hint"><span class="hint-arrow">&larr;</span> Paste any URL</span>
         </div>
         <p class="grab-error" id="grab-error"></p>
       </div>
+      <p class="hero-or">or <a href="#" onclick="openBlankEditor();return false" style="color:var(--ink);font-weight:600;text-decoration:underline">create from scratch</a></p>
+      <div class="how-strip">Paste URL &rarr; Edit tokens visually &rarr; Export DESIGN.md</div>
 
       <!-- Examples / Gallery -->
       <div class="examples-section" id="examples-section" style="display:none">
@@ -2327,12 +3354,131 @@ main {
     </div>
   </section>
 
+  <!-- ============ STATE: DOCS ============ -->
+  <section id="state-docs" style="display:none">
+    <div class="docs-page">
+      <div class="docs-eyebrow">Documentation</div>
+      <h1 class="docs-title">What is <span class="mono">DESIGN.md</span>?</h1>
+      <p class="docs-lede">
+        A structured markdown file that captures a website's complete design system —
+        colors, typography, spacing, components, and usage rules. Designed to be read
+        by AI coding agents.
+      </p>
+
+      <div class="docs-section">
+        <h2 class="docs-h2">Why does it exist?</h2>
+        <p class="docs-body">
+          Most AI-generated UI looks generic — a sea of gray boxes with blue buttons — because
+          the AI has no context about your brand. Giving it a <span class="docs-code">DESIGN.md</span> file
+          changes that entirely.
+        </p>
+        <p class="docs-body">
+          Tools like <strong>Cursor</strong>, <strong>Claude Code</strong>, <strong>Codex</strong>, and
+          <strong>Windsurf</strong> will read it automatically and generate UI that matches your
+          design system — not some random template.
+        </p>
+      </div>
+
+      <div class="docs-section">
+        <h2 class="docs-h2">What's inside?</h2>
+        <p class="docs-body">A DESIGN.md file has seven sections, organized from atomic tokens to high-level guidelines:</p>
+        <div class="docs-sections-grid">
+          <div class="docs-section-card">
+            <div class="docs-section-card-num">01</div>
+            <div>
+              <div class="docs-section-card-title">Mood &amp; Atmosphere</div>
+              <div class="docs-section-card-desc">The feeling — minimal, playful, technical, warm.</div>
+            </div>
+          </div>
+          <div class="docs-section-card">
+            <div class="docs-section-card-num">02</div>
+            <div>
+              <div class="docs-section-card-title">Color Palette</div>
+              <div class="docs-section-card-desc">Semantic CSS variables with role-based naming.</div>
+            </div>
+          </div>
+          <div class="docs-section-card">
+            <div class="docs-section-card-num">03</div>
+            <div>
+              <div class="docs-section-card-title">Typography</div>
+              <div class="docs-section-card-desc">Font families, weights, and type scale.</div>
+            </div>
+          </div>
+          <div class="docs-section-card">
+            <div class="docs-section-card-num">04</div>
+            <div>
+              <div class="docs-section-card-title">Spacing &amp; Radii</div>
+              <div class="docs-section-card-desc">Base unit, scale, and border radius tokens.</div>
+            </div>
+          </div>
+          <div class="docs-section-card">
+            <div class="docs-section-card-num">05</div>
+            <div>
+              <div class="docs-section-card-title">Components</div>
+              <div class="docs-section-card-desc">Button, card, input specs — ready to reproduce.</div>
+            </div>
+          </div>
+          <div class="docs-section-card">
+            <div class="docs-section-card-num">06</div>
+            <div>
+              <div class="docs-section-card-title">Do's &amp; Don'ts</div>
+              <div class="docs-section-card-desc">Negative constraints so AI doesn't over-design.</div>
+            </div>
+          </div>
+          <div class="docs-section-card" style="grid-column:1/-1">
+            <div class="docs-section-card-num">07</div>
+            <div>
+              <div class="docs-section-card-title">Ready-to-use AI prompts</div>
+              <div class="docs-section-card-desc">Copy-paste prompts for Cursor, Claude, or Codex that reference the tokens above.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section">
+        <h2 class="docs-h2">How do you use it?</h2>
+        <p class="docs-body"><strong>Step 1.</strong> Grab any site or create your own, then download the DESIGN.md file.</p>
+        <p class="docs-body"><strong>Step 2.</strong> Drop it in your project root directory, alongside <span class="docs-code">package.json</span>.</p>
+        <p class="docs-body"><strong>Step 3.</strong> Tell your AI agent to follow it:</p>
+<div class="docs-code-block">Please follow the design system defined in DESIGN.md.
+Use the CSS variables and spacing scale exactly as specified.
+Refer to the Do's &amp; Don'ts when making styling decisions.</div>
+        <p class="docs-body">
+          That's it. The AI will reference the file every time it writes UI code, ensuring
+          consistency across your entire codebase.
+        </p>
+      </div>
+
+      <div class="docs-section">
+        <h2 class="docs-h2">Tokens vs. rules — why both?</h2>
+        <p class="docs-body">
+          Most design-token tools stop at exporting raw values: <span class="docs-code">#1a73e8</span>,
+          <span class="docs-code">16px</span>, <span class="docs-code">Inter</span>. But an AI handed only values
+          still doesn't know <em>when</em> or <em>how</em> to use them.
+        </p>
+        <p class="docs-body">
+          DESIGN.md pairs every token with a semantic name (<span class="docs-code">--accent-primary</span>
+          is for CTAs, not backgrounds) and a usage rule (<span class="docs-code">don't use accent on body text</span>).
+          That's the difference between a style sheet and a design <em>system</em>.
+        </p>
+      </div>
+
+      <div class="docs-cta-row">
+        <button class="btn-pill dark" onclick="goLanding()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Try it now
+        </button>
+        <button class="btn-pill ghost" onclick="openBlankEditor()">Create from scratch</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ STATE: RESULTS ============ -->
   <section class="results" id="state-results">
     <!-- Breadcrumb -->
     <nav class="breadcrumb" id="breadcrumb">
       <a href="#" onclick="goLanding();return false">Home</a>
-      <span class="bc-sep">/</span>
+      <span class="bc-sep" id="bc-sep-mid">/</span>
       <a href="#" id="bc-back" onclick="goBack();return false">Gallery</a>
       <span class="bc-sep">/</span>
       <span class="bc-current" id="bc-current"></span>
@@ -2341,6 +3487,13 @@ main {
     <!-- Title row -->
     <div class="results-title-row">
       <h1 class="results-title" id="results-title"></h1>
+    </div>
+
+    <!-- Guidance bar (first-time) -->
+    <div class="guide-bar" id="results-guide" style="display:none">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>Your DESIGN.md is ready. Switch to <strong>Visual</strong> to edit colors and fonts, or download the markdown directly.</span>
+      <button class="guide-bar-dismiss" onclick="dismissGuide()">Got it</button>
     </div>
 
     <!-- View tabs: Light / Dark / Visual / Raw -->
@@ -2368,49 +3521,123 @@ main {
           <img id="result-screenshot" onclick="openLightbox()" style="width:100%;border-radius:12px;border:1px solid var(--line);cursor:zoom-in" />
         </div>
 
+        <!-- Editor toolbar (Visual mode only) -->
+        <div class="editor-toolbar" id="editor-toolbar" style="display:none">
+          <span class="editor-toolbar-title" id="editor-toolbar-title">Edit design system</span>
+          <button class="editor-toolbar-btn" onclick="copyMdFromEditor()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+          <button class="editor-toolbar-btn" onclick="shareGrab()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16,6 12,2 8,6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            Share
+          </button>
+          <button class="editor-toolbar-btn primary" onclick="downloadMdFromEditor()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+
         <!-- Token editor (for visual tab) -->
         <div class="token-editor" id="token-editor" style="display:none">
-          <div class="token-editor-header">
-            <h3>Edit tokens</h3>
-            <button class="panel-reset-btn" id="reset-tokens-btn" onclick="resetTokens()">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg>
-              Reset
+          <!-- Sidebar tabs -->
+          <div class="te-sidebar">
+            <button class="te-tab active" onclick="showEditorTab('colors', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><circle cx="8.5" cy="15.5" r="2.5"/></svg>
+              Colors
             </button>
-          </div>
-          <div class="token-grid">
-            <div class="token-col">
-              <div class="token-section-head">Backgrounds</div>
-              <div class="swatches" id="swatches-bg"></div>
-              <button class="add-token-btn" onclick="addToken('bg')">+ Add</button>
-            </div>
-            <div class="token-col">
-              <div class="token-section-head">Ink</div>
-              <div class="swatches" id="swatches-ink"></div>
-              <button class="add-token-btn" onclick="addToken('ink')">+ Add</button>
-            </div>
-            <div class="token-col">
-              <div class="token-section-head">Accent / Status</div>
-              <div class="swatches" id="swatches-accent"></div>
-              <button class="add-token-btn" onclick="addToken('accent')">+ Add</button>
-            </div>
-            <div class="token-col">
-              <div class="token-section-head">Lines</div>
-              <div class="swatches" id="swatches-line"></div>
+            <button class="te-tab" onclick="showEditorTab('type', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><line x1="12" y1="4" x2="12" y2="20"/><path d="M8 20h8"/></svg>
+              Typography
+            </button>
+            <button class="te-tab" onclick="showEditorTab('spacing', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+              Spacing
+            </button>
+            <button class="te-tab" onclick="showEditorTab('rules', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Rules
+            </button>
+            <div class="te-sidebar-footer">
+              <button class="panel-reset-btn" id="reset-tokens-btn" onclick="resetTokens()" style="width:100%;justify-content:center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg>
+                Reset all
+              </button>
             </div>
           </div>
-          <div class="token-grid" style="margin-top:16px">
-            <div class="token-col">
-              <div class="token-section-head">Typography</div>
+
+          <!-- Content panels -->
+          <div class="te-content">
+            <!-- COLORS -->
+            <div class="te-section active" id="te-colors">
+              <div class="te-section-title">Color Palette</div>
+              <div class="te-section-desc">Click any swatch to edit. Colors are grouped by semantic role.</div>
+              <div class="te-color-grid">
+                <div class="te-color-group">
+                  <div class="token-section-head" style="border-top:none;padding-top:0">Backgrounds</div>
+                  <div class="swatches" id="swatches-bg"></div>
+                  <button class="add-token-btn" onclick="addToken('bg')">+ Add</button>
+                </div>
+                <div class="te-color-group">
+                  <div class="token-section-head" style="border-top:none;padding-top:0">Ink</div>
+                  <div class="swatches" id="swatches-ink"></div>
+                  <button class="add-token-btn" onclick="addToken('ink')">+ Add</button>
+                </div>
+                <div class="te-color-group">
+                  <div class="token-section-head">Accent / Status</div>
+                  <div class="swatches" id="swatches-accent"></div>
+                  <button class="add-token-btn" onclick="addToken('accent')">+ Add</button>
+                </div>
+                <div class="te-color-group">
+                  <div class="token-section-head">Lines</div>
+                  <div class="swatches" id="swatches-line"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TYPOGRAPHY -->
+            <div class="te-section" id="te-type">
+              <div class="te-section-title">Typography</div>
+              <div class="te-section-desc">Edit font families. Fonts are loaded from Google Fonts for live preview.</div>
               <div id="font-list"></div>
             </div>
-            <div class="token-col">
-              <div class="token-section-head">Spacing & Radii</div>
+
+            <!-- SPACING -->
+            <div class="te-section" id="te-spacing">
+              <div class="te-section-title">Spacing & Radii</div>
+              <div class="te-section-desc">Define your spacing scale and border radius tokens.</div>
               <div id="spacing-info"></div>
             </div>
+
+            <!-- RULES -->
+            <div class="te-section" id="te-rules">
+              <div class="te-section-title">Design Rules</div>
+              <div class="te-section-desc">Add custom guidelines. These will be included in your DESIGN.md output.</div>
+              <div class="rules-editor" id="rules-editor">
+                <div class="rules-list" id="rules-list"></div>
+                <div class="add-rule-row">
+                  <button class="add-rule-btn" onclick="addRule('do')">+ Do</button>
+                  <button class="add-rule-btn" onclick="addRule('dont')">+ Don't</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="regen-bar" id="regen-bar">
+              Tokens modified
+              <button onclick="regenerateMarkdown()">Re-generate</button>
+            </div>
           </div>
-          <div class="regen-bar" id="regen-bar">
-            Tokens modified
-            <button onclick="regenerateMarkdown()">Re-generate</button>
+
+          <!-- Live preview — fixed right column -->
+          <div class="te-preview-col" id="te-preview-col">
+            <div class="live-preview-header">
+              <span class="live-preview-label">Live preview</span>
+              <div class="live-preview-themes">
+                <button class="lp-theme-btn active" data-theme="light" onclick="setPreviewTheme('light', this)">Light</button>
+                <button class="lp-theme-btn" data-theme="dark" onclick="setPreviewTheme('dark', this)">Dark</button>
+              </div>
+            </div>
+            <div class="lp-canvas" id="lp-canvas"></div>
           </div>
         </div>
 
@@ -2472,6 +3699,14 @@ main {
   </section>
 
 </main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">DesignGrab</span>
+    <span class="footer-copy">&copy; 2025</span>
+  </div>
+</footer>
 
 <!-- ============ SETTINGS MODAL ============ -->
 <div class="modal-backdrop" id="modal">
@@ -2619,6 +3854,11 @@ main {
         <label class="field-label">Password</label>
         <input class="field-input" id="register-password" type="password" placeholder="At least 8 characters" />
       </div>
+      <div class="field">
+        <label class="field-label">Confirm password</label>
+        <input class="field-input" id="register-password-confirm" type="password" placeholder="Re-enter password" />
+      </div>
+      <p id="register-error" style="display:none;font-size:13px;color:#E74C3C;margin-bottom:12px"></p>
       <button class="btn-pill dark" style="width:100%;justify-content:center;margin-top:8px" onclick="registerWithEmail()">
         Create account
       </button>
@@ -2660,7 +3900,7 @@ const i18n = {
     _label: 'English',
     'nav.api': 'API settings',
     'hero.title': 'Grab the design<br><span class="line2">of any website.</span>',
-    'hero.sub': 'Paste a URL. DesignGrab runs a real browser, reads computed styles, and writes a clean DESIGN.md your AI agent can use to build matching UI in minutes.',
+    'hero.sub': 'Paste a URL to extract any design system, or create your own from scratch. Edit tokens visually — colors, fonts, spacing, rules — and export a clean DESIGN.md.',
     'hero.grab': 'Grab',
     'f1.title': 'Real browser, real styles',
     'f1.desc': 'Headless Chromium loads the page, waits for hydration, and reads computed styles — not raw CSS files.',
@@ -2690,7 +3930,7 @@ const i18n = {
     _label: '中文',
     'nav.api': 'API 设置',
     'hero.title': '扒下任何网站<br><span class="line2">的设计系统。</span>',
-    'hero.sub': '粘贴一个链接，DesignGrab 用真实浏览器加载页面、读取样式，自动输出一份 DESIGN.md，你的 AI 可以直接拿去写出一样的 UI。',
+    'hero.sub': '粘贴链接抓取任意网站的设计系统，或从零开始创建。可视化编辑颜色、字体、间距和规则，导出干净的 DESIGN.md。',
     'hero.grab': '开始抓取',
     'f1.title': '真浏览器，真样式',
     'f1.desc': '用 Chromium 加载页面、等渲染跑完，拿到的是浏览器算出来的最终样式，不是看 CSS 源文件猜。',
@@ -2839,6 +4079,7 @@ const states = {
   landing: document.getElementById('state-landing'),
   scanning: document.getElementById('state-scanning'),
   results: document.getElementById('state-results'),
+  docs: document.getElementById('state-docs'),
 };
 
 function show(name, scrollTop = true) {
@@ -3000,11 +4241,13 @@ function renderEditableSwatches(containerId, keys, palette) {
   if (!el) return;
   const activeKeys = keys.filter(k => palette[k]);
   if (activeKeys.length === 0) { el.innerHTML = ''; return; }
+  const hintSeen = localStorage.getItem('designgrab.swatchHintSeen');
+  const hintCls = hintSeen ? ' hint-seen' : '';
 
   // Palette strip
   const strip = `<div class="palette-strip">${
     activeKeys.map(k =>
-      `<div class="palette-chip" style="background:${palette[k]}" title="${k}: ${palette[k]}" onclick="openColorPicker('${k}', this)"></div>`
+      `<div class="palette-chip${hintCls}" style="background:${palette[k]}" title="${k}: ${palette[k]}" onclick="openColorPicker('${k}', this)"></div>`
     ).join('')
   }</div>`;
 
@@ -3014,7 +4257,7 @@ function renderEditableSwatches(containerId, keys, palette) {
     const shortKey = k.replace(/^(bg|ink|line|accent|status)-/, '');
     return `
     <div class="swatch-row">
-      <div class="swatch-dot" style="background:${hex}" onclick="openColorPicker('${k}', this)"></div>
+      <div class="swatch-dot${hintCls}" style="background:${hex}" onclick="openColorPicker('${k}', this)"></div>
       <span class="swatch-label">${shortKey}</span>
       <span class="swatch-hex" id="hex-${k}" onclick="openColorPicker('${k}', this)" title="Click to edit">${hex}</span>
       <span class="swatch-remove" onclick="removeToken('${k}')">&times;</span>
@@ -3065,50 +4308,87 @@ function hslToHex(h, s, l) {
 
 function openColorPicker(tokenKey, anchorEl) {
   closeColorPicker();
+  markSwatchHintsSeen();
   const currentHex = lastGrabData?.tokens?.palette?.[tokenKey];
   if (!currentHex) return;
 
   const [h, s, l] = hexToHsl(currentHex);
   cpState = { open: true, key: tokenKey, h, s, l, origHex: currentHex };
 
+  // Anchor picker INSIDE the token editor card (not floating globally)
+  const host = document.querySelector('.token-editor') || document.body;
+  const hostRect = host.getBoundingClientRect();
   const rect = anchorEl.getBoundingClientRect();
-  // Smart positioning: prefer below, flip above if no space; clamp to viewport
-  const pickerH = 440, pickerW = 240, gap = 8;
-  let top = rect.bottom + gap;
-  let left = rect.left;
-  // Flip above if overflows bottom
-  if (top + pickerH > window.innerHeight - 16) top = Math.max(16, rect.top - pickerH - gap);
-  // Clamp horizontal
-  if (left + pickerW > window.innerWidth - 16) left = window.innerWidth - pickerW - 16;
-  if (left < 16) left = 16;
+  const pickerW = 240, gap = 8, pad = 12;
+  // Position relative to host (the editor card)
+  let top = rect.bottom - hostRect.top + gap;
+  let left = rect.left - hostRect.left;
+  // Clamp horizontally inside the card
+  const maxLeft = host.clientWidth - pickerW - pad;
+  if (left > maxLeft) left = maxLeft;
+  if (left < pad) left = pad;
 
   // Build picker HTML
   const div = document.createElement('div');
   div.id = 'cpicker-container';
+  // Build "from palette" suggestions: other non-null colors in the current palette
+  const palette = lastGrabData?.tokens?.palette ?? {};
+  const paletteColors = Object.entries(palette)
+    .filter(([k, v]) => v && k !== tokenKey)
+    .map(([k, v]) => ({ key: k, hex: v }));
+
+  const isAchromatic = s < 5;
   div.innerHTML = `
     <div class="cpicker-backdrop" onclick="closeColorPicker()"></div>
-    <div class="cpicker" style="top:${top}px;left:${left}px">
-      <div class="cp-token-name">${tokenKey}</div>
+    <div class="cpicker" style="top:${top}px;left:${left}px;visibility:hidden">
+      <div class="cp-header">
+        <div class="cp-header-token">${tokenKey}</div>
+        <div class="cp-header-value">
+          <span class="cp-header-before" style="background:${currentHex}"></span>
+          <span class="cp-header-hex">${currentHex}</span>
+        </div>
+      </div>
       <div class="cp-sl-wrap" id="cp-sl" style="background:linear-gradient(to right, #fff, hsl(${h},100%,50%))">
         <div class="cp-sl-thumb" id="cp-sl-thumb"></div>
       </div>
-      <div class="cp-hue-wrap" id="cp-hue">
+      <div class="cp-hue-wrap ${isAchromatic ? 'is-dim' : ''}" id="cp-hue">
         <div class="cp-hue-thumb" id="cp-hue-thumb"></div>
       </div>
       <div class="cp-preview-row">
         <div class="cp-preview" id="cp-preview" style="background:${currentHex}"></div>
         <input class="cp-hex-input" id="cp-hex" value="${currentHex}" maxlength="7" spellcheck="false" />
       </div>
+      ${paletteColors.length > 0 ? `
+      <div class="cp-palette-label">From your palette</div>
       <div class="cp-presets" id="cp-presets">
-        ${CP_PRESETS.map(c => `<div class="cp-preset" style="background:${c}" onclick="cpSetHex('${c}')"></div>`).join('')}
-      </div>
+        ${paletteColors.map(c =>
+          `<div class="cp-preset" style="background:${c.hex}" title="${c.key} · ${c.hex}" onclick="cpSetHex('${c.hex}')"></div>`
+        ).join('')}
+      </div>` : ''}
       <div class="cp-actions">
         <button class="cp-btn-cancel" onclick="cpCancel()">Cancel</button>
-        <button class="cp-btn-apply" onclick="cpApply()">Apply</button>
+        <button class="cp-btn-apply" onclick="cpApply()">Done</button>
       </div>
     </div>
   `;
-  document.body.appendChild(div);
+  host.appendChild(div);
+
+  // Re-position using actual measured size, constrained to host bounds
+  const pickerEl = div.querySelector('.cpicker');
+  const pickerH = pickerEl.offsetHeight;
+  const hostH = host.clientHeight;
+  let finalTop = rect.bottom - hostRect.top + gap;
+  // Flip above if overflows host bottom
+  if (finalTop + pickerH > hostH - pad) {
+    finalTop = rect.top - hostRect.top - pickerH - gap;
+  }
+  // Clamp within host
+  if (finalTop < pad) finalTop = pad;
+  if (finalTop + pickerH > hostH - pad) {
+    finalTop = Math.max(pad, hostH - pickerH - pad);
+  }
+  pickerEl.style.top = finalTop + 'px';
+  pickerEl.style.visibility = '';
 
   // Position SL thumb & hue thumb
   cpUpdateThumbs();
@@ -3173,9 +4453,15 @@ function cpUpdateUI() {
   const preview = document.getElementById('cp-preview');
   const hexInput = document.getElementById('cp-hex');
   const sl = document.getElementById('cp-sl');
+  const hueWrap = document.getElementById('cp-hue');
+  const headerBefore = document.querySelector('.cp-header-before');
+  const headerHex = document.querySelector('.cp-header-hex');
   if (preview) preview.style.background = hex;
   if (hexInput) hexInput.value = hex;
   if (sl) sl.style.background = `linear-gradient(to right, #fff, hsl(${cpState.h},100%,50%))`;
+  // Toggle achromatic state on hue bar
+  if (hueWrap) hueWrap.classList.toggle('is-dim', cpState.s < 5);
+  // Keep header reflecting original (before) color
   cpUpdateThumbs();
 }
 
@@ -3185,8 +4471,8 @@ function cpUpdateThumbs() {
   const hex = hslToHex(cpState.h, cpState.s, cpState.l);
 
   if (hueThumb) {
-    hueThumb.style.left = (cpState.h / 360 * 100) + '%';
-    hueThumb.style.background = `hsl(${cpState.h},100%,50%)`;
+    const pct = Math.max(0, Math.min(100, cpState.h / 360 * 100));
+    hueThumb.style.left = pct + '%';
   }
   if (slThumb) {
     const sx = cpState.s / 100;
@@ -3224,9 +4510,34 @@ function markModified() {
   document.getElementById('reset-tokens-btn').classList.add('visible');
 }
 
+const _loadedFonts = new Set();
+let _fontLoadTimer = null;
+
+function loadGoogleFont(family, weight) {
+  const key = family + ':' + weight;
+  if (_loadedFonts.has(key)) return;
+  _loadedFonts.add(key);
+  const clean = family.replace(/\s+/g, '+');
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `https://fonts.googleapis.com/css2?family=${clean}:wght@${weight}&display=swap`;
+  link.onerror = () => _loadedFonts.delete(key);
+  document.head.appendChild(link);
+}
+
 function previewFont(input, key) {
   const preview = document.getElementById('fp-' + key);
-  if (preview) preview.style.fontFamily = `'${input.value}', system-ui`;
+  if (preview) {
+    preview.style.fontFamily = `'${input.value}', system-ui`;
+    const mainEl = preview.querySelector('.font-preview-main');
+    if (mainEl) mainEl.textContent = input.value;
+  }
+  // Debounced Google Fonts load
+  clearTimeout(_fontLoadTimer);
+  _fontLoadTimer = setTimeout(() => {
+    const weight = lastGrabData?.tokens?.typography?.[key]?.weight || 400;
+    loadGoogleFont(input.value, weight);
+  }, 600);
 }
 
 function resetTokens() {
@@ -3272,6 +4583,7 @@ function updateToken(key, newHex) {
   renderEditableSwatches('swatches-ink', ['ink-primary','ink-secondary','ink-tertiary','ink-disabled'], t.palette);
   renderEditableSwatches('swatches-accent', ['accent-primary','accent-secondary','status-error','status-success','status-warning'], t.palette);
   renderEditableSwatches('swatches-line', ['line-subtle','line-default','line-strong'], t.palette);
+  renderLivePreview();
   markModified();
   regenerateMarkdown();
 }
@@ -3294,22 +4606,31 @@ function updateFont(key, newName) {
   if (lastGrabData.tokens.typography[key]) {
     lastGrabData.tokens.typography[key].family = newName;
   }
+  renderLivePreview();
   markModified();
   regenerateMarkdown();
 }
 
+let _regenTimer = null;
+let _regenSeq = 0; // guard against stale responses
+
 async function regenerateMarkdown() {
   if (!lastGrabData) return;
-  // Re-run Layer 4 (template) + Layer 5 (render) client-side
-  // We can't run the full pipeline, but we can re-call the API with modified tokens
-  // For now, do a simple client-side re-render by calling the server
+  // Debounce: wait 400ms after last edit before hitting server
+  clearTimeout(_regenTimer);
+  _regenTimer = setTimeout(_doRegenerate, 400);
+}
+
+async function _doRegenerate() {
+  if (!lastGrabData) return;
+  const seq = ++_regenSeq;
   try {
     const res = await fetch('/api/rerender', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tokens: lastGrabData.tokens }),
+      body: JSON.stringify({ tokens: lastGrabData.tokens, customRules: customRules.filter(r => r.text.trim()) }),
     });
-    if (res.ok) {
+    if (res.ok && seq === _regenSeq) {
       const data = await res.json();
       lastGrabData.markdown = data.markdown;
       // Update code body without switching tabs or scrolling
@@ -3333,6 +4654,8 @@ function showTab(tab) {
   const codePanel = document.getElementById('code-panel');
   const preview = document.getElementById('results-preview');
   const editor = document.getElementById('token-editor');
+  const toolbar = document.getElementById('editor-toolbar');
+  const layout = document.querySelector('.results-layout');
 
   // Update tab active states
   document.querySelectorAll('.view-tab').forEach(t => {
@@ -3341,15 +4664,21 @@ function showTab(tab) {
     t.classList.toggle('active', tabName === tab);
   });
 
-  // Show/hide panels
+  // Show/hide panels and toggle layout mode
   if (tab === 'visual') {
     codePanel.style.display = 'none';
     if (preview) preview.style.display = '';
-    if (editor) editor.style.display = '';
+    if (editor) { editor.style.display = ''; editor.classList.add('has-toolbar'); }
+    if (toolbar) toolbar.style.display = '';
+    if (layout) layout.classList.add('editing');
+    const title = document.getElementById('editor-toolbar-title');
+    if (title) title.textContent = lastGrabData.tokens?.meta?.siteName?.split(/[:|–—]/)[0]?.trim() || 'Edit design system';
   } else {
     codePanel.style.display = '';
     if (preview) preview.style.display = 'none';
-    if (editor) editor.style.display = 'none';
+    if (editor) { editor.style.display = 'none'; editor.classList.remove('has-toolbar'); }
+    if (toolbar) toolbar.style.display = 'none';
+    if (layout) layout.classList.remove('editing');
 
     if (tab === 'md') {
       body.innerHTML = highlightMarkdown(lastGrabData.markdown);
@@ -3373,7 +4702,7 @@ function renderResults(data) {
   const siteName = t.meta.siteName?.split(/[:|–—]/)[0]?.trim() || 'Unknown';
 
   // Title
-  document.getElementById('results-title').textContent = `${siteName} Design System`;
+  document.getElementById('results-title').textContent = siteName.toLowerCase().includes('design system') ? siteName : `${siteName} Design System`;
 
   // Sidebar metadata
   document.getElementById('meta-theme').textContent = t.theme;
@@ -3381,7 +4710,13 @@ function renderResults(data) {
   document.getElementById('meta-colors').textContent = stats.colors || Object.values(t.palette).filter(Boolean).length;
   document.getElementById('meta-spacings').textContent = stats.spacings || t.spacing.scale.length;
   const sourceEl = document.getElementById('meta-source');
-  sourceEl.innerHTML = `<a href="${t.meta.url}" target="_blank" rel="noopener noreferrer" style="color:var(--ink);text-decoration:underline">${new URL(t.meta.url).hostname}</a>`;
+  if (t.meta.url) {
+    try {
+      sourceEl.innerHTML = `<a href="${t.meta.url}" target="_blank" rel="noopener noreferrer" style="color:var(--ink);text-decoration:underline">${new URL(t.meta.url).hostname}</a>`;
+    } catch { sourceEl.textContent = t.meta.url || '—'; }
+  } else {
+    sourceEl.textContent = 'Custom';
+  }
 
   // Tags
   const tags = [t.theme, t.typography.display.family];
@@ -3398,9 +4733,10 @@ function renderResults(data) {
   if (screenshot) {
     const src = 'data:image/png;base64,' + screenshot;
     if (sidebarImg) { sidebarImg.src = src; sidebarImg.style.display = ''; }
-    if (previewImg) { previewImg.src = src; }
+    if (previewImg) { previewImg.src = src; previewImg.style.display = ''; }
   } else {
-    if (sidebarImg) sidebarImg.style.display = 'none';
+    if (sidebarImg) { sidebarImg.style.display = 'none'; sidebarImg.removeAttribute('src'); }
+    if (previewImg) { previewImg.style.display = 'none'; previewImg.removeAttribute('src'); }
   }
 
   // Description
@@ -3424,15 +4760,24 @@ function renderResults(data) {
     { key: 'body', name: t.typography.body.family, role: 'Body', weight: t.typography.body.weight },
   ];
   if (t.typography.mono) fontEntries.push({ key: 'mono', name: t.typography.mono.family, role: 'Mono', weight: t.typography.mono.weight });
+  fontEntries.forEach(f => loadGoogleFont(f.name, f.weight));
   fontEl.innerHTML = fontEntries.map(f =>
     `<div class="font-card">
-      <div class="font-card-role">${f.role} · ${f.weight}</div>
+      <div class="font-card-role">${f.role} · ${f.weight}<span class="font-loading" id="fl-${f.key}"></span></div>
       <input class="font-name-input" value="${f.name}"
         oninput="previewFont(this, '${f.key}')"
         onchange="updateFont('${f.key}', this.value)"
         placeholder="Font family" />
       <div class="font-preview" id="fp-${f.key}" style="font-family:'${f.name}',system-ui;font-weight:${f.weight}">
-        The quick brown fox jumps over the lazy dog
+        <div class="font-preview-main">${f.name}</div>
+        <div class="font-preview-body">The quick brown fox jumps over the lazy dog</div>
+        <div class="font-preview-scale">
+          <span class="font-scale-sample" style="font-size:10px">10</span>
+          <span class="font-scale-sample" style="font-size:13px">13</span>
+          <span class="font-scale-sample" style="font-size:16px">Aa</span>
+          <span class="font-scale-sample" style="font-size:22px">Aa</span>
+          <span class="font-scale-sample" style="font-size:32px">Aa</span>
+        </div>
       </div>
     </div>`
   ).join('');
@@ -3440,44 +4785,56 @@ function renderResults(data) {
   // Editable spacing & radii
   const spacingEl = document.getElementById('spacing-info');
   if (spacingEl) {
+    const currentBase = t.spacing.base;
     spacingEl.innerHTML = `
-      <div class="spacing-edit-grid">
-        <label class="spacing-field">
-          <span class="spacing-field-label">Base unit</span>
-          <div class="spacing-input-row">
-            <input class="spacing-input" type="number" value="${t.spacing.base}" min="1" max="16"
-              onchange="lastGrabData.tokens.spacing.base=+this.value; markModified(); regenerateMarkdown()" />
-            <span class="spacing-unit">px</span>
+      <div class="spacing-section-label">Base unit</div>
+      <div class="base-presets">
+        ${[4,6,8,10].map(v => `
+          <button class="base-preset${v === currentBase ? ' active' : ''}" data-val="${v}"
+            onclick="updateSpacing('base', ${v})">${v}px</button>`).join('')}
+        <div class="base-custom">
+          <div class="stepper">
+            <span class="stepper-btn" onclick="stepValue(this,-1,'base','spacing')">&minus;</span>
+            <input type="number" value="${currentBase}" min="1" max="16"
+              oninput="updateSpacing('base',+this.value)" />
+            <span class="stepper-btn" onclick="stepValue(this,1,'base','spacing')">+</span>
           </div>
-        </label>
-        <label class="spacing-field">
-          <span class="spacing-field-label">Radius sm</span>
-          <div class="spacing-input-row">
-            <input class="spacing-input" type="number" value="${t.radii.sm}" min="0"
-              onchange="lastGrabData.tokens.radii.sm=+this.value; markModified(); regenerateMarkdown()" />
-            <span class="spacing-unit">px</span>
-          </div>
-        </label>
-        <label class="spacing-field">
-          <span class="spacing-field-label">Radius md</span>
-          <div class="spacing-input-row">
-            <input class="spacing-input" type="number" value="${t.radii.md}" min="0"
-              onchange="lastGrabData.tokens.radii.md=+this.value; markModified(); regenerateMarkdown()" />
-            <span class="spacing-unit">px</span>
-          </div>
-        </label>
-        <label class="spacing-field">
-          <span class="spacing-field-label">Radius lg</span>
-          <div class="spacing-input-row">
-            <input class="spacing-input" type="number" value="${t.radii.lg}" min="0"
-              onchange="lastGrabData.tokens.radii.lg=+this.value; markModified(); regenerateMarkdown()" />
-            <span class="spacing-unit">px</span>
-          </div>
-        </label>
+        </div>
       </div>
-      <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-5);margin-top:8px;line-height:1.6">
-        Scale: ${t.spacing.scale.join(' · ')}
+      <div class="spacing-section-sublabel">Spacing scale (derived from base)</div>
+      <div class="spacing-scale-visual" id="spacing-scale-vis"></div>
+
+      <div class="spacing-section-label" style="margin-top:24px">Border Radius</div>
+      <div class="spacing-edit-grid">
+        ${['sm','md','lg'].map(k => `
+        <label class="spacing-field">
+          <span class="spacing-field-label">${k}</span>
+          <div class="spacing-input-row">
+            <div class="stepper">
+              <span class="stepper-btn" onclick="stepValue(this,-1,'${k}','radius')">&minus;</span>
+              <input type="number" value="${t.radii[k]}" min="0"
+                oninput="updateRadius('${k}',+this.value)" />
+              <span class="stepper-btn" onclick="stepValue(this,1,'${k}','radius')">+</span>
+            </div>
+            <span class="spacing-unit">px</span>
+          </div>
+        </label>`).join('')}
+      </div>
+      <div class="component-preview" id="component-preview">
+        <div class="component-preview-item">
+          <div class="cp-button" id="cp-btn-sm" style="border-radius:${t.radii.sm}px">sm</div>
+          <span class="component-preview-label">sm · ${t.radii.sm}px</span>
+        </div>
+        <div class="component-preview-item">
+          <div class="cp-card" id="cp-btn-md" style="border-radius:${t.radii.md}px;width:52px;height:44px;background:var(--ink-3)"></div>
+          <span class="component-preview-label">md · ${t.radii.md}px</span>
+        </div>
+        <div class="component-preview-item">
+          <div class="cp-card" id="cp-btn-lg" style="border-radius:${t.radii.lg}px;width:52px;height:44px;background:var(--ink);"></div>
+          <span class="component-preview-label">lg · ${t.radii.lg}px</span>
+        </div>
       </div>`;
+    renderSpacingScaleVis();
   }
 
   // Reset state
@@ -3490,8 +4847,17 @@ function renderResults(data) {
   if (screenshot) { img.src = 'data:image/png;base64,' + screenshot; img.style.display = ''; }
   else { img.style.display = 'none'; }
 
+  // Render design rules
+  renderRules();
+
+  // Render live preview
+  renderLivePreview();
+
   // Code body — DESIGN.md
   showTab('md');
+
+  // Show guidance bar for first-time users
+  showResultsGuide();
 
   // Wire download
   document.getElementById('download-btn').onclick = () => {
@@ -3594,6 +4960,8 @@ function viewExample(hostname) {
   });
   // Set breadcrumb
   document.getElementById('bc-current').textContent = name;
+  document.getElementById('bc-back').style.display = '';
+  document.getElementById('bc-sep-mid').style.display = '';
   document.getElementById('bc-back').textContent = 'Gallery';
   document.getElementById('bc-back').onclick = (e) => { e.preventDefault(); goLanding(); };
   navHistory.push('results');
@@ -3662,12 +5030,13 @@ async function startGrab() {
     ]);
 
     await new Promise(r => setTimeout(r, 500));
+    localStorage.setItem('designgrab.hasGrabbed', '1');
     renderResults(data);
     // Breadcrumb for live grab
     const grabName = data.tokens?.meta?.siteName?.split(/[:|–—]/)[0]?.trim() || url;
     document.getElementById('bc-current').textContent = grabName;
-    document.getElementById('bc-back').textContent = 'Home';
-    document.getElementById('bc-back').onclick = (e) => { e.preventDefault(); goLanding(); };
+    document.getElementById('bc-back').style.display = 'none';
+    document.getElementById('bc-sep-mid').style.display = 'none';
     navHistory.push('results');
     show('results');
 
@@ -3803,10 +5172,20 @@ function registerWithEmail() {
   const name = document.getElementById('register-name')?.value?.trim();
   const email = document.getElementById('register-email')?.value?.trim();
   const password = document.getElementById('register-password')?.value;
+  const confirm = document.getElementById('register-password-confirm')?.value;
+  const errEl = document.getElementById('register-error');
+  const showErr = (msg) => { errEl.textContent = msg; errEl.style.display = ''; };
+  errEl.style.display = 'none';
   if (!name) { document.getElementById('register-name')?.focus(); return; }
   if (!email) { document.getElementById('register-email')?.focus(); return; }
   if (!password || password.length < 8) {
+    showErr('Password must be at least 8 characters.');
     document.getElementById('register-password')?.focus();
+    return;
+  }
+  if (password !== confirm) {
+    showErr('Passwords do not match.');
+    document.getElementById('register-password-confirm')?.focus();
     return;
   }
   // Mock register
@@ -3874,7 +5253,30 @@ function shareGrab() {
 
 function showMyGrabs() {
   const saved = JSON.parse(localStorage.getItem('designgrab.saved') || '[]');
-  if (saved.length === 0) { alert('No saved grabs yet. Grab a site first!'); return; }
+
+  if (saved.length === 0) {
+    // Show empty state in gallery area
+    const grid = document.getElementById('examples-grid');
+    if (grid) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column:1/-1">
+          <svg class="empty-state-icon" viewBox="0 0 64 68" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="8" y="12" width="48" height="40" rx="6"/>
+            <path d="M22 32h20M22 38h12" stroke-linecap="round"/>
+            <circle cx="32" cy="24" r="3"/>
+          </svg>
+          <div class="empty-state-title">No saved grabs yet</div>
+          <div class="empty-state-desc">Grab a site's design system first, then save it here for easy access.</div>
+          <button class="empty-state-cta" onclick="goLanding();document.getElementById('url-input')?.focus()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Grab your first site
+          </button>
+        </div>`;
+    }
+    show('landing');
+    document.getElementById('examples-section')?.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
 
   // Render saved grabs as examples
   window._examples = window._examples || {};
@@ -3915,6 +5317,342 @@ function showMyGrabs() {
   show('landing');
   // Scroll to examples
   document.getElementById('examples-section')?.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── DESIGN.md docs page ─────────────────────
+function openDocs() {
+  navHistory.push('docs');
+  show('docs');
+}
+
+// ─── Editor toolbar actions ──────────────────
+function downloadMdFromEditor() {
+  const btn = document.getElementById('download-btn');
+  if (btn) btn.click();
+}
+function copyMdFromEditor() {
+  const btn = document.getElementById('copy-btn');
+  if (btn) btn.click();
+}
+
+// ─── Live preview ────────────────────────────
+let _lpTheme = 'light';
+
+function renderLivePreview() {
+  const canvas = document.getElementById('lp-canvas');
+  if (!canvas || !lastGrabData?.tokens) return;
+  const t = lastGrabData.tokens;
+  const p = t.palette;
+  const isDark = _lpTheme === 'dark';
+
+  // Derive theme-appropriate colors from palette with fallbacks
+  const bg = isDark ? (p['bg-base']?.toLowerCase() !== '#ffffff' ? p['bg-base'] : '#1a1a1a') : (p['bg-base'] || '#ffffff');
+  const bgSurface = p['bg-surface-1'] || (isDark ? '#262626' : '#f5f5f5');
+  const ink = p['ink-primary'] || (isDark ? '#f0f0f0' : '#1a1a1a');
+  const ink2 = p['ink-secondary'] || (isDark ? '#a0a0a0' : '#666666');
+  const accent = p['accent-primary'] || p['ink-primary'] || '#3b82f6';
+  const line = p['line-subtle'] || p['line-default'] || (isDark ? '#333' : '#e5e5e5');
+
+  // Build inline CSS custom properties — ALL tokens bound
+  canvas.style.setProperty('--lp-bg', bg);
+  canvas.style.setProperty('--lp-bg-surface', bgSurface);
+  canvas.style.setProperty('--lp-ink', ink);
+  canvas.style.setProperty('--lp-ink-2', ink2);
+  canvas.style.setProperty('--lp-accent', accent);
+  canvas.style.setProperty('--lp-line', line);
+  canvas.style.setProperty('--lp-font-display', `'${t.typography.display.family}'`);
+  canvas.style.setProperty('--lp-font-body', `'${t.typography.body.family}'`);
+  canvas.style.setProperty('--lp-radius-sm', (t.radii.sm || 6) + 'px');
+  canvas.style.setProperty('--lp-radius-md', (t.radii.md || 10) + 'px');
+  canvas.style.setProperty('--lp-radius-lg', (t.radii.lg || 16) + 'px');
+  // Spacing: expose base as a CSS var so padding/gaps scale with it
+  canvas.style.setProperty('--lp-base', (t.spacing.base || 4) + 'px');
+
+  // Load fonts on demand
+  loadGoogleFont(t.typography.display.family, t.typography.display.weight);
+  loadGoogleFont(t.typography.body.family, t.typography.body.weight);
+
+  canvas.innerHTML = `
+    <div class="lp-hero-title">Ship beautiful UI</div>
+    <div class="lp-hero-sub">Edit tokens on the left to see updates here in real time.</div>
+    <div class="lp-btn-row">
+      <button class="lp-btn lp-btn-primary">Get started</button>
+      <button class="lp-btn lp-btn-ghost">Learn more</button>
+    </div>
+    <div class="lp-card">
+      <div class="lp-card-title">Small radius — card</div>
+      <div class="lp-card-desc">Uses md radius, surface-1 bg, body font.</div>
+    </div>
+    <div class="lp-modal">
+      <div class="lp-modal-label">large radius</div>
+      <div class="lp-modal-title">Modal / Container</div>
+    </div>
+    <input class="lp-input" placeholder="Input field (sm radius)" />
+    <div class="lp-tag-row">
+      <span class="lp-tag">tag</span>
+      <span class="lp-tag">label</span>
+      <span class="lp-tag">category</span>
+    </div>
+  `;
+}
+
+function setPreviewTheme(theme, btnEl) {
+  _lpTheme = theme;
+  document.querySelectorAll('.lp-theme-btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  renderLivePreview();
+}
+
+// ─── Token editor tab switching ──────────────
+function showEditorTab(tab, btnEl) {
+  // Update sidebar active state
+  document.querySelectorAll('.te-tab').forEach(t => t.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  // Show/hide sections
+  document.querySelectorAll('.te-section').forEach(s => s.classList.remove('active'));
+  const section = document.getElementById('te-' + tab);
+  if (section) section.classList.add('active');
+}
+
+// ─── Blank editor (Create from scratch) ──────
+function openBlankEditor() {
+  const blankTokens = {
+    meta: { url: '', siteName: 'My Design System', capturedAt: new Date().toISOString(), monochrome: false },
+    theme: 'light',
+    palette: {
+      'bg-base': '#ffffff', 'bg-surface-1': '#f5f5f5', 'bg-surface-2': null, 'bg-surface-3': null,
+      'ink-primary': '#1a1a1a', 'ink-secondary': '#666666', 'ink-tertiary': null, 'ink-disabled': null,
+      'line-subtle': '#e5e5e5', 'line-default': '#d4d4d4', 'line-strong': null,
+      'accent-primary': '#3b82f6', 'accent-secondary': null,
+      'status-error': '#ef4444', 'status-success': '#22c55e', 'status-warning': '#f59e0b',
+    },
+    typography: {
+      display: { family: 'Inter', fallbacks: ['sans-serif'], weight: 600 },
+      body: { family: 'Inter', fallbacks: ['sans-serif'], weight: 400 },
+      mono: { family: 'JetBrains Mono', fallbacks: ['monospace'], weight: 400 },
+      scale: { base: { fontSize: 16 } },
+    },
+    spacing: { base: 4, scale: [4, 8, 12, 16, 20, 24, 32, 40, 56, 60] },
+    radii: { sm: 4, md: 8, lg: 16, full: 999 },
+    shadows: [],
+    gradients: [],
+    components: { primaryButton: null, secondaryButton: null, card: null, input: null },
+  };
+
+  renderResults({
+    markdown: '# My Design System\n\nEdit tokens visually, then download your DESIGN.md.',
+    tokens: blankTokens,
+    stats: { elements: 0, colors: 6, fonts: 2, spacings: 10 },
+    screenshot: '',
+    narrative: { source: 'template' },
+  });
+
+  // Switch to visual/editor tab
+  showTab('visual');
+
+  // Set breadcrumb (hide middle — direct from Home)
+  document.getElementById('bc-current').textContent = 'My Design System';
+  document.getElementById('bc-back').style.display = 'none';
+  document.getElementById('bc-sep-mid').style.display = 'none';
+  navHistory.push('results');
+  show('results');
+}
+
+// ─── Design Rules Editor ─────────────────────
+let customRules = JSON.parse(localStorage.getItem('designgrab.rules') || '[]');
+
+function renderRules() {
+  const list = document.getElementById('rules-list');
+  if (!list) return;
+  list.innerHTML = customRules.map((rule, i) => `
+    <div class="rule-row">
+      <span class="rule-type-btn ${rule.type === 'do' ? 'rule-type-do' : 'rule-type-dont'}"
+        onclick="toggleRuleType(${i})" title="Click to toggle">${rule.type === 'do' ? 'do' : "don't"}</span>
+      <input class="rule-input" value="${escHtml(rule.text)}"
+        oninput="updateRule(${i}, this.value)"
+        placeholder="${rule.type === 'do' ? 'e.g. Use Display font for headings only' : 'e.g. Avoid more than 3 font sizes per page'}" />
+      <span class="rule-remove" onclick="removeRule(${i})">&times;</span>
+    </div>
+  `).join('');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+function addRule(type) {
+  customRules.push({ type, text: '' });
+  saveRules();
+  renderRules();
+  // Focus the new input
+  setTimeout(() => {
+    const inputs = document.querySelectorAll('#rules-list .rule-input');
+    if (inputs.length) inputs[inputs.length - 1].focus();
+  }, 50);
+}
+
+function updateRule(idx, text) {
+  if (customRules[idx]) customRules[idx].text = text;
+  saveRules();
+}
+
+function toggleRuleType(idx) {
+  if (customRules[idx]) {
+    customRules[idx].type = customRules[idx].type === 'do' ? 'dont' : 'do';
+    saveRules();
+    renderRules();
+  }
+}
+
+function removeRule(idx) {
+  customRules.splice(idx, 1);
+  saveRules();
+  renderRules();
+}
+
+function saveRules() {
+  localStorage.setItem('designgrab.rules', JSON.stringify(customRules));
+  markModified();
+  regenerateMarkdown();
+}
+
+// ─── Onboarding / Guidance ───────────────────
+
+// 1. URL input hint for first-time visitors
+(function initGrabHint() {
+  const hasGrabbed = localStorage.getItem('designgrab.hasGrabbed');
+  if (!hasGrabbed) {
+    const row = document.getElementById('grab-input-row');
+    if (row) row.classList.add('show-hint');
+    // Dismiss when user focuses input or starts typing
+    const input = document.getElementById('url-input');
+    if (input) {
+      input.addEventListener('focus', function dismissHint() {
+        row.classList.remove('show-hint');
+        input.removeEventListener('focus', dismissHint);
+      }, { once: true });
+    }
+  }
+})();
+
+// 2. Results guidance bar
+function showResultsGuide() {
+  const dismissed = localStorage.getItem('designgrab.guideDismissed');
+  const guideEl = document.getElementById('results-guide');
+  if (!dismissed && guideEl) {
+    guideEl.style.display = '';
+  }
+}
+function dismissGuide() {
+  const guideEl = document.getElementById('results-guide');
+  if (guideEl) guideEl.style.display = 'none';
+  localStorage.setItem('designgrab.guideDismissed', '1');
+}
+
+// 3. Mark swatch hints as seen after first color edit
+function markSwatchHintsSeen() {
+  document.querySelectorAll('.swatch-dot, .palette-chip').forEach(el => el.classList.add('hint-seen'));
+  localStorage.setItem('designgrab.swatchHintSeen', '1');
+}
+
+// 4. My Grabs empty state — patched in showMyGrabs below
+
+// ─── Dark mode ───────────────────────────────
+function toggleDarkMode() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('designgrab.theme', isDark ? 'light' : 'dark');
+  updateThemeIcon();
+}
+
+function updateThemeIcon() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.getElementById('theme-icon-sun').style.display = isDark ? '' : 'none';
+  document.getElementById('theme-icon-moon').style.display = isDark ? 'none' : '';
+}
+
+// Init theme from localStorage or system preference
+(function initTheme() {
+  const saved = localStorage.getItem('designgrab.theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+  updateThemeIcon();
+})();
+
+// ─── Spacing/Radius live update ──────────────
+function updateSpacing(key, value) {
+  if (!lastGrabData?.tokens) return;
+  lastGrabData.tokens.spacing[key] = value;
+  // Recalculate scale from base
+  if (key === 'base') {
+    const base = value || 4;
+    lastGrabData.tokens.spacing.scale = [1,2,3,4,5,6,8,10,14,15].map(m => m * base);
+  }
+  // Update scale visualization
+  renderSpacingScaleVis();
+  // Update base unit preset active state
+  document.querySelectorAll('.base-preset').forEach(b => {
+    b.classList.toggle('active', +b.dataset.val === value);
+  });
+  renderLivePreview();
+  markModified();
+  regenerateMarkdown();
+}
+
+function renderSpacingScaleVis() {
+  const visEl = document.getElementById('spacing-scale-vis');
+  if (!visEl || !lastGrabData?.tokens?.spacing) return;
+  const scale = lastGrabData.tokens.spacing.scale;
+  const max = Math.max(...scale, 1);
+  visEl.innerHTML = scale.map(v => `
+    <div class="spacing-bar-item">
+      <div class="spacing-bar" style="width:${(v/max)*100}%"></div>
+      <span class="spacing-bar-label">${v}<span class="spacing-bar-unit">px</span></span>
+    </div>`).join('');
+}
+
+function updateRadius(key, value) {
+  if (!lastGrabData?.tokens) return;
+  lastGrabData.tokens.radii[key] = value;
+  renderLivePreview();
+  // Live update component preview (sm/md/lg triplet)
+  const r = lastGrabData.tokens.radii;
+  const sm = document.getElementById('cp-btn-sm');
+  const md = document.getElementById('cp-btn-md');
+  const lg = document.getElementById('cp-btn-lg');
+  if (sm) sm.style.borderRadius = r.sm + 'px';
+  if (md) md.style.borderRadius = r.md + 'px';
+  if (lg) lg.style.borderRadius = r.lg + 'px';
+  const preview = document.getElementById('component-preview');
+  if (preview) {
+    const labels = preview.querySelectorAll('.component-preview-label');
+    if (labels[0]) labels[0].textContent = `sm · ${r.sm}px`;
+    if (labels[1]) labels[1].textContent = `md · ${r.md}px`;
+    if (labels[2]) labels[2].textContent = `lg · ${r.lg}px`;
+  }
+  markModified();
+  regenerateMarkdown();
+}
+
+function stepValue(btnEl, delta, key, type) {
+  const input = btnEl.closest('.stepper').querySelector('input');
+  const cur = parseInt(input.value) || 0;
+  const next = Math.max(0, cur + delta);
+  input.value = next;
+  if (type === 'radius') updateRadius(key, next);
+  else updateSpacing(key, next);
+}
+
+// ─── Gallery scroll helper ───────────────────
+function scrollToGallery() {
+  const el = document.getElementById('examples-section');
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    goLanding();
+  }
 }
 
 // Init user UI
