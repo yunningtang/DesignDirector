@@ -219,6 +219,8 @@ export function normalize(raw: RawObservations): NormalizedTokens {
       const entry = colorMap.get(hex)!;
       entry.totalCount++;
       entry.totalArea += area;
+      // Solid-fill usage proves this color is a real token, not just a gradient stop
+      entry.fromGradient = false;
 
       // Merge into existing usage or create new
       const existing = entry.usages.find(
@@ -253,8 +255,9 @@ export function normalize(raw: RawObservations): NormalizedTokens {
         if (a < 0.05) continue;
         const hex = rgbToHex(r, g, b);
         const hsl = rgbToHsl(r, g, b);
-        if (!colorMap.has(hex)) {
-          colorMap.set(hex, { hex, rgb: [r, g, b], hsl, alpha: a, usages: [], totalCount: 0, totalArea: 0 });
+        const isNew = !colorMap.has(hex);
+        if (isNew) {
+          colorMap.set(hex, { hex, rgb: [r, g, b], hsl, alpha: a, usages: [], totalCount: 0, totalArea: 0, fromGradient: true });
         }
         const entry = colorMap.get(hex)!;
         entry.totalCount++;

@@ -654,6 +654,21 @@ export function classify(
     .replace(/\s*[-–—|·]\s*.+$/, "") // strip trailing " — Tagline"
     .trim() || new URL(raw.url).hostname;
 
+  // Compute per-token confidence. Low = gradient-derived or single-source.
+  const paletteConfidence: SemanticTokens["paletteConfidence"] = {};
+  for (const [key, hex] of Object.entries(palette) as Array<[keyof SemanticTokens["palette"], string | null]>) {
+    if (!hex) continue;
+    const color = normalized.colors.find((c) => c.hex === hex.toLowerCase());
+    if (!color) continue;
+    if (color.fromGradient) {
+      paletteConfidence[key] = "low";
+    } else if (color.totalCount < 3) {
+      paletteConfidence[key] = "medium";
+    } else {
+      paletteConfidence[key] = "high";
+    }
+  }
+
   return {
     meta: {
       url: raw.url,
@@ -663,6 +678,7 @@ export function classify(
     },
     theme,
     palette,
+    paletteConfidence,
     typography,
     spacing,
     radii,

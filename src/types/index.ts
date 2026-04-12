@@ -67,6 +67,10 @@ export interface NormalizedColor {
   usages: ColorUsage[];
   totalCount: number;
   totalArea: number;
+  /** True if this color was only extracted from a CSS gradient stop
+   * (not directly applied as solid bg/text/border). These are less reliable —
+   * they may represent an intermediate gradient point, not a real token. */
+  fromGradient?: boolean;
 }
 
 export interface FontUsage {
@@ -170,6 +174,8 @@ export interface SemanticTokens {
     "status-success": string | null;
     "status-warning": string | null;
   };
+  /** Per-token extraction confidence. Low = gradient-derived, no usage data, or single-source. */
+  paletteConfidence?: Partial<Record<keyof SemanticTokens["palette"], "high" | "medium" | "low">>;
   typography: {
     display: FontSpec;
     body: FontSpec;

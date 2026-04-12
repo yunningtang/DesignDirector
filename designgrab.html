@@ -2516,6 +2516,70 @@ html[data-theme="dark"] .grab-input-row.show-hint .grab-url-input {
 }
 .guide-bar-dismiss:hover { background: var(--bg-inner); color: var(--ink); }
 
+/* Verification banner (gradient-derived tokens warning) */
+.verify-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  background: #FFF8EC;
+  border: 1px solid #F5D48F;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: #7A5418;
+  animation: rise 0.4s var(--ease-decel) both;
+}
+html[data-theme="dark"] .verify-bar {
+  background: #2A2415;
+  border-color: #5A4A1C;
+  color: #E8C888;
+}
+.verify-bar svg { flex-shrink: 0; color: #C68824; }
+html[data-theme="dark"] .verify-bar svg { color: #E8C888; }
+.verify-bar strong { color: inherit; font-weight: 600; }
+.verify-bar-action {
+  margin-left: auto;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--ink);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.verify-bar-action:hover { opacity: 0.88; }
+.verify-bar-dismiss {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.verify-bar-dismiss:hover { opacity: 1; background: rgba(0,0,0,0.05); }
+
+/* Low-confidence token marker */
+.swatch-warn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: #C68824;
+  margin-left: 4px;
+  cursor: help;
+  flex-shrink: 0;
+}
+.swatch-warn svg { width: 12px; height: 12px; }
+
+
 /* 3. Swatch hover hint */
 .swatch-dot, .palette-chip { position: relative; }
 .swatch-dot::after, .palette-chip::after {
@@ -3496,6 +3560,14 @@ Refer to the Do's &amp; Don'ts when making styling decisions.</div>
       <button class="guide-bar-dismiss" onclick="dismissGuide()">Got it</button>
     </div>
 
+    <!-- Verification banner (shown on fresh grabs with low-confidence tokens) -->
+    <div class="verify-bar" id="verify-bar" style="display:none">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span id="verify-bar-text">Some tokens were extracted from gradients and may not be exact. Open <strong>Visual</strong> to review and tweak.</span>
+      <button class="verify-bar-action" onclick="showTab('visual');dismissVerify()">Review</button>
+      <button class="verify-bar-dismiss" onclick="dismissVerify()" aria-label="Dismiss">×</button>
+    </div>
+
     <!-- View tabs: Light / Dark / Visual / Raw -->
     <div class="view-tabs">
       <button class="view-tab active" onclick="showTab('md')">
@@ -3524,6 +3596,10 @@ Refer to the Do's &amp; Don'ts when making styling decisions.</div>
         <!-- Editor toolbar (Visual mode only) -->
         <div class="editor-toolbar" id="editor-toolbar" style="display:none">
           <span class="editor-toolbar-title" id="editor-toolbar-title">Edit design system</span>
+          <button class="editor-toolbar-btn" id="toolbar-regrab-btn" onclick="reGrab()" style="display:none" title="Re-extract tokens from source URL">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg>
+            Re-grab
+          </button>
           <button class="editor-toolbar-btn" onclick="copyMdFromEditor()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
             Copy
@@ -4243,6 +4319,7 @@ function renderEditableSwatches(containerId, keys, palette) {
   if (activeKeys.length === 0) { el.innerHTML = ''; return; }
   const hintSeen = localStorage.getItem('designgrab.swatchHintSeen');
   const hintCls = hintSeen ? ' hint-seen' : '';
+  const conf = lastGrabData?.tokens?.paletteConfidence ?? {};
 
   // Palette strip
   const strip = `<div class="palette-strip">${
@@ -4252,13 +4329,15 @@ function renderEditableSwatches(containerId, keys, palette) {
   }</div>`;
 
   // Detail rows
+  const warnIcon = `<span class="swatch-warn" title="Low confidence — extracted from a gradient. Verify this color is correct."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>`;
   const rows = activeKeys.map(k => {
     const hex = palette[k];
     const shortKey = k.replace(/^(bg|ink|line|accent|status)-/, '');
+    const isLow = conf[k] === 'low';
     return `
     <div class="swatch-row">
       <div class="swatch-dot${hintCls}" style="background:${hex}" onclick="openColorPicker('${k}', this)"></div>
-      <span class="swatch-label">${shortKey}</span>
+      <span class="swatch-label">${shortKey}${isLow ? warnIcon : ''}</span>
       <span class="swatch-hex" id="hex-${k}" onclick="openColorPicker('${k}', this)" title="Click to edit">${hex}</span>
       <span class="swatch-remove" onclick="removeToken('${k}')">&times;</span>
     </div>`;
@@ -4673,6 +4752,9 @@ function showTab(tab) {
     if (layout) layout.classList.add('editing');
     const title = document.getElementById('editor-toolbar-title');
     if (title) title.textContent = lastGrabData.tokens?.meta?.siteName?.split(/[:|–—]/)[0]?.trim() || 'Edit design system';
+    // Show Re-grab button only when there's a source URL (grabbed from a real site)
+    const regrabBtn = document.getElementById('toolbar-regrab-btn');
+    if (regrabBtn) regrabBtn.style.display = lastGrabData.tokens?.meta?.url ? '' : 'none';
   } else {
     codePanel.style.display = '';
     if (preview) preview.style.display = 'none';
@@ -4858,6 +4940,8 @@ function renderResults(data) {
 
   // Show guidance bar for first-time users
   showResultsGuide();
+  // Show verification banner if low-confidence tokens exist
+  showVerifyBar();
 
   // Wire download
   document.getElementById('download-btn').onclick = () => {
@@ -5334,6 +5418,17 @@ function copyMdFromEditor() {
   const btn = document.getElementById('copy-btn');
   if (btn) btn.click();
 }
+function reGrab() {
+  const url = lastGrabData?.tokens?.meta?.url;
+  if (!url) return;
+  if (!confirm('Re-extract tokens from ' + url + '?\nYour current edits will be lost.')) return;
+  const urlInput = document.getElementById('url-input');
+  if (urlInput) urlInput.value = url;
+  // Reset modified state so renderResults can overwrite cleanly
+  tokensModified = false;
+  originalTokensSnapshot = null;
+  startGrab();
+}
 
 // ─── Live preview ────────────────────────────
 let _lpTheme = 'light';
@@ -5547,6 +5642,33 @@ function dismissGuide() {
   const guideEl = document.getElementById('results-guide');
   if (guideEl) guideEl.style.display = 'none';
   localStorage.setItem('designgrab.guideDismissed', '1');
+}
+
+// 2b. Verification banner — shown when grab has low-confidence tokens
+function showVerifyBar() {
+  const conf = lastGrabData?.tokens?.paletteConfidence;
+  const verifyEl = document.getElementById('verify-bar');
+  if (!verifyEl) return;
+  if (!conf) { verifyEl.style.display = 'none'; return; }
+  const lowCount = Object.values(conf).filter(v => v === 'low').length;
+  if (lowCount === 0) { verifyEl.style.display = 'none'; return; }
+  // Don't show for gallery examples (only for fresh grabs)
+  if (!lastGrabData?.tokens?.meta?.url) { verifyEl.style.display = 'none'; return; }
+  const url = lastGrabData.tokens.meta.url;
+  const dismissedKey = 'designgrab.verifyDismissed:' + url;
+  if (localStorage.getItem(dismissedKey)) { verifyEl.style.display = 'none'; return; }
+  const text = document.getElementById('verify-bar-text');
+  if (text) {
+    text.innerHTML = `${lowCount} token${lowCount > 1 ? 's' : ''} ` +
+      `extracted from gradients — these may not be exact. Open <strong>Visual</strong> to review.`;
+  }
+  verifyEl.style.display = '';
+}
+function dismissVerify() {
+  const verifyEl = document.getElementById('verify-bar');
+  if (verifyEl) verifyEl.style.display = 'none';
+  const url = lastGrabData?.tokens?.meta?.url;
+  if (url) localStorage.setItem('designgrab.verifyDismissed:' + url, '1');
 }
 
 // 3. Mark swatch hints as seen after first color edit
