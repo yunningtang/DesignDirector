@@ -1,0 +1,1 @@
+Create an independent online bookstore with curated shelves, genre filters, personalized reading lists, detailed book pages, and cart functionality. Design a browsing experience that encourages unexpected discoveries.

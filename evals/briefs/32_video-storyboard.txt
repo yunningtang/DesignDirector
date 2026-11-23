@@ -1,0 +1,1 @@
+Create a browser-based video storyboard editor with a multi-track timeline, draggable clips, trimming handles, scene thumbnails, text overlays, and a synchronized preview panel. Use generated placeholder scenes and simulated playback without external video services. Ensure timeline edits update the preview and project duration consistently.

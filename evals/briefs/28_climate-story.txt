@@ -1,0 +1,1 @@
+Build an interactive climate data storytelling website featuring temperature trends, emissions comparisons, geographic visualizations, and scroll-driven explanations. Make uncertainty and data provenance understandable.

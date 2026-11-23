@@ -1,0 +1,1 @@
+Task 5: Educational Platform Design and build an interactive learning website that teaches beginners the fundamentals of color theory. Include at least four short lessons, interactive demonstrations, knowledge-check quizzes, immediate feedback, and progress tracking. Learners should be able to explore concepts through direct manipulation rather than only reading text.

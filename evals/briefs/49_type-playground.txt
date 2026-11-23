@@ -1,0 +1,1 @@
+Design a typography playground where users manipulate text size, spacing, variable font properties, layout, and animation. Include presets and exportable compositions.

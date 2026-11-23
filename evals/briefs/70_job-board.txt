@@ -1,0 +1,1 @@
+Build a job board for roles at climate and clean-energy companies. Job seekers should be able to search and filter roles by location, remote option, salary range, seniority and field, read a full job posting with company information, save jobs, set up email alerts, and apply. Employers should have a clear way to post a job.

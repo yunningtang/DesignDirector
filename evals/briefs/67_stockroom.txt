@@ -1,0 +1,1 @@
+Build an inventory management app for a small warehouse. Staff should be able to see stock levels for each product and location, receive deliveries, move items between shelves, record outgoing orders, get alerts for low stock, run a stock count, and look up the history of any item. It should be fast to use with a barcode scanner or a keyboard.

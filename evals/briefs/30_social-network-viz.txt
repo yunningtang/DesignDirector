@@ -1,0 +1,1 @@
+Build an interactive social network visualization tool displaying relationships, communities, influence metrics, and network filters. Support node selection, zooming, and contextual explanations.

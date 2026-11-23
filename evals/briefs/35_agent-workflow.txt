@@ -1,0 +1,1 @@
+Build a visual AI agent workflow editor with draggable nodes, connected actions, conditional branches, configuration panels, execution simulation, and trace inspection.

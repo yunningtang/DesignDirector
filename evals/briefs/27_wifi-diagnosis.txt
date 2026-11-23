@@ -1,0 +1,1 @@
+Build an interactive troubleshooting assistant for diagnosing common home Wi-Fi problems. Guide users through a branching sequence of questions, show their current diagnostic path, allow them to revise previous answers, and provide clear recommendations based on their selections. Include meaningful progress indicators and explain why each recommendation was reached.

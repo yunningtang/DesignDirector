@@ -1,0 +1,1 @@
+Build the website of a small independent neighborhood newspaper: a front page with the day's stories, sections, article pages with photos and pull quotes, a local events listing, and a newsletter signup. It should feel trustworthy and local rather than corporate.

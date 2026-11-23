@@ -1,0 +1,1 @@
+Build a personal recipe manager where a home cook can save recipes, tag them, search by ingredient, scale servings, plan meals for the week, and generate a shopping list from the plan. Include a focused cooking view that is easy to follow with messy hands.

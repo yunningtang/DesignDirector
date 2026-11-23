@@ -1,0 +1,1 @@
+Build an original turn-based card strategy game with a playable deck, resource system, opponent AI, clear card effects, and distinct win and loss states.

@@ -1,0 +1,1 @@
+Create a curated vintage furniture marketplace with searchable listings, style and price filters, product condition details, seller profiles, saved items, and simulated checkout. Give every item a sense of history.

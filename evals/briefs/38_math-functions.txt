@@ -1,0 +1,1 @@
+Design a math learning website that teaches functions and transformations through interactive graphs, sliders, worked examples, and self-check exercises.

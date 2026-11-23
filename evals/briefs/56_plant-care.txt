@@ -1,0 +1,1 @@
+Design a plant care tracker for someone with a few dozen houseplants: each plant has a profile with light and watering needs, a watering and fertilizing schedule, a daily care list, notes and photos over time, and reminders that adapt to the season.

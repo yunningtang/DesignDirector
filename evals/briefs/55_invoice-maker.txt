@@ -1,0 +1,1 @@
+Create an invoicing tool for freelancers: a client list, an invoice editor with line items, taxes and discounts, a live print-ready preview, invoice statuses (draft, sent, paid, overdue), payment reminders, and a summary of what is owed this month.

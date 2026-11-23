@@ -1,0 +1,1 @@
+Build a map-based storytelling editor where users create a guided narrative by placing locations, writing short descriptions, and arranging stops into a sequence. Include an editing workspace, interactive map, story preview mode, and smooth transitions between locations. Use fictional geographic data and make the entire authoring-to-preview workflow functional.

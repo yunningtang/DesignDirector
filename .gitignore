@@ -1,5 +1,6 @@
-node_modules/
-dist/
-output/
-*.log
+data/photolib*/
+data/refimg/
+__pycache__/
+.pytest_cache/
 .claude/
+*.log

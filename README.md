@@ -1,240 +1,164 @@
-# DesignGrab 🤚
+# Design Director
 
-**Grab the design system of any website.** Paste a URL, get a complete DESIGN.md with color palette, typography, spacing, components, do's & don'ts, and ready-to-use prompts.
+**A Claude skill for building web pages that look designed, not generated.**
 
-![DesignGrab](https://img.shields.io/badge/sites-52-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue) ![Playwright](https://img.shields.io/badge/Playwright-1.52-green)
+Give Claude a brief for a landing page, a shop, a booking flow, a dashboard, a lesson or a story page. Design Director then works through a fixed method:
 
-## How it works
+- decide what kind of page it is;
+- borrow conventions from real sites of that kind;
+- let scripts draw the ground, type, corners, navigation and colour tokens from real-site data;
+- write the copy first, then build;
+- check the result in a real browser before handing it back.
 
-DesignGrab runs a **5-layer pipeline**:
+Current version: **V4.16**. See [CHANGELOG.md](CHANGELOG.md) for every version and the reason each rule exists.
 
-```
-URL → Capture → Normalize → Classify → Narrate → DESIGN.md
-      (Playwright)  (pure fn)   (heuristics) (LLM/template) (markdown)
-```
+[中文说明](#中文说明)
 
-1. **Layer 1 — Capture**: Headless Chromium loads the page, waits for hydration, reads `getComputedStyle()` on every visible element, extracts `@font-face`, CSS variables, gradients, and takes a screenshot.
-2. **Layer 2 — Normalize**: Parses all color formats to hex/HSL, deduplicates, calculates area-weighted usage stats per color role (background/text/border).
-3. **Layer 3 — Classify**: Heuristic rules assign semantic meaning — detects theme (light/dark), classifies bg/ink/accent/line colors, extracts type scale, spacing grid, border radii, button components.
-4. **Layer 4 — Narrate**: Template mode (free, instant) or LLM mode (Claude/GPT, richer output). LLM output is schema-validated + semantically verified to prevent hallucinated colors.
-5. **Layer 5 — Render**: Combines tokens + narrative into a 10-section DESIGN.md with copy-paste CSS variables, color role tables, and ready-to-use prompts.
+---
 
-## Quick start
+## Why
 
-```bash
-git clone https://github.com/yunningtang/DesignGrab.git
-cd DesignGrab
-npm install
-npx playwright install chromium
-npm run build
-```
+Ask a model for a web page with no brand spec and it tends to produce the same page every time. In our 50-task baseline:
 
-### CLI
+- 28 pages used a cream background;
+- Fraunces was the display face 20 times;
+- 23 headlines used an italic-emphasis word;
+- the hero was usually a small drawn illustration.
 
-```bash
-# Fast mode (free, no API key, ~3s)
-npm run grab -- https://stripe.com
+Each page looks polished on its own. Side by side they are one template with the content swapped.
 
-# Polished mode (LLM-enhanced narrative)
-npm run grab -- https://stripe.com --polished --provider anthropic --key sk-ant-xxx
-```
+Design Director replaces those defaults with decisions:
 
-Output goes to `output/<hostname>/`:
-- `DESIGN.md` — Full design system document
-- `tokens.json` — Structured semantic tokens
-- `screenshot.png` — Homepage screenshot
+- **Mode first.** What does a visitor *do* here? *operate* (tools, dashboards), *read* (docs, lessons), *transact* (shops, bookings, forms), *persuade* (product and brand sites) or *experience* (stories, art, games). The mode decides the structure, how large type may go and how much colour is allowed.
+- **Real sites, not taste.** `config/real_profiles.json` and `references/categories.md` hold profiles of real production sites in 49 categories: grounds, colour tone, corners, type and navigation. `scripts/assign.py` draws from them, so a bakery page and a dev-tool page start from different places.
+- **Usable before memorable.** Tools, forms and bookings are built as the best real product of their kind, with no decorative concept borrowed from another world. Brand and story pages are built around the subject's most recognisable image, shown large.
+- **A premium tier** (V4.16) for brand, story, experience and shop landing pages:
+  - the hero head sits at 84–120px, in a 12-column, 1312px canvas;
+  - a hero posture (Poster, Stage, Ledge, Corridor, Counter or Index) is drawn for each page;
+  - the first screen holds only a head, one line, one or two actions and a big visual;
+  - photographs come from a tagged library, with one treatment per page;
+  - display faces are refined, and serif or italic is allowed when it fits.
+- **Checked in a browser.** `scripts/check.py` screenshots the page at 1440, 375 and 320px with the real fonts. It reports overflow, covered or cut-off text, a missing first-screen task, missing focus rings and, on premium pages, heads or visuals that are too small.
 
-### Web UI
+## Results
 
-```bash
-npm start
-# → http://localhost:3000
-```
+The benchmark has 70 briefs (in `evals/`). Every page was built by the same model with the same budget (one check pass and one fix pass), with and without the skill. Screenshots use real fonts.
 
-Features:
-- Paste any URL and grab in real-time
-- **Editable token panel** — click any color to open custom color picker, edit fonts, spacing, radii
-- **Live regeneration** — changes instantly update the DESIGN.md
-- **3 view tabs** — DESIGN.md / tokens.json / Visual (screenshot + editor)
-- **52 pre-grabbed examples** across 8 categories
-- **Search & filter** gallery by name, font, category, theme
-- **Save & Share** — bookmark grabs, copy share links
-- **Multi-language** — EN, 中文, 日本語, 한국어, Español
-- **Login system** — Google/GitHub/email (localStorage mock, ready for real OAuth)
+**Baseline vs V4.16 on 28 tasks:** 20 brand, shop and experience tasks, and 8 tool, form, flow and docs tasks.
 
-## Pre-grabbed sites (52)
+| | Baseline (no skill) | V4.16 |
+|---|---|---|
+| Premium hero heads | serif + italic 16/20 (Fraunces 10) | sans 19/20 over 8 faces |
+| Premium grounds | cream 11, dark 9, white 0 | white 9, colour field 7, dark 3, cream 1 |
+| Hero pictures | mostly drawn illustrations | mostly real photographs, plus a 3D room and an interactive field |
+| Sideways overflow | 2 pages | 0 |
+| Tool pages | sound; 3 of 8 on cream with a serif head | same structures, all white, slightly more direct forms |
 
-All grabbed with our own pipeline — real `getComputedStyle()`, not copied.
+V4.16 reads more like real product sites, especially shops and bookings. The baseline still has more atmosphere on a few film, music and dream pages.
 
-### AI (9)
+**Blind vote, V4.16 vs V4.17 (20 tasks):** V4.16 won 10, V4.17 won 5, and 5 were ties. V4.17 tried forced head styles, a "mood" posture and type-led heroes when no on-subject photo existed. That lost, so V4.16 remains the current version.
 
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Anthropic** | light | Anthropic Sans | `#d97757` | 9 |
-| **Cohere** | dark | Unica77 Cohere Web | `#ff7759` | 11 |
-| **Mistral** | dark | Arial | `#fffaeb` | 10 |
-| **Ollama** | light | SF Pro Rounded | `#facc15` | 11 |
-| **OpenCode** | light | sans-serif | `#0f0000` | 9 |
-| **Replicate** | light | basier-square | `#ea2804` | 16 |
-| **Runway** | dark | abcNormal | `#2b22fa` | 10 |
-| **Together AI** | light | The Future | `#ffdccd` | 4 |
-| **VoltAgent** | dark | system-ui | `#10b981` | 16 |
+## Install
 
-### Dev Tools (12)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Composio** | dark | abcDiatype | `#0089ff` | 16 |
-| **Cursor** | light | CursorGothic | `#f54e00` | 14 |
-| **Expo** | light | Inter | `#0090ff` | 12 |
-| **GitHub** | dark | Mona Sans | `#8dd6ff` | 13 |
-| **HashiCorp** | dark | hashicorpSans | `#2264d6` | 10 |
-| **MongoDB** | dark | Euclid Circular A | `#006cfa` | 11 |
-| **PostHog** | light | IBM Plex Sans | `#f54e00` | 15 |
-| **Sentry** | dark | Dammit Sans | `#7553ff` | 9 |
-| **Supabase** | dark | Circular | `#006239` | 14 |
-| **Tailwind CSS** | light | Inter | `#000000` | 3 |
-| **Vercel** | light | Geist | `#0070f3` | 16 |
-| **Warp** | dark | Matter Regular | `#0000ee` | 14 |
-
-### SaaS (10)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Airtable** | light | Haas Groot Disp | `#aa2d00` | 14 |
-| **Arc** | light | Marlin Soft SQ | `#fffadd` | 7 |
-| **Cal.com** | light | Cal Sans | `#0000ee` | 14 |
-| **Clay** | light | Roobert | `#3859f9` | 13 |
-| **Intercom** | light | Saans | `#0007cb` | 10 |
-| **Linear** | dark | Inter Variable | `#00ff05` | 16 |
-| **Mintlify** | light | Inter | `#000000` | 4 |
-| **Notion** | light | NotionInter | `#0075de` | 14 |
-| **Raycast** | dark | Inter | `#8cd6ff` | 15 |
-| **Resend** | dark | aBCFavorit | `#f1f7fe` | 13 |
-
-### Design (3)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Framer** | dark | GT Walsheim Medium | `#0000ee` | 16 |
-| **Miro** | light | Roobert PRO Medium | `#0000ee` | 14 |
-| **Webflow** | light | WF Visual Sans | `#146ef5` | 8 |
-
-### Fintech (6)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Binance** | dark | BinanceNova | `#0000ee` | 13 |
-| **Coinbase** | light | CoinbaseSans | `#0052ff` | 10 |
-| **Kraken** | light | Kraken-Product | `#08844f` | 13 |
-| **Revolut** | dark | Inter | `#ffffff` | 10 |
-| **Stripe** | light | sohne-var | `#533afd` | 10 |
-| **Wise** | light | Inter | `#054d28` | 12 |
-
-### Consumer (6)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Airbnb** | light | Airbnb Cereal VF | `#ff385c` | 13 |
-| **Meta** | light | Optimistic VF | `#0457cb` | 10 |
-| **Nike** | dark | Nike Futura ND | `#ffffff` | 11 |
-| **Pinterest** | light | Pin Sans | `#e60023` | 10 |
-| **Shopify** | dark | NeueHaasGrotesk | `#6b26ff` | 12 |
-| **Spotify** | dark | SpotifyMixUI | `#0000ee` | 16 |
-
-### Enterprise (4)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Apple** | dark | SF Pro Text | `#2997ff` | 8 |
-| **BMW** | dark | BMWTypeNextLatin | `#ffffff` | 5 |
-| **Nvidia** | dark | NVIDIA-NALA | `#76b900` | 7 |
-| **Tesla** | light | Times New Roman | `#000000` | 3 |
-
-### Auto (2)
-
-| Site | Theme | Font | Accent | Colors |
-|------|-------|------|--------|--------|
-| **Lamborghini** | dark | LamboType | `#917300` | 13 |
-| **Renault** | dark | RenaultGroup | `#e60000` | 7 |
-
-## DESIGN.md output (10 sections)
-
-Each grab produces a comprehensive design system document:
-
-| Section | Content |
-|---------|---------|
-| 1. Mood & Atmosphere | Theme description, keywords |
-| 2. Color Palette | CSS custom properties (grouped), color role table, semantic naming |
-| 3. Typography | Font stack declarations, type scale with usage hints |
-| 4. Spacing | Base unit, `--space-1` through `--space-10` |
-| 5. Border Radius | sm/md/lg/full with usage comments |
-| 6. Shadows & Gradients | Extracted box-shadows and CSS gradients |
-| 7. Components | Primary/secondary button specs |
-| 8. Do's and Don'ts | 6+ actionable rules with rationale |
-| 9. Ready-to-Use Prompts | Hero, card, nav bar, form — copy-paste into AI |
-| 10. Quick-Start CSS Reset | `html`, `h1-h3` reset matching the design |
-
-## Architecture
-
-```
-src/
-  types/index.ts          — Shared types (RawObservations → SemanticTokens → Narrative)
-  layer1/capture.ts       — Playwright: DOM extraction + screenshot
-  layer2/normalize.ts     — Color parsing, font cleaning, dedup, gradient extraction
-  layer3/classify.ts      — Theme detection, palette/ink/accent heuristics, components
-  layer4/
-    schema.ts             — Zod schema for LLM structured output
-    prompts.ts            — System + user prompts
-    validation.ts         — Semantic validation (catches hallucinated colors)
-    template.ts           — Rule-based narrator (no LLM fallback)
-    narrate.ts            — Entry: LLM with retry → fallback to template
-    adapters/             — Anthropic / OpenAI / custom provider adapters
-  layer5/render.ts        — Markdown template renderer
-  pipeline.ts             — Wires L1→L2→L3→L4→L5
-  server.ts               — HTTP server (serves UI + API)
-  cli.ts                  — CLI entry point
-
-designgrab.html           — Single-file frontend (no build step)
-batch-grab.js             — Batch grabber for multiple sites
-examples.json             — 52 pre-grabbed sites with tokens + screenshots
-```
-
-## Key design decisions
-
-- **Data flows strictly downward** — LLM (L4) only reads SemanticTokens, never raw CSS
-- **LLM can't corrupt facts** — all hex/px/font values come from tokens, not LLM output
-- **Double validation** — Zod schema + semantic checks on LLM responses
-- **Graceful degradation** — LLM failure auto-falls back to template mode
-- **Zero-config default** — fast mode needs no API key, works offline
-
-## Batch grabbing
+Copy this repository into your Claude skills folder:
 
 ```bash
-# Grab all sites from a list
-node batch-grab.js
+git clone https://github.com/yunningtang/DesignDirector ~/.claude/skills/design-director
 ```
 
-Edit `batch-grab.js` to add/remove URLs. Runs 2 concurrent browsers.
+You can also zip the folder and upload it as a skill in Claude.
 
-## LLM configuration
+The scripts need:
 
-In the web UI, click **Settings** to configure:
+```bash
+pip install pillow playwright
+playwright install chromium
+```
 
-| Mode | LLM | Cost | Speed |
-|------|-----|------|-------|
-| Fast | None (template) | Free | ~3s |
-| Polished | Claude Haiku | ~$0.003 | ~5s |
-| Polished | Claude Sonnet | ~$0.03 | ~8s |
-| Polished | GPT-4o-mini | ~$0.002 | ~5s |
+You will also need `curl` and, for real Google Fonts in screenshots, Node/npm. `scripts/fontroute.py` installs `@fontsource` packages on demand into `~/.cache/dd-fontkit`; set `FONTKIT` to change that.
 
-API keys are stored in localStorage, never sent to any server.
+### Photo library (recommended)
 
-## Inspired by
+The premium tier works best with real photographs. Build the offline library once:
 
-- [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) — curated list of DESIGN.md files
-- [DESIGNmd.dev](https://designmd.dev) — design system marketplace
+```bash
+python3 scripts/fetch_photos.py               # all 755 photos, ~40 MB (slow: Wikimedia rate limits)
+python3 scripts/fetch_photos.py coffee bread  # photos matching your subjects first
+```
 
-## License
+The photos go into `data/photolib2/`, which is git-ignored. Each photo keeps its own Wikimedia licence (CC0, public domain, CC BY or CC BY-SA). `scripts/photos.py` ranks them for a subject and prints the credit line for the page footer.
 
-MIT
+### Reference screenshots (optional)
+
+`scripts/refs.py` can show 3–5 real-site screenshots per page from a local library in `data/refimg/` (or `$DD_REFS`). That library is not included, because the screenshots are of other people's sites. Without it, the skill works from `references/categories.md` alone.
+
+## Use
+
+In Claude, ask for a page as usual, for example "Build a landing page for a small coffee roaster that ships every Tuesday". The skill triggers on page and redesign requests. Claude reads `SKILL.md` and runs the steps:
+
+```bash
+# 1. draw the direction, ground, faces, corners and nav, and print the NEXT steps
+python3 scripts/assign.py --candidates candidates.json --mode persuade --category food --seed coffee-roaster
+
+# 2. colour tokens with contrast checks
+python3 scripts/palette.py --brand "#8A4B2A" --scene light --strategy restrained   # assign.py prints the scene and strategy
+
+# 3. photos for the hero (premium pages)
+python3 scripts/photos.py "coffee beans roasting" --tone dark --n 8
+
+# 4. check pass
+python3 scripts/check.py index.html --primary ".hero .btn-primary" --premium
+```
+
+Tool, form and booking pages skip the candidate step: run `assign.py` without `--candidates`, and add `--flow` for forms and bookings.
+
+To rerun a benchmark task, use `python3 scripts/assign.py --task 61_coffee-roaster ...`. It reads `evals/briefs/61_coffee-roaster.txt`.
+
+## Layout
+
+```
+SKILL.md                 entry point: steps, and who decides what
+CHANGELOG.md             every version and why each rule exists
+references/
+  modes.md               five modes: structure, type and colour limits
+  categories.md          49 categories of real sites: what to borrow and what not to
+  scenes.md, locale.md   behaviour, states and market conventions
+  direction.md           subject inventory, candidates, contract
+  craft.md               build rules (each tagged rule:<id>)
+  review.md              check-pass questions
+  defaults.md            known "AI default" looks to avoid
+  examples.md            method examples
+config/                  real-site profiles, fonts, nav profiles, structure, used-direction pool
+scripts/
+  assign.py              draws mode, ground, faces, corners and nav; prints the NEXT steps
+  palette.py             colour tokens, contrast, default-palette warnings
+  check.py               browser checks (--primary, --core, --premium)
+  photos.py              ranks the offline photo library
+  fetch_photos.py        builds the offline photo library
+  fontroute.py           real Google Fonts in Playwright screenshots
+  refs.py, shoot_ref.py  optional real-site reference screenshots
+evals/                   70 benchmark tasks (tasks.json, briefs/, criteria.md)
+data/                    Hallmark photo list (metadata only) and its MIT licence
+```
+
+## Credits
+
+- The premium tier is adapted from **Hallmark** (MIT; see [`data/HALLMARK_LICENSE`](data/HALLMARK_LICENSE)): the layout scale and hero postures, the imagery rules and photo list, the font classes, and the hero review questions.
+- The photographs come from Wikimedia Commons, each under its own licence, with the author and source recorded in the library index.
+
+---
+
+## 中文说明
+
+**Design Director** 是一个 Claude skill，用来在没有品牌规范的情况下做网页，让做出来的页面像是设计过的，而不是像模板生成的。
+
+不用 skill 时，模型做的网页几乎都是同一套：米色底、Fraunces 斜体标题、一张画出来的小插画。用了 Design Director 之后：
+
+- 先判断页面类型（工具、阅读、交易、宣传、体验），再从 49 类真实网站的数据里定底色、字体、圆角和导航；
+- 工具和表单页按真实产品的标准做，不加装饰；
+- 品牌和故事页用真实大照片、大字号标题、留白充足的首屏（V4.16 的高级感模式，改编自 Hallmark）；
+- 先写文案再做页面，最后用真实浏览器和真实字体截图检查：溢出、文字被挡、首屏任务、焦点框、手机 320px。
+
+在 28 道题上和不用 skill 的基线对比：V4.16 更像真实的产品网站，商店和预约类尤其明显，也没有横向溢出。基线在少数电影、音乐类页面上更有氛围。盲选中 V4.16 以 10:5（5 题平局）胜过 V4.17，所以 V4.16 是当前版本。
+
+安装、照片库和用法见上面的英文部分。

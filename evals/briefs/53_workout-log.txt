@@ -1,0 +1,1 @@
+Design a strength-training log where a lifter records sets, reps and weight during a session, sees previous performance for each exercise, follows a weekly program, and reviews progress charts and personal records. Make logging a set possible in a couple of taps.

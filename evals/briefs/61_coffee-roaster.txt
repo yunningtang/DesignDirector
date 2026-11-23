@@ -1,0 +1,1 @@
+Build the online shop for a small specialty coffee roaster. Customers should be able to browse coffees by origin, roast level and tasting notes, read what makes each coffee different, choose grind and bag size, add to a cart, and start or manage a recurring subscription with a chosen delivery frequency. Include brewing guidance and a clear checkout.

@@ -1,0 +1,1 @@
+Create an educational physics playground with working simulations of gravity, velocity, and collisions. Include adjustable parameters, prediction prompts, and visual explanations.

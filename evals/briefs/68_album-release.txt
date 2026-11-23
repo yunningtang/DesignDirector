@@ -1,0 +1,1 @@
+Build a release site for a band's new album. It should let visitors listen to the singles, see the track list and credits, pre-order the album in different formats, watch the music video, browse upcoming tour dates and buy tickets, and sign up for news. The site should carry the album's identity.

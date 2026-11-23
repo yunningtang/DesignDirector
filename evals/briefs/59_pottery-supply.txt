@@ -1,0 +1,1 @@
+Create an online store for a pottery supply shop selling clay bodies, glazes, tools and kiln accessories: category browsing, filters by firing temperature and color, product pages with firing notes and test-tile photos, a cart, and simulated checkout.

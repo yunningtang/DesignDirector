@@ -1,0 +1,358 @@
+{
+ "method": "V4.13 (rebuilt): mode, type and category per task; draws are seeded by task|slug. flow: a transact page whose main job is filling in a multi-step form or booking (rule:no-object-in-flows). V4.13: tasks 01-50 added with the categories V4.9 used.",
+ "tasks": {
+  "08_yado-kyoto": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "travel"
+  },
+  "11_alder-creek-library-card": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "government",
+   "flow": true
+  },
+  "51_recipe-box": {
+   "mode": "operate",
+   "type": "app",
+   "category": "productivity"
+  },
+  "52_support-desk": {
+   "mode": "operate",
+   "type": "app",
+   "category": "productivity"
+  },
+  "53_workout-log": {
+   "mode": "operate",
+   "type": "app",
+   "category": "fitness"
+  },
+  "54_photo-library": {
+   "mode": "operate",
+   "type": "app",
+   "category": "photography"
+  },
+  "55_invoice-maker": {
+   "mode": "operate",
+   "type": "app",
+   "category": "fintech"
+  },
+  "56_plant-care": {
+   "mode": "operate",
+   "type": "app",
+   "category": "productivity"
+  },
+  "57_bike-repair-booking": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "fitness",
+   "flow": true
+  },
+  "58_neighborhood-paper": {
+   "mode": "read",
+   "type": "landing",
+   "category": "news"
+  },
+  "59_pottery-supply": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "furniture"
+  },
+  "60_documentary-film": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "film"
+  },
+  "01_mothweave": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "games"
+  },
+  "02_pressroom": {
+   "mode": "operate",
+   "type": "app",
+   "category": "designtools"
+  },
+  "03_corvale-transit-explorer": {
+   "mode": "operate",
+   "type": "app",
+   "category": "transit"
+  },
+  "04_low-water": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "games"
+  },
+  "05_instruments-for-an-empty-room": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "museum"
+  },
+  "06_setback-magazine": {
+   "mode": "read",
+   "type": "landing",
+   "category": "news"
+  },
+  "07_pinwall-studio-board": {
+   "mode": "operate",
+   "type": "app",
+   "category": "oss_tools"
+  },
+  "09_sidework": {
+   "mode": "read",
+   "type": "landing",
+   "category": "community"
+  },
+  "10_chipset-palette-studio": {
+   "mode": "operate",
+   "type": "app",
+   "category": "design_systems"
+  },
+  "12_kiln-loom": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "beauty"
+  },
+  "13_ledgerline": {
+   "mode": "operate",
+   "type": "app",
+   "category": "productivity"
+  },
+  "14_ada-sorel-studio": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "portfolio"
+  },
+  "15_swatch-school": {
+   "mode": "read",
+   "type": "landing",
+   "category": "education"
+  },
+  "16_ai-research-startup": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "ai"
+  },
+  "17_fragrance-house": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "beauty"
+  },
+  "18_electronic-festival": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "events"
+  },
+  "19_architecture-studio": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "architecture"
+  },
+  "20_scifi-film-promo": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "film"
+  },
+  "21_fashion-store": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "fashion"
+  },
+  "22_vintage-furniture-market": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "furniture"
+  },
+  "23_keyboard-configurator": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "hardware"
+  },
+  "24_indie-bookstore": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "bookstores"
+  },
+  "25_form-builder": {
+   "mode": "operate",
+   "type": "app",
+   "category": "oss_tools"
+  },
+  "26_personal-finance": {
+   "mode": "operate",
+   "type": "app",
+   "category": "fintech"
+  },
+  "27_wifi-diagnosis": {
+   "mode": "operate",
+   "type": "app",
+   "category": "devtools"
+  },
+  "28_climate-story": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "climate"
+  },
+  "29_esports-stats": {
+   "mode": "operate",
+   "type": "app",
+   "category": "games"
+  },
+  "30_social-network-viz": {
+   "mode": "operate",
+   "type": "app",
+   "category": "dataviz"
+  },
+  "31_second-brain": {
+   "mode": "operate",
+   "type": "app",
+   "category": "oss_tools"
+  },
+  "32_video-storyboard": {
+   "mode": "operate",
+   "type": "app",
+   "category": "designtools"
+  },
+  "33_calendar-app": {
+   "mode": "operate",
+   "type": "app",
+   "category": "oss_tools"
+  },
+  "34_mind-map": {
+   "mode": "operate",
+   "type": "app",
+   "category": "productivity"
+  },
+  "35_agent-workflow": {
+   "mode": "operate",
+   "type": "app",
+   "category": "oss_tools"
+  },
+  "36_physics-lab": {
+   "mode": "read",
+   "type": "landing",
+   "category": "education"
+  },
+  "37_language-learning": {
+   "mode": "read",
+   "type": "landing",
+   "category": "education"
+  },
+  "38_math-functions": {
+   "mode": "read",
+   "type": "landing",
+   "category": "education"
+  },
+  "39_kids-astronomy": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "kids"
+  },
+  "40_coding-school": {
+   "mode": "read",
+   "type": "landing",
+   "category": "education"
+  },
+  "41_virtual-pet": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "pets"
+  },
+  "42_map-story-maker": {
+   "mode": "operate",
+   "type": "app",
+   "category": "transit"
+  },
+  "43_escape-room": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "games"
+  },
+  "44_card-strategy": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "games"
+  },
+  "45_city-builder": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "games"
+  },
+  "46_generative-art": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "web_toys"
+  },
+  "47_digital-poetry": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "publishing"
+  },
+  "48_dream-museum": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "museum"
+  },
+  "49_type-playground": {
+   "mode": "operate",
+   "type": "app",
+   "category": "type_foundry"
+  },
+  "50_philosophy-garden": {
+   "mode": "experience",
+   "type": "landing",
+   "category": "web_toys"
+  },
+  "61_coffee-roaster": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "food"
+  },
+  "62_clinic-booking": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "health",
+   "flow": true
+  },
+  "63_cli-docs": {
+   "mode": "read",
+   "type": "landing",
+   "category": "devtools"
+  },
+  "64_food-bank-appeal": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "nonprofit"
+  },
+  "65_flat-hunt": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "real_estate"
+  },
+  "66_neighbourhood-bistro": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "restaurants"
+  },
+  "67_stockroom": {
+   "mode": "operate",
+   "type": "app",
+   "category": "productivity"
+  },
+  "68_album-release": {
+   "mode": "persuade",
+   "type": "landing",
+   "category": "music"
+  },
+  "69_grad-programme": {
+   "mode": "read",
+   "type": "landing",
+   "category": "universities"
+  },
+  "70_job-board": {
+   "mode": "transact",
+   "type": "landing",
+   "category": "jobs"
+  }
+ }
+}

@@ -1,0 +1,1 @@
+Design a browser-based escape room featuring interactive objects, inventory management, connected puzzles, hints, and a satisfying completion sequence.

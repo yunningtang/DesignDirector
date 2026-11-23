@@ -1,0 +1,1 @@
+Task 8: Productivity App Design and build a project management web app for a small creative team. Include a Kanban board with To Do, In Progress, and Done columns, task creation and editing, drag-and-drop movement, priority labels, due dates, search, and filtering. Changes should immediately appear in the interface and remain consistent as users navigate between views.
