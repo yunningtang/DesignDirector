@@ -1,0 +1,1 @@
+Create a website for a neighborhood bike repair shop where riders choose a service package, describe the problem, pick a drop-off slot, see an estimate, and confirm the booking. Include service prices, turnaround times, and the shop's opening hours.

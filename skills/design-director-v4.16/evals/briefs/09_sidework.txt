@@ -1,0 +1,1 @@
+Task 7: Social Community Design and build a community platform for people who share and discuss independent creative projects. Include a discover feed, project cards, detailed posts, reactions, comments, saved projects, and user profiles. Provide working interactions for publishing a post, reacting, commenting, saving, and navigating between views. Use realistic sample content.

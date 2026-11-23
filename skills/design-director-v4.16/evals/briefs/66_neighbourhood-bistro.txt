@@ -1,0 +1,1 @@
+Build the website for a neighbourhood bistro. It should show the current menu with prices and dietary information, opening hours and location, let guests book a table for a chosen date, time and party size, and handle special requests and larger group enquiries. Include a way to buy gift vouchers.

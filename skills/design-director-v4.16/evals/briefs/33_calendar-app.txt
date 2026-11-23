@@ -1,0 +1,1 @@
+Design a calendar application with day, week, and month views, event creation, drag-to-reschedule interactions, category colors, and conflict indicators. Ensure responsive navigation.

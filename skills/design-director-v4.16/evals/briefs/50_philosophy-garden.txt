@@ -1,0 +1,1 @@
+Design an exploratory digital garden presenting philosophical questions as interconnected environments. Visitors should navigate concepts, reveal short reflections, and collect their own interpretations.

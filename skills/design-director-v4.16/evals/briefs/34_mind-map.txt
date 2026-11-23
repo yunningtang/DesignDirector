@@ -1,0 +1,1 @@
+Build an interactive mind-mapping tool with editable nodes, draggable branches, zooming, color customization, keyboard shortcuts, and import-export functionality.

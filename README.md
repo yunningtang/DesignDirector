@@ -238,3 +238,7 @@ API keys are stored in localStorage, never sent to any server.
 ## License
 
 MIT
+
+## Design Director skill
+
+[`skills/design-director-v4.16/`](skills/design-director-v4.16/) is the Design Director Claude skill (V4.16). It builds web pages from a brief using real-site data, and includes a premium tier for brand and shop pages. See its [README](skills/design-director-v4.16/README.md).

@@ -1,0 +1,33 @@
+{
+ "_note": "V4.12 rebuild. The original per-category file (491 measured headers, V4.7) was lost; only the all-sites shares recorded in the V4.7 changelog survive, so every category draws from _all. Height, search, action and link counts are estimates.",
+ "_all": {
+  "surface": {
+   "light_plain": 0.48,
+   "dark": 0.18,
+   "over_image": 0.15,
+   "light_line": 0.13,
+   "colour": 0.04
+  },
+  "layout": {
+   "links_right": 0.4,
+   "links_left": 0.23,
+   "links_centre": 0.14,
+   "logo_and_menu": 0.14,
+   "logo_centre": 0.1
+  },
+  "height": {
+   "regular": 0.6,
+   "compact": 0.25,
+   "tall": 0.15
+  },
+  "case": {
+   "normal": 0.86,
+   "upper": 0.14
+  },
+  "promo_bar": 0.16,
+  "search_box": 0.2,
+  "cta_button": 0.45,
+  "links_median": 5,
+  "link_px": 15
+ }
+}

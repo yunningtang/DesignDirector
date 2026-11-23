@@ -1,0 +1,1 @@
+Build an interactive astronomy learning website with an explorable solar system, planet information, scale comparisons, and age-appropriate learning activities.

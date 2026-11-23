@@ -1,0 +1,1 @@
+Design and build a visual form builder where users can create forms by adding and reordering different field types. Include a live form preview, field validation settings, conditional visibility rules, and a simulated response collection dashboard. Prioritize clarity between editing and preview modes, and make the form-building workflow fully functional.

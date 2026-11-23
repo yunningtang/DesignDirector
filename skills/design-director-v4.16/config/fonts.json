@@ -1,0 +1,83 @@
+{
+ "retired": {
+  "Archivo": "third-generation default (r5, 26/40 pages)",
+  "Archivo Black": "same family",
+  "Bricolage Grotesque": "second-generation default (r3)",
+  "Figtree": "second-generation default",
+  "Fraunces": "first-generation default",
+  "Newsreader": "first-generation default",
+  "Rubik": "body-face convergence (r9-r10, 12/20)"
+ },
+ "pools": {
+  "display_serif": [
+   "Libre Caslon Display",
+   "DM Serif Display",
+   "Gloock",
+   "Young Serif",
+   "Bodoni Moda",
+   "Libre Bodoni",
+   "Spectral"
+  ],
+  "text_serif": [
+   "Source Serif 4",
+   "Literata",
+   "Spectral",
+   "Crimson Pro",
+   "Libre Caslon Text",
+   "Lora"
+  ],
+  "slab": [
+   "Zilla Slab",
+   "Roboto Slab",
+   "Arvo",
+   "Bitter",
+   "Josefin Slab"
+  ],
+  "sans_display": [
+   "Inter Tight",
+   "Geist",
+   "DM Sans",
+   "Manrope",
+   "Schibsted Grotesk",
+   "Hanken Grotesk",
+   "Instrument Sans",
+   "Onest",
+   "Sora",
+   "Red Hat Display",
+   "Public Sans",
+   "Familjen Grotesk",
+   "Host Grotesk",
+   "Mona Sans"
+  ],
+  "sans_text": [
+   "Inter",
+   "DM Sans",
+   "Geist",
+   "Public Sans",
+   "Work Sans",
+   "Source Sans 3",
+   "Nunito Sans",
+   "Karla",
+   "Atkinson Hyperlegible",
+   "IBM Plex Sans",
+   "Host Grotesk",
+   "Mona Sans"
+  ],
+  "display": [
+   "Dela Gothic One",
+   "Unbounded",
+   "Big Shoulders Display",
+   "Syne",
+   "Rubik Mono One",
+   "Bebas Neue"
+  ],
+  "mono": [
+   "JetBrains Mono",
+   "DM Mono",
+   "Space Mono",
+   "Martian Mono",
+   "Red Hat Mono"
+  ]
+ },
+ "note": "V4.12 rebuild of the V4.1 pools (original file lost): sans pools moved toward faces real sites use (Inter Tight, Geist, DM Sans, Inter...); serif, slab, display and mono pools as in V3. Retired faces stay out. V4.13: Host Grotesk and Mona Sans added (seen working in the Taste skill runs)."
+}

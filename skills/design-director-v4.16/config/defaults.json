@@ -1,0 +1,109 @@
+{
+ "version": "v3",
+ "note": "gen: g1 warm-paper era, g2 neutral-app era, g3 poster-headline era (r5). tier: floor = never unless the brief names it; reflex = allowed with a one-line reason. evidence = finding id in FINDINGS.md (F#) or source file.",
+ "items": [
+  {
+   "id": "warm-paper",
+   "gen": "g1",
+   "tier": "reflex",
+   "since": "r1",
+   "evidence": [
+    "F3",
+    "impeccable new-work.md (model prior block)"
+   ],
+   "name": "Warm paper",
+   "text": "A cream or beige page (around #F4F1EA) with a high-contrast serif display and a terracotta, rust or clay accent. For a warm, bookish, calm or crafted subject, treat the first palette that comes to mind as already spent."
+  },
+  {
+   "id": "neon-night",
+   "gen": "g1",
+   "tier": "reflex",
+   "since": "r1",
+   "evidence": "F3",
+   "name": "Neon night",
+   "text": "A near-black page with one acid-green, neon or vermilion accent and glowing edges."
+  },
+  {
+   "id": "broadsheet",
+   "gen": "g1",
+   "tier": "reflex",
+   "since": "r1",
+   "evidence": "F4",
+   "name": "Broadsheet as decoration",
+   "text": "Hairline rules everywhere, plus zero radius, plus dense newspaper columns, plus an italic serif display, on a subject that is not a publication."
+  },
+  {
+   "id": "app-shell",
+   "gen": "g2",
+   "tier": "reflex",
+   "since": "r5",
+   "evidence": "F3",
+   "name": "Neutral app shell",
+   "text": "A pale cool-grey or white page (around #E9EDF1–#F7F8FA) where colour appears only as one accent on buttons and one headline word, with white large-radius cards and pill buttons on every section. Saturated colour, a tinted ground or a dark ground are all open to you."
+  },
+  {
+   "id": "poster-headline",
+   "gen": "g3",
+   "tier": "reflex",
+   "since": "v3",
+   "evidence": [
+    "F3 (26/40 r5 pages)",
+    "r6–r7 radar: SD v1.1 8/10 Archivo"
+   ],
+   "name": "Poster headline",
+   "text": "A heavy grotesk headline set in ALL CAPS or very tight, often Archivo or Archivo Black, filling the hero, with a cobalt or navy accent and a white or pale ground. Let the headline get its character from the assigned faces and from the direction instead."
+  },
+  {
+   "id": "emph-word",
+   "gen": "g2",
+   "tier": "reflex",
+   "since": "r5",
+   "evidence": "F3",
+   "name": "The emphasised word",
+   "text": "A headline where one word or phrase is switched to italic, or to the accent colour, or to a second typeface, to add personality. Give the headline character through size, weight, width, case, setting or layout instead."
+  },
+  {
+   "id": "corner-habit",
+   "gen": "g2",
+   "tier": "reflex",
+   "since": "r5",
+   "evidence": "F4",
+   "name": "One corner habit",
+   "text": "Every card, button, input and image given the same treatment by habit: all pills and 16px+ cards, or all square boxes with 1–2px borders. Choose corners per role (controls, containers, media) and let at least two roles differ."
+  },
+  {
+   "id": "template-chrome",
+   "gen": "g1",
+   "tier": "reflex",
+   "since": "r3",
+   "evidence": [
+    "F3",
+    "F13 (side stripe persists in r5–r7)",
+    "impeccable craft-floor.md refuse list"
+   ],
+   "name": "Template chrome",
+   "text": "A small tracked-out ALL-CAPS label above every heading, \"01 / 02 / 03\" markers on content that is not a sequence, meta strings joined with middle dots, monospace for small labels that are not code or data, a thick coloured stripe down one side of cards, hard offset shadows (4px 4px 0) outside a world that actually calls for them, and a row of identical icon + heading + text cards."
+  },
+  {
+   "id": "effects",
+   "gen": "g1",
+   "tier": "floor",
+   "since": "r3",
+   "evidence": [
+    "F3",
+    "F13 (decorative grid persists in r5–r7)"
+   ],
+   "name": "Fashionable effects",
+   "text": "A purple-to-blue or purple-to-pink gradient hero; gradient-filled text; glass panels (backdrop-filter blur) as decoration; glowing coloured halos; a fine grid or line-field background on a page that is not a map, plan or measurement surface; emoji used as icons or section markers."
+  },
+  {
+   "id": "habit-fonts",
+   "gen": "g1",
+   "tier": "reflex",
+   "since": "r3",
+   "evidence": "F3",
+   "name": "Habit typefaces",
+   "text": "Display or body faces chosen by habit: Fraunces, Newsreader, Cormorant / Cormorant Garamond, Instrument Serif, Playfair Display, IBM Plex (Sans, Serif, Mono), Space Grotesk, Inter, Bricolage Grotesque, Figtree."
+  }
+ ]
+}

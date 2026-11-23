@@ -1,0 +1,1 @@
+Create a compact city-building browser game where players place buildings, manage resources, and balance population needs. Include a functional simulation and visual feedback.

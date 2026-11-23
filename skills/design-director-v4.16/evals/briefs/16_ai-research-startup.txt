@@ -1,0 +1,1 @@
+Build a launch website for a startup developing an AI-powered personal research assistant. Include product storytelling, an interactive feature demonstration, pricing, FAQs, and a signup flow. Create a distinctive visual identity rather than a generic SaaS template.

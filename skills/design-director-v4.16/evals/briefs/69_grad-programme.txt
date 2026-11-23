@@ -1,0 +1,1 @@
+Build the page for a university's two-year master's programme in urban planning. Prospective students should find what they will study each term, the faculty, career outcomes, entry requirements, fees and funding, key dates, and how to apply. Include a way to ask a question or book a campus visit.

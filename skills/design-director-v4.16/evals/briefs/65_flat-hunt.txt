@@ -1,0 +1,1 @@
+Build a rental listings site for apartments in one city. Renters should be able to search by neighbourhood, price, size, number of bedrooms and move-in date, view results on a list and a map, open a listing with photos, floor plan and costs, save favourites, compare a few listings side by side, and request a viewing.

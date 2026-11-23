@@ -1,0 +1,1 @@
+Build a cozy virtual pet browser game with feeding, playing, customizable rooms, animated reactions, changing needs, and a simple progression system.

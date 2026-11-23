@@ -1,0 +1,1 @@
+Build a winter fundraising page for a regional food bank. It should explain the need clearly, show what different donation amounts provide, let people give once or monthly, offer ways to volunteer or run a food drive, and show progress toward the campaign goal. Donating should take as few steps as possible and work well on a phone.

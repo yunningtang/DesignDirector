@@ -1,0 +1,1 @@
+Create a customer support inbox for a small software company: a ticket queue with filters and priorities, a conversation view with customer history, internal notes, saved replies, assignment to teammates, and a simple SLA indicator. It should feel fast for someone answering tickets all day.

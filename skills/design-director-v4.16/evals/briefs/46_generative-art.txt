@@ -1,0 +1,1 @@
+Build a generative art playground with a live canvas, adjustable geometry, particle movement, color parameters, presets, randomization, and image export.

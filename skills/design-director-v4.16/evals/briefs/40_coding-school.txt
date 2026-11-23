@@ -1,0 +1,1 @@
+Create a beginner-friendly coding education website with lesson navigation, an editable code playground, simulated execution feedback, challenges, and a progress dashboard.

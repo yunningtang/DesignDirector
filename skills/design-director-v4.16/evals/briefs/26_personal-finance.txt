@@ -1,0 +1,1 @@
+Build a personal finance dashboard with interactive spending charts, categorized transactions, budget tracking, monthly comparisons, and date filters. Use realistic synthetic data and clear visual hierarchy.

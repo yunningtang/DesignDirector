@@ -1,0 +1,1 @@
+Create an experimental digital poetry website where words respond to scrolling, cursor movement, and user choices. Develop an original poetic narrative with accessible reading alternatives.

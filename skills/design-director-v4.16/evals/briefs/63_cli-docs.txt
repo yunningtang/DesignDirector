@@ -1,0 +1,1 @@
+Build the documentation site for an open-source command-line tool that syncs files between machines. It needs a getting-started guide, installation for different operating systems, a full command reference with options and examples, a configuration file reference, troubleshooting, and a changelog. Readers must be able to search, copy commands easily, and jump between sections.

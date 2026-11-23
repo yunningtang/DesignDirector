@@ -1,0 +1,1 @@
+Build a mechanical keyboard configurator where users can select layouts, cases, switches, and keycaps. Include a live visual preview, compatibility feedback, pricing updates, and a saved configuration summary.

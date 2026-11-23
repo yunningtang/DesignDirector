@@ -1,0 +1,133 @@
+{
+ "note": "v1: only type and corners are assigned (rule:assign-type-corners). Ground, colour strategy and headline are chosen by the model inside its mode (rule:mode-limits).",
+ "assigned": {
+  "typeclass": {
+   "options": [
+    "sans",
+    "serif_sans",
+    "slab_sans",
+    "display_sans",
+    "all_serif",
+    "mono_accent"
+   ]
+  },
+  "containers": {
+   "options": [
+    "sharp",
+    "small",
+    "large"
+   ],
+   "px": {
+    "sharp": "0–2px",
+    "small": "4–8px",
+    "large": "14–20px"
+   }
+  },
+  "controls": {
+   "options": [
+    "sharp",
+    "small",
+    "pill"
+   ],
+   "px": {
+    "sharp": "0–2px",
+    "small": "4–8px",
+    "pill": "999px"
+   }
+  }
+ },
+ "forbidden_pairs": [
+  [
+   "containers=sharp",
+   "controls=sharp"
+  ],
+  [
+   "containers=large",
+   "controls=pill"
+  ]
+ ],
+ "modes": {
+  "operate": {
+   "for": "tools, dashboards, editors, forms, configurators",
+   "tier": "restrained",
+   "colour": [
+    "restrained",
+    "committed"
+   ],
+   "headline": [
+    "plain",
+    "quiet"
+   ]
+  },
+  "read": {
+   "for": "docs, articles, lessons, reference",
+   "tier": "restrained",
+   "colour": [
+    "restrained",
+    "committed"
+   ],
+   "headline": [
+    "plain",
+    "quiet",
+    "condensed"
+   ]
+  },
+  "transact": {
+   "for": "stores, booking, course catalogues, pricing",
+   "tier": "balanced",
+   "colour": [
+    "restrained",
+    "committed",
+    "full"
+   ],
+   "headline": [
+    "plain",
+    "quiet",
+    "condensed",
+    "oversized"
+   ]
+  },
+  "persuade": {
+   "for": "launches, product sites, campaigns, events",
+   "tier": "expressive",
+   "colour": [
+    "committed",
+    "full",
+    "drenched"
+   ],
+   "headline": [
+    "plain",
+    "condensed",
+    "oversized"
+   ]
+  },
+  "experience": {
+   "for": "stories, art, games, interactive essays",
+   "tier": "expressive",
+   "colour": [
+    "restrained",
+    "committed",
+    "full",
+    "drenched"
+   ],
+   "headline": [
+    "plain",
+    "quiet",
+    "condensed",
+    "oversized"
+   ]
+  }
+ },
+ "colour_strategies": {
+  "restrained": "tinted ground, colour on actions and states only",
+  "committed": "one saturated colour carries 30–60% of the first screen (a rail, header band or hero block); content still sits on --surface",
+  "full": "3–4 named colour roles, each with a job (categories, states, sections)",
+  "drenched": "the ground itself is saturated; frame-only: body text, cards, forms and charts sit on --surface"
+ },
+ "headlines": {
+  "plain": "one face, one colour",
+  "quiet": "barely larger than body; hierarchy from position and space",
+  "condensed": "narrow cut or tight tracking (not below -0.04em)",
+  "oversized": "fills its column, at most 2 lines; never a whole sentence"
+ }
+}

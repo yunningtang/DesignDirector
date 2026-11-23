@@ -1,0 +1,1 @@
+Build a browser photo library for a hobby photographer: a grid of photos grouped by date, albums, star ratings and color labels, a lightbox with EXIF details, keyboard culling (pick/reject), bulk selection, and simple filters. Use generated placeholder images.

@@ -1,0 +1,1 @@
+Build a personal knowledge management app with searchable notes, bidirectional links, tags, an interactive knowledge graph, and an editor. Make connecting and retrieving ideas intuitive.

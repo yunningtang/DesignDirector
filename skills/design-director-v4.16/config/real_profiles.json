@@ -1,0 +1,3867 @@
+{
+ "ai": {
+  "zh": "AI 产品",
+  "n": 20,
+  "colour_level": {
+   "strong": 0.15,
+   "accent": 0.65,
+   "neutral": 0.2
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.25,
+   "teal": 0.062,
+   "magenta": 0.125,
+   "blue": 0.25,
+   "green": 0.188,
+   "yellow": 0.0,
+   "orange": 0.125
+  },
+  "ground": {
+   "tinted": 0.15,
+   "colour": 0.1,
+   "dark": 0.25,
+   "white": 0.5
+  },
+  "display_class": {
+   "sans": 0.85,
+   "mono": 0.0,
+   "serif": 0.15
+  },
+  "containers": {
+   "large": 0.278,
+   "small": 0.444,
+   "sharp": 0.278
+  },
+  "controls": {
+   "pill": 0.526,
+   "small": 0.211,
+   "sharp": 0.263
+  },
+  "display_px": 64.0,
+  "body_px": 16.0,
+  "borders": 4.5,
+  "raw_ground": {
+   "white/near-white": 0.5,
+   "dark": 0.25,
+   "tinted light": 0.15,
+   "colour field": 0.1
+  },
+  "raw_hue": {
+   "red": 0.2,
+   "neutral": 0.2,
+   "blue": 0.2,
+   "green": 0.15,
+   "magenta": 0.1,
+   "orange": 0.1,
+   "teal": 0.05
+  },
+  "fonts": [
+   [
+    "rb-freigeist-neue",
+    1
+   ],
+   [
+    "Source Sans Pro",
+    1
+   ],
+   [
+    "esBuild",
+    1
+   ],
+   [
+    "Manrope",
+    1
+   ],
+   [
+    "The Future",
+    1
+   ]
+  ]
+ },
+ "oss_tools": {
+  "zh": "开源 SaaS 工具",
+  "n": 20,
+  "colour_level": {
+   "strong": 0.1,
+   "accent": 0.3,
+   "neutral": 0.6
+  },
+  "hue": {
+   "red": 0.0,
+   "yellow": 0.0,
+   "teal": 0.167,
+   "magenta": 0.0,
+   "blue": 0.5,
+   "green": 0.167,
+   "violet": 0.167,
+   "orange": 0.0
+  },
+  "ground": {
+   "tinted": 0.1,
+   "colour": 0.05,
+   "dark": 0.35,
+   "white": 0.5
+  },
+  "display_class": {
+   "sans": 0.85,
+   "mono": 0.0,
+   "serif": 0.15
+  },
+  "containers": {
+   "large": 0.444,
+   "small": 0.333,
+   "sharp": 0.222
+  },
+  "controls": {
+   "pill": 0.263,
+   "small": 0.684,
+   "sharp": 0.053
+  },
+  "display_px": 62.0,
+  "body_px": 16.0,
+  "borders": 5.0,
+  "raw_ground": {
+   "white/near-white": 0.5,
+   "dark": 0.35,
+   "tinted light": 0.1,
+   "colour field": 0.05
+  },
+  "raw_hue": {
+   "neutral": 0.7,
+   "blue": 0.15,
+   "violet": 0.05,
+   "green": 0.05,
+   "teal": 0.05
+  },
+  "fonts": [
+   [
+    "Inter",
+    2
+   ],
+   [
+    "__Inter_bd02df",
+    1
+   ],
+   [
+    "Source Serif 4 Variable",
+    1
+   ],
+   [
+    "Work Sans",
+    1
+   ],
+   [
+    "Poppins",
+    1
+   ]
+  ]
+ },
+ "devtools": {
+  "zh": "开发者工具",
+  "n": 30,
+  "colour_level": {
+   "strong": 0.2,
+   "accent": 0.333,
+   "neutral": 0.467
+  },
+  "hue": {
+   "red": 0.077,
+   "yellow": 0.0,
+   "teal": 0.154,
+   "magenta": 0.0,
+   "blue": 0.308,
+   "green": 0.077,
+   "violet": 0.231,
+   "orange": 0.154
+  },
+  "ground": {
+   "tinted": 0.033,
+   "colour": 0.1,
+   "dark": 0.333,
+   "white": 0.533
+  },
+  "display_class": {
+   "sans": 0.833,
+   "mono": 0.033,
+   "serif": 0.133
+  },
+  "containers": {
+   "large": 0.208,
+   "small": 0.292,
+   "sharp": 0.5
+  },
+  "controls": {
+   "pill": 0.276,
+   "small": 0.621,
+   "sharp": 0.103
+  },
+  "display_px": 53.0,
+  "body_px": 14.5,
+  "borders": 7.5,
+  "raw_ground": {
+   "white/near-white": 0.533,
+   "dark": 0.333,
+   "colour field": 0.1,
+   "tinted light": 0.033
+  },
+  "raw_hue": {
+   "neutral": 0.567,
+   "blue": 0.133,
+   "violet": 0.1,
+   "orange": 0.067,
+   "teal": 0.067,
+   "green": 0.033,
+   "red": 0.033
+  },
+  "fonts": [
+   [
+    "Manrope",
+    2
+   ],
+   [
+    "sans-serif",
+    1
+   ],
+   [
+    "-apple-system",
+    1
+   ],
+   [
+    "GitLab Sans",
+    1
+   ],
+   [
+    "Charlie Display",
+    1
+   ]
+  ]
+ },
+ "security": {
+  "zh": "安全 / 隐私",
+  "n": 32,
+  "colour_level": {
+   "strong": 0.406,
+   "accent": 0.344,
+   "neutral": 0.25
+  },
+  "hue": {
+   "red": 0.13,
+   "yellow": 0.0,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.696,
+   "green": 0.0,
+   "violet": 0.087,
+   "orange": 0.087
+  },
+  "ground": {
+   "tinted": 0.062,
+   "colour": 0.25,
+   "dark": 0.312,
+   "white": 0.375
+  },
+  "display_class": {
+   "sans": 0.812,
+   "mono": 0.0,
+   "serif": 0.188
+  },
+  "containers": {
+   "large": 0.522,
+   "small": 0.304,
+   "sharp": 0.174
+  },
+  "controls": {
+   "pill": 0.4,
+   "small": 0.433,
+   "sharp": 0.167
+  },
+  "display_px": 61.0,
+  "body_px": 16.0,
+  "borders": 4.5,
+  "raw_ground": {
+   "white/near-white": 0.375,
+   "dark": 0.312,
+   "colour field": 0.25,
+   "tinted light": 0.062
+  },
+  "raw_hue": {
+   "blue": 0.5,
+   "neutral": 0.281,
+   "red": 0.094,
+   "orange": 0.062,
+   "violet": 0.062
+  },
+  "fonts": [
+   [
+    "Inter",
+    2
+   ],
+   [
+    "agileSans",
+    1
+   ],
+   [
+    "Inter Variable",
+    1
+   ],
+   [
+    "ProtonSerif",
+    1
+   ],
+   [
+    "Source Sans Pro",
+    1
+   ]
+  ]
+ },
+ "hardware": {
+  "zh": "硬件 / 消费品牌",
+  "n": 23,
+  "colour_level": {
+   "strong": 0.13,
+   "accent": 0.522,
+   "neutral": 0.348
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.214,
+   "teal": 0.357,
+   "magenta": 0.071,
+   "blue": 0.214,
+   "green": 0.0,
+   "yellow": 0.0,
+   "orange": 0.143
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.087,
+   "dark": 0.13,
+   "white": 0.783
+  },
+  "display_class": {
+   "sans": 0.739,
+   "mono": 0.087,
+   "serif": 0.174
+  },
+  "containers": {
+   "large": 0.263,
+   "small": 0.263,
+   "sharp": 0.474
+  },
+  "controls": {
+   "pill": 0.429,
+   "small": 0.238,
+   "sharp": 0.333
+  },
+  "display_px": 44,
+  "body_px": 16,
+  "borders": 3,
+  "raw_ground": {
+   "white/near-white": 0.783,
+   "dark": 0.13,
+   "colour field": 0.087
+  },
+  "raw_hue": {
+   "neutral": 0.391,
+   "teal": 0.217,
+   "red": 0.13,
+   "blue": 0.13,
+   "orange": 0.087,
+   "magenta": 0.043
+  },
+  "fonts": [
+   [
+    "Open Sans",
+    2
+   ],
+   [
+    "Google Sans Flex",
+    1
+   ],
+   [
+    "Roboto Slab",
+    1
+   ],
+   [
+    "OnePlus Sans Medium",
+    1
+   ],
+   [
+    "SamsungOne",
+    1
+   ]
+  ]
+ },
+ "auto": {
+  "zh": "汽车",
+  "n": 27,
+  "colour_level": {
+   "strong": 0.185,
+   "accent": 0.37,
+   "neutral": 0.444
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.071,
+   "teal": 0.071,
+   "magenta": 0.0,
+   "blue": 0.5,
+   "green": 0.0,
+   "yellow": 0.071,
+   "orange": 0.286
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.111,
+   "dark": 0.444,
+   "white": 0.444
+  },
+  "display_class": {
+   "sans": 0.926,
+   "mono": 0.0,
+   "serif": 0.074
+  },
+  "containers": {
+   "large": 0.455,
+   "small": 0.273,
+   "sharp": 0.273
+  },
+  "controls": {
+   "pill": 0.48,
+   "small": 0.2,
+   "sharp": 0.32
+  },
+  "display_px": 48,
+  "body_px": 16,
+  "borders": 2,
+  "raw_ground": {
+   "white/near-white": 0.444,
+   "dark": 0.444,
+   "colour field": 0.111
+  },
+  "raw_hue": {
+   "neutral": 0.481,
+   "blue": 0.259,
+   "orange": 0.148,
+   "yellow": 0.037,
+   "teal": 0.037,
+   "red": 0.037
+  },
+  "fonts": [
+   [
+    "Polestar Unica",
+    1
+   ],
+   [
+    "Liga",
+    1
+   ],
+   [
+    "Lucid Serif VF",
+    1
+   ],
+   [
+    "Porsche Next",
+    1
+   ],
+   [
+    "Audi Type Variable",
+    1
+   ]
+  ]
+ },
+ "fashion": {
+  "zh": "服装时尚",
+  "n": 21,
+  "colour_level": {
+   "strong": 0.048,
+   "accent": 0.571,
+   "neutral": 0.381
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.167,
+   "magenta": 0.0,
+   "blue": 0.25,
+   "green": 0.083,
+   "yellow": 0.083,
+   "orange": 0.417
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.333,
+   "dark": 0.143,
+   "white": 0.524
+  },
+  "display_class": {
+   "sans": 0.81,
+   "mono": 0.0,
+   "serif": 0.19
+  },
+  "containers": {
+   "large": 0.167,
+   "small": 0.0,
+   "sharp": 0.833
+  },
+  "controls": {
+   "pill": 0.133,
+   "small": 0.2,
+   "sharp": 0.667
+  },
+  "display_px": 32,
+  "body_px": 14,
+  "borders": 0,
+  "raw_ground": {
+   "white/near-white": 0.524,
+   "colour field": 0.333,
+   "dark": 0.143
+  },
+  "raw_hue": {
+   "neutral": 0.429,
+   "orange": 0.238,
+   "blue": 0.143,
+   "teal": 0.095,
+   "yellow": 0.048,
+   "green": 0.048
+  },
+  "fonts": [
+   [
+    "Helvetica",
+    2
+   ],
+   [
+    "HelveticaLTPro",
+    2
+   ],
+   [
+    "elan-itc-pro",
+    1
+   ],
+   [
+    "Self Modern",
+    1
+   ],
+   [
+    "Maison Neue",
+    1
+   ]
+  ]
+ },
+ "beauty": {
+  "zh": "美妆 / 生活零售",
+  "n": 21,
+  "colour_level": {
+   "strong": 0.286,
+   "accent": 0.429,
+   "neutral": 0.286
+  },
+  "hue": {
+   "violet": 0.067,
+   "red": 0.4,
+   "teal": 0.067,
+   "magenta": 0.0,
+   "blue": 0.0,
+   "green": 0.133,
+   "yellow": 0.067,
+   "orange": 0.267
+  },
+  "ground": {
+   "tinted": 0.143,
+   "colour": 0.476,
+   "dark": 0.0,
+   "white": 0.381
+  },
+  "display_class": {
+   "sans": 0.762,
+   "mono": 0.0,
+   "serif": 0.238
+  },
+  "containers": {
+   "large": 0.1,
+   "small": 0.2,
+   "sharp": 0.7
+  },
+  "controls": {
+   "pill": 0.105,
+   "small": 0.105,
+   "sharp": 0.789
+  },
+  "display_px": 46,
+  "body_px": 14,
+  "borders": 4,
+  "raw_ground": {
+   "colour field": 0.476,
+   "white/near-white": 0.381,
+   "tinted light": 0.143
+  },
+  "raw_hue": {
+   "neutral": 0.286,
+   "red": 0.286,
+   "orange": 0.19,
+   "green": 0.095,
+   "teal": 0.048,
+   "yellow": 0.048,
+   "violet": 0.048
+  },
+  "fonts": [
+   [
+    "Post Grotesk",
+    2
+   ],
+   [
+    "Raleway",
+    1
+   ],
+   [
+    "Apercu",
+    1
+   ],
+   [
+    "Geologica",
+    1
+   ],
+   [
+    "Cera Pro",
+    1
+   ]
+  ]
+ },
+ "restaurants": {
+  "zh": "餐饮连锁",
+  "n": 27,
+  "colour_level": {
+   "strong": 0.407,
+   "accent": 0.444,
+   "neutral": 0.148
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.174,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.174,
+   "green": 0.174,
+   "yellow": 0.0,
+   "orange": 0.478
+  },
+  "ground": {
+   "tinted": 0.074,
+   "colour": 0.259,
+   "dark": 0.222,
+   "white": 0.444
+  },
+  "display_class": {
+   "sans": 0.778,
+   "mono": 0.0,
+   "serif": 0.222
+  },
+  "containers": {
+   "large": 0.053,
+   "small": 0.579,
+   "sharp": 0.368
+  },
+  "controls": {
+   "pill": 0.708,
+   "small": 0.167,
+   "sharp": 0.125
+  },
+  "display_px": 56,
+  "body_px": 18,
+  "borders": 3,
+  "raw_ground": {
+   "white/near-white": 0.444,
+   "colour field": 0.259,
+   "dark": 0.222,
+   "tinted light": 0.074
+  },
+  "raw_hue": {
+   "orange": 0.407,
+   "blue": 0.148,
+   "red": 0.148,
+   "green": 0.148,
+   "neutral": 0.148
+  },
+  "fonts": [
+   [
+    "Star Serif",
+    2
+   ],
+   [
+    "sofia_pro_bold",
+    2
+   ],
+   [
+    "Neue Plak Condensed",
+    1
+   ],
+   [
+    "Gotham",
+    1
+   ],
+   [
+    "SweetSans",
+    1
+   ]
+  ]
+ },
+ "food": {
+  "zh": "食品饮料",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.636,
+   "accent": 0.136,
+   "neutral": 0.227
+  },
+  "hue": {
+   "violet": 0.059,
+   "red": 0.176,
+   "teal": 0.118,
+   "magenta": 0.059,
+   "blue": 0.059,
+   "green": 0.059,
+   "yellow": 0.176,
+   "orange": 0.294
+  },
+  "ground": {
+   "tinted": 0.045,
+   "colour": 0.364,
+   "dark": 0.045,
+   "white": 0.545
+  },
+  "display_class": {
+   "sans": 0.864,
+   "mono": 0.0,
+   "serif": 0.136
+  },
+  "containers": {
+   "large": 0.125,
+   "small": 0.5,
+   "sharp": 0.375
+  },
+  "controls": {
+   "pill": 0.381,
+   "small": 0.381,
+   "sharp": 0.238
+  },
+  "display_px": 50.0,
+  "body_px": 16.0,
+  "borders": 4.0,
+  "raw_ground": {
+   "white/near-white": 0.545,
+   "colour field": 0.364,
+   "dark": 0.045,
+   "tinted light": 0.045
+  },
+  "raw_hue": {
+   "orange": 0.227,
+   "neutral": 0.227,
+   "yellow": 0.136,
+   "red": 0.136,
+   "teal": 0.091,
+   "blue": 0.045,
+   "green": 0.045,
+   "violet": 0.045,
+   "magenta": 0.045
+  },
+  "fonts": [
+   [
+    "__fontGroteskBold_f050be",
+    2
+   ],
+   [
+    "Corda Std",
+    1
+   ],
+   [
+    "Helvetica",
+    1
+   ],
+   [
+    "system-ui",
+    1
+   ],
+   [
+    "Instacart Sans",
+    1
+   ]
+  ]
+ },
+ "furniture": {
+  "zh": "家居家具",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.273,
+   "accent": 0.409,
+   "neutral": 0.318
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.071,
+   "teal": 0.071,
+   "magenta": 0.0,
+   "blue": 0.143,
+   "green": 0.0,
+   "yellow": 0.071,
+   "orange": 0.643
+  },
+  "ground": {
+   "tinted": 0.091,
+   "colour": 0.364,
+   "dark": 0.091,
+   "white": 0.455
+  },
+  "display_class": {
+   "sans": 0.864,
+   "mono": 0.0,
+   "serif": 0.136
+  },
+  "containers": {
+   "large": 0.077,
+   "small": 0.154,
+   "sharp": 0.769
+  },
+  "controls": {
+   "pill": 0.25,
+   "small": 0.05,
+   "sharp": 0.7
+  },
+  "display_px": 49.0,
+  "body_px": 16.0,
+  "borders": 2.0,
+  "raw_ground": {
+   "white/near-white": 0.455,
+   "colour field": 0.364,
+   "tinted light": 0.091,
+   "dark": 0.091
+  },
+  "raw_hue": {
+   "orange": 0.409,
+   "neutral": 0.364,
+   "blue": 0.091,
+   "yellow": 0.045,
+   "teal": 0.045,
+   "red": 0.045
+  },
+  "fonts": [
+   [
+    "Omani Rial",
+    1
+   ],
+   [
+    "HelveticaNeueW01-75Bold",
+    1
+   ],
+   [
+    "circular",
+    1
+   ],
+   [
+    "EuclidFlex",
+    1
+   ],
+   [
+    "Akzidenz Grotesk",
+    1
+   ]
+  ]
+ },
+ "architecture": {
+  "zh": "建筑",
+  "n": 24,
+  "colour_level": {
+   "strong": 0.125,
+   "accent": 0.458,
+   "neutral": 0.417
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.071,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.357,
+   "green": 0.071,
+   "yellow": 0.143,
+   "orange": 0.357
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.208,
+   "dark": 0.167,
+   "white": 0.625
+  },
+  "display_class": {
+   "sans": 0.958,
+   "mono": 0.0,
+   "serif": 0.042
+  },
+  "containers": {
+   "large": 0.0,
+   "small": 0.0,
+   "sharp": 1.0
+  },
+  "controls": {
+   "pill": 0.2,
+   "small": 0.4,
+   "sharp": 0.4
+  },
+  "display_px": 48.0,
+  "body_px": 18.0,
+  "borders": 0.0,
+  "raw_ground": {
+   "white/near-white": 0.625,
+   "colour field": 0.208,
+   "dark": 0.167
+  },
+  "raw_hue": {
+   "neutral": 0.417,
+   "orange": 0.208,
+   "blue": 0.208,
+   "yellow": 0.083,
+   "red": 0.042,
+   "green": 0.042
+  },
+  "fonts": [
+   [
+    "Neue Haas Unica W1G",
+    1
+   ],
+   [
+    "PWC-Bold",
+    1
+   ],
+   [
+    "Graphik Web",
+    1
+   ],
+   [
+    "Rotis II Sans",
+    1
+   ],
+   [
+    "SuisseIntl",
+    1
+   ]
+  ]
+ },
+ "design_media": {
+  "zh": "设计 / 建筑媒体",
+  "n": 15,
+  "colour_level": {
+   "strong": 0.333,
+   "accent": 0.6,
+   "neutral": 0.067
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.077,
+   "teal": 0.0,
+   "magenta": 0.077,
+   "blue": 0.308,
+   "green": 0.154,
+   "yellow": 0.0,
+   "orange": 0.385
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.267,
+   "dark": 0.0,
+   "white": 0.733
+  },
+  "display_class": {
+   "sans": 0.8,
+   "mono": 0.0,
+   "serif": 0.2
+  },
+  "containers": {
+   "large": 0.125,
+   "small": 0.0,
+   "sharp": 0.875
+  },
+  "controls": {
+   "pill": 0.091,
+   "small": 0.091,
+   "sharp": 0.818
+  },
+  "display_px": 32,
+  "body_px": 16,
+  "borders": 2,
+  "raw_ground": {
+   "white/near-white": 0.733,
+   "colour field": 0.267
+  },
+  "raw_hue": {
+   "orange": 0.333,
+   "blue": 0.267,
+   "green": 0.133,
+   "neutral": 0.133,
+   "red": 0.067,
+   "magenta": 0.067
+  },
+  "fonts": [
+   [
+    "FormaDJRText",
+    1
+   ],
+   [
+    "Helvetica Neue",
+    1
+   ],
+   [
+    "Helvetica",
+    1
+   ],
+   [
+    "Source Sans 3",
+    1
+   ],
+   [
+    "Palatino",
+    1
+   ]
+  ]
+ },
+ "museum": {
+  "zh": "博物馆 / 文化机构",
+  "n": 27,
+  "colour_level": {
+   "strong": 0.333,
+   "accent": 0.556,
+   "neutral": 0.111
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.182,
+   "teal": 0.045,
+   "magenta": 0.045,
+   "blue": 0.273,
+   "green": 0.136,
+   "yellow": 0.136,
+   "orange": 0.182
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.222,
+   "dark": 0.185,
+   "white": 0.593
+  },
+  "display_class": {
+   "sans": 0.852,
+   "mono": 0.0,
+   "serif": 0.148
+  },
+  "containers": {
+   "large": 0.105,
+   "small": 0.158,
+   "sharp": 0.737
+  },
+  "controls": {
+   "pill": 0.167,
+   "small": 0.167,
+   "sharp": 0.667
+  },
+  "display_px": 48,
+  "body_px": 17,
+  "borders": 2,
+  "raw_ground": {
+   "white/near-white": 0.593,
+   "colour field": 0.222,
+   "dark": 0.185
+  },
+  "raw_hue": {
+   "blue": 0.222,
+   "neutral": 0.185,
+   "red": 0.148,
+   "orange": 0.148,
+   "yellow": 0.111,
+   "green": 0.111,
+   "magenta": 0.037,
+   "teal": 0.037
+  },
+  "fonts": [
+   [
+    "haas-grotesk-sign",
+    1
+   ],
+   [
+    "RijksText",
+    1
+   ],
+   [
+    "LouvreSerif",
+    1
+   ],
+   [
+    "Guggenheim Sans",
+    1
+   ],
+   [
+    "__neographik_0c9254",
+    1
+   ]
+  ]
+ },
+ "bookstores": {
+  "zh": "书店 / 读书",
+  "n": 18,
+  "colour_level": {
+   "strong": 0.5,
+   "accent": 0.444,
+   "neutral": 0.056
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.294,
+   "teal": 0.118,
+   "magenta": 0.0,
+   "blue": 0.235,
+   "green": 0.059,
+   "yellow": 0.0,
+   "orange": 0.294
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.167,
+   "dark": 0.0,
+   "white": 0.833
+  },
+  "display_class": {
+   "sans": 0.333,
+   "mono": 0.0,
+   "serif": 0.667
+  },
+  "containers": {
+   "large": 0.0,
+   "small": 0.462,
+   "sharp": 0.538
+  },
+  "controls": {
+   "pill": 0.2,
+   "small": 0.6,
+   "sharp": 0.2
+  },
+  "display_px": 35.0,
+  "body_px": 16.0,
+  "borders": 5.0,
+  "raw_ground": {
+   "white/near-white": 0.833,
+   "colour field": 0.167
+  },
+  "raw_hue": {
+   "red": 0.278,
+   "orange": 0.278,
+   "blue": 0.222,
+   "teal": 0.111,
+   "green": 0.056,
+   "neutral": 0.056
+  },
+  "fonts": [
+   [
+    "Times New Roman",
+    2
+   ],
+   [
+    "TimesNewRoman",
+    1
+   ],
+   [
+    "freight-display-pro",
+    1
+   ],
+   [
+    "Bookerly Regular",
+    1
+   ],
+   [
+    "Tahoma",
+    1
+   ]
+  ]
+ },
+ "publishing": {
+  "zh": "出版 / 媒体 / 杂志",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.455,
+   "accent": 0.364,
+   "neutral": 0.182
+  },
+  "hue": {
+   "violet": 0.111,
+   "red": 0.222,
+   "teal": 0.056,
+   "magenta": 0.111,
+   "blue": 0.111,
+   "green": 0.0,
+   "yellow": 0.167,
+   "orange": 0.222
+  },
+  "ground": {
+   "tinted": 0.045,
+   "colour": 0.227,
+   "dark": 0.045,
+   "white": 0.682
+  },
+  "display_class": {
+   "sans": 0.545,
+   "mono": 0.0,
+   "serif": 0.455
+  },
+  "containers": {
+   "large": 0.056,
+   "small": 0.056,
+   "sharp": 0.889
+  },
+  "controls": {
+   "pill": 0.167,
+   "small": 0.389,
+   "sharp": 0.444
+  },
+  "display_px": 36.0,
+  "body_px": 16.4,
+  "borders": 3.5,
+  "raw_ground": {
+   "white/near-white": 0.682,
+   "colour field": 0.227,
+   "tinted light": 0.045,
+   "dark": 0.045
+  },
+  "raw_hue": {
+   "neutral": 0.182,
+   "orange": 0.182,
+   "red": 0.182,
+   "yellow": 0.136,
+   "violet": 0.091,
+   "blue": 0.091,
+   "magenta": 0.091,
+   "teal": 0.045
+  },
+  "fonts": [
+   [
+    "Helvetica Neue",
+    1
+   ],
+   [
+    "Quadraat",
+    1
+   ],
+   [
+    "adobe-caslon-pro",
+    1
+   ],
+   [
+    "goudy-old-style",
+    1
+   ],
+   [
+    "IrvinHeadingPro",
+    1
+   ]
+  ]
+ },
+ "news": {
+  "zh": "新闻",
+  "n": 24,
+  "colour_level": {
+   "strong": 0.125,
+   "accent": 0.75,
+   "neutral": 0.125
+  },
+  "hue": {
+   "violet": 0.05,
+   "red": 0.15,
+   "teal": 0.05,
+   "magenta": 0.0,
+   "blue": 0.5,
+   "green": 0.1,
+   "yellow": 0.1,
+   "orange": 0.05
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.167,
+   "dark": 0.0,
+   "white": 0.833
+  },
+  "display_class": {
+   "sans": 0.542,
+   "mono": 0.0,
+   "serif": 0.458
+  },
+  "containers": {
+   "large": 0.0,
+   "small": 0.211,
+   "sharp": 0.789
+  },
+  "controls": {
+   "pill": 0.348,
+   "small": 0.13,
+   "sharp": 0.522
+  },
+  "display_px": 32.0,
+  "body_px": 16.0,
+  "borders": 7.0,
+  "raw_ground": {
+   "white/near-white": 0.833,
+   "colour field": 0.167
+  },
+  "raw_hue": {
+   "blue": 0.417,
+   "neutral": 0.167,
+   "red": 0.125,
+   "yellow": 0.083,
+   "green": 0.083,
+   "orange": 0.042,
+   "violet": 0.042,
+   "teal": 0.042
+  },
+  "fonts": [
+   [
+    "BBC Reith Serif",
+    2
+   ],
+   [
+    "Roboto",
+    1
+   ],
+   [
+    "GH Guardian Headline",
+    1
+   ],
+   [
+    "Montserrat",
+    1
+   ],
+   [
+    "Register",
+    1
+   ]
+  ]
+ },
+ "education": {
+  "zh": "研究 / 教育",
+  "n": 20,
+  "colour_level": {
+   "strong": 0.0,
+   "accent": 0.7,
+   "neutral": 0.3
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.231,
+   "magenta": 0.0,
+   "blue": 0.308,
+   "green": 0.154,
+   "yellow": 0.0,
+   "orange": 0.308
+  },
+  "ground": {
+   "tinted": 0.05,
+   "colour": 0.05,
+   "dark": 0.25,
+   "white": 0.65
+  },
+  "display_class": {
+   "sans": 1.0,
+   "mono": 0.0,
+   "serif": 0.0
+  },
+  "containers": {
+   "large": 0.235,
+   "small": 0.471,
+   "sharp": 0.294
+  },
+  "controls": {
+   "pill": 0.312,
+   "small": 0.562,
+   "sharp": 0.125
+  },
+  "display_px": 51.0,
+  "body_px": 14.5,
+  "borders": 8.5,
+  "raw_ground": {
+   "white/near-white": 0.65,
+   "dark": 0.25,
+   "colour field": 0.05,
+   "tinted light": 0.05
+  },
+  "raw_hue": {
+   "neutral": 0.35,
+   "blue": 0.2,
+   "orange": 0.2,
+   "teal": 0.15,
+   "green": 0.1
+  },
+  "fonts": [
+   [
+    "Inter",
+    3
+   ],
+   [
+    "system-ui",
+    2
+   ],
+   [
+    "Source Sans Pro",
+    1
+   ],
+   [
+    "Lato",
+    1
+   ],
+   [
+    "feather",
+    1
+   ]
+  ]
+ },
+ "universities": {
+  "zh": "大学",
+  "n": 25,
+  "colour_level": {
+   "strong": 0.44,
+   "accent": 0.52,
+   "neutral": 0.04
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.25,
+   "teal": 0.042,
+   "magenta": 0.0,
+   "blue": 0.458,
+   "green": 0.042,
+   "yellow": 0.0,
+   "orange": 0.208
+  },
+  "ground": {
+   "tinted": 0.04,
+   "colour": 0.08,
+   "dark": 0.08,
+   "white": 0.8
+  },
+  "display_class": {
+   "sans": 0.76,
+   "mono": 0.0,
+   "serif": 0.24
+  },
+  "containers": {
+   "large": 0.095,
+   "small": 0.048,
+   "sharp": 0.857
+  },
+  "controls": {
+   "pill": 0.095,
+   "small": 0.143,
+   "sharp": 0.762
+  },
+  "display_px": 56,
+  "body_px": 17,
+  "borders": 1,
+  "raw_ground": {
+   "white/near-white": 0.8,
+   "dark": 0.08,
+   "colour field": 0.08,
+   "tinted light": 0.04
+  },
+  "raw_hue": {
+   "blue": 0.44,
+   "red": 0.24,
+   "orange": 0.2,
+   "green": 0.04,
+   "teal": 0.04,
+   "neutral": 0.04
+  },
+  "fonts": [
+   [
+    "Roboto Slab",
+    2
+   ],
+   [
+    "neue-haas-grotesk-text",
+    1
+   ],
+   [
+    "Canela Deck Web",
+    1
+   ],
+   [
+    "Inter",
+    1
+   ],
+   [
+    "freight-sans-pro-n4",
+    1
+   ]
+  ]
+ },
+ "health": {
+  "zh": "医疗健康",
+  "n": 24,
+  "colour_level": {
+   "strong": 0.417,
+   "accent": 0.5,
+   "neutral": 0.083
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.2,
+   "magenta": 0.0,
+   "blue": 0.35,
+   "green": 0.05,
+   "yellow": 0.05,
+   "orange": 0.35
+  },
+  "ground": {
+   "tinted": 0.042,
+   "colour": 0.208,
+   "dark": 0.042,
+   "white": 0.708
+  },
+  "display_class": {
+   "sans": 0.75,
+   "mono": 0.0,
+   "serif": 0.25
+  },
+  "containers": {
+   "large": 0.368,
+   "small": 0.211,
+   "sharp": 0.421
+  },
+  "controls": {
+   "pill": 0.524,
+   "small": 0.238,
+   "sharp": 0.238
+  },
+  "display_px": 49.0,
+  "body_px": 16.0,
+  "borders": 6.0,
+  "raw_ground": {
+   "white/near-white": 0.708,
+   "colour field": 0.208,
+   "tinted light": 0.042,
+   "dark": 0.042
+  },
+  "raw_hue": {
+   "blue": 0.292,
+   "orange": 0.292,
+   "teal": 0.167,
+   "neutral": 0.167,
+   "yellow": 0.042,
+   "green": 0.042
+  },
+  "fonts": [
+   [
+    "Noto Sans",
+    2
+   ],
+   [
+    "CareSans",
+    2
+   ],
+   [
+    "Lucida Grande",
+    1
+   ],
+   [
+    "Libre Franklin",
+    1
+   ],
+   [
+    "Frutiger W01",
+    1
+   ]
+  ]
+ },
+ "fitness": {
+  "zh": "运动健身",
+  "n": 28,
+  "colour_level": {
+   "strong": 0.25,
+   "accent": 0.571,
+   "neutral": 0.179
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.211,
+   "teal": 0.105,
+   "magenta": 0.0,
+   "blue": 0.263,
+   "green": 0.053,
+   "yellow": 0.053,
+   "orange": 0.316
+  },
+  "ground": {
+   "tinted": 0.071,
+   "colour": 0.179,
+   "dark": 0.107,
+   "white": 0.643
+  },
+  "display_class": {
+   "sans": 0.964,
+   "mono": 0.036,
+   "serif": 0.0
+  },
+  "containers": {
+   "large": 0.471,
+   "small": 0.235,
+   "sharp": 0.294
+  },
+  "controls": {
+   "pill": 0.462,
+   "small": 0.269,
+   "sharp": 0.269
+  },
+  "display_px": 64.0,
+  "body_px": 16.0,
+  "borders": 1.0,
+  "raw_ground": {
+   "white/near-white": 0.643,
+   "colour field": 0.179,
+   "dark": 0.107,
+   "tinted light": 0.071
+  },
+  "raw_hue": {
+   "neutral": 0.321,
+   "orange": 0.214,
+   "blue": 0.179,
+   "red": 0.143,
+   "teal": 0.071,
+   "yellow": 0.036,
+   "green": 0.036
+  },
+  "fonts": [
+   [
+    "Inter",
+    3
+   ],
+   [
+    "ASICS Webfont",
+    1
+   ],
+   [
+    "Google Sans Flex",
+    1
+   ],
+   [
+    "ZwiftSprint-Black",
+    1
+   ],
+   [
+    "Boathouse",
+    1
+   ]
+  ]
+ },
+ "travel": {
+  "zh": "旅行预订",
+  "n": 24,
+  "colour_level": {
+   "strong": 0.417,
+   "accent": 0.417,
+   "neutral": 0.167
+  },
+  "hue": {
+   "violet": 0.1,
+   "red": 0.05,
+   "teal": 0.2,
+   "magenta": 0.05,
+   "blue": 0.25,
+   "green": 0.0,
+   "yellow": 0.1,
+   "orange": 0.25
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.208,
+   "dark": 0.042,
+   "white": 0.75
+  },
+  "display_class": {
+   "sans": 0.875,
+   "mono": 0.0,
+   "serif": 0.125
+  },
+  "containers": {
+   "large": 0.444,
+   "small": 0.278,
+   "sharp": 0.278
+  },
+  "controls": {
+   "pill": 0.65,
+   "small": 0.25,
+   "sharp": 0.1
+  },
+  "display_px": 46.0,
+  "body_px": 16.0,
+  "borders": 4.0,
+  "raw_ground": {
+   "white/near-white": 0.75,
+   "colour field": 0.208,
+   "dark": 0.042
+  },
+  "raw_hue": {
+   "orange": 0.208,
+   "blue": 0.208,
+   "neutral": 0.167,
+   "teal": 0.167,
+   "yellow": 0.083,
+   "violet": 0.083,
+   "magenta": 0.042,
+   "red": 0.042
+  },
+  "fonts": [
+   [
+    "Montserrat",
+    2
+   ],
+   [
+    "Poppins",
+    2
+   ],
+   [
+    "Centra No2",
+    1
+   ],
+   [
+    "TT Hoves Variable",
+    1
+   ],
+   [
+    "American Grotesk Compressed",
+    1
+   ]
+  ]
+ },
+ "hospitality": {
+  "zh": "酒店旅行",
+  "n": 25,
+  "colour_level": {
+   "strong": 0.12,
+   "accent": 0.6,
+   "neutral": 0.28
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.118,
+   "teal": 0.294,
+   "magenta": 0.0,
+   "blue": 0.059,
+   "green": 0.059,
+   "yellow": 0.118,
+   "orange": 0.353
+  },
+  "ground": {
+   "tinted": 0.12,
+   "colour": 0.28,
+   "dark": 0.12,
+   "white": 0.48
+  },
+  "display_class": {
+   "sans": 0.56,
+   "mono": 0.0,
+   "serif": 0.44
+  },
+  "containers": {
+   "large": 0.056,
+   "small": 0.111,
+   "sharp": 0.833
+  },
+  "controls": {
+   "pill": 0.364,
+   "small": 0.091,
+   "sharp": 0.545
+  },
+  "display_px": 49.95,
+  "body_px": 15,
+  "borders": 2,
+  "raw_ground": {
+   "white/near-white": 0.48,
+   "colour field": 0.28,
+   "tinted light": 0.12,
+   "dark": 0.12
+  },
+  "raw_hue": {
+   "neutral": 0.32,
+   "orange": 0.24,
+   "teal": 0.2,
+   "yellow": 0.08,
+   "red": 0.08,
+   "green": 0.04,
+   "blue": 0.04
+  },
+  "fonts": [
+   [
+    "-apple-system",
+    1
+   ],
+   [
+    "Engravers Gothic Bold",
+    1
+   ],
+   [
+    "Cormorant Garamond",
+    1
+   ],
+   [
+    "loewblack",
+    1
+   ],
+   [
+    "Futura PT Medium",
+    1
+   ]
+  ]
+ },
+ "transit": {
+  "zh": "公共交通",
+  "n": 27,
+  "colour_level": {
+   "strong": 0.519,
+   "accent": 0.444,
+   "neutral": 0.037
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.192,
+   "teal": 0.038,
+   "magenta": 0.0,
+   "blue": 0.308,
+   "green": 0.115,
+   "yellow": 0.115,
+   "orange": 0.231
+  },
+  "ground": {
+   "tinted": 0.074,
+   "colour": 0.222,
+   "dark": 0.0,
+   "white": 0.704
+  },
+  "display_class": {
+   "sans": 0.963,
+   "mono": 0.0,
+   "serif": 0.037
+  },
+  "containers": {
+   "large": 0.4,
+   "small": 0.28,
+   "sharp": 0.32
+  },
+  "controls": {
+   "pill": 0.375,
+   "small": 0.458,
+   "sharp": 0.167
+  },
+  "display_px": 40,
+  "body_px": 16,
+  "borders": 6,
+  "raw_ground": {
+   "white/near-white": 0.704,
+   "colour field": 0.222,
+   "tinted light": 0.074
+  },
+  "raw_hue": {
+   "blue": 0.296,
+   "orange": 0.222,
+   "red": 0.185,
+   "green": 0.111,
+   "yellow": 0.111,
+   "neutral": 0.037,
+   "teal": 0.037
+  },
+  "fonts": [
+   [
+    "Roboto",
+    3
+   ],
+   [
+    "Puffin Transit ExtraBold",
+    2
+   ],
+   [
+    "Montserrat",
+    1
+   ],
+   [
+    "proxima-soft",
+    1
+   ],
+   [
+    "Google Sans",
+    1
+   ]
+  ]
+ },
+ "government": {
+  "zh": "政府 / 公共服务",
+  "n": 35,
+  "colour_level": {
+   "strong": 0.514,
+   "accent": 0.343,
+   "neutral": 0.143
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.034,
+   "teal": 0.103,
+   "magenta": 0.0,
+   "blue": 0.793,
+   "green": 0.034,
+   "yellow": 0.0,
+   "orange": 0.034
+  },
+  "ground": {
+   "tinted": 0.029,
+   "colour": 0.2,
+   "dark": 0.029,
+   "white": 0.743
+  },
+  "display_class": {
+   "sans": 0.886,
+   "mono": 0.0,
+   "serif": 0.114
+  },
+  "containers": {
+   "large": 0.065,
+   "small": 0.484,
+   "sharp": 0.452
+  },
+  "controls": {
+   "pill": 0.152,
+   "small": 0.333,
+   "sharp": 0.515
+  },
+  "display_px": 40,
+  "body_px": 16,
+  "borders": 6,
+  "raw_ground": {
+   "white/near-white": 0.743,
+   "colour field": 0.2,
+   "tinted light": 0.029,
+   "dark": 0.029
+  },
+  "raw_hue": {
+   "blue": 0.657,
+   "neutral": 0.171,
+   "teal": 0.086,
+   "red": 0.029,
+   "orange": 0.029,
+   "green": 0.029
+  },
+  "fonts": [
+   [
+    "Roboto",
+    4
+   ],
+   [
+    "Arial",
+    3
+   ],
+   [
+    "Public Sans",
+    2
+   ],
+   [
+    "Open Sans",
+    2
+   ],
+   [
+    "Lato",
+    2
+   ]
+  ]
+ },
+ "nonprofit": {
+  "zh": "公益组织",
+  "n": 27,
+  "colour_level": {
+   "strong": 0.333,
+   "accent": 0.519,
+   "neutral": 0.148
+  },
+  "hue": {
+   "red": 0.143,
+   "yellow": 0.048,
+   "teal": 0.19,
+   "magenta": 0.0,
+   "blue": 0.19,
+   "green": 0.19,
+   "violet": 0.095,
+   "orange": 0.143
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.333,
+   "dark": 0.0,
+   "white": 0.667
+  },
+  "display_class": {
+   "sans": 0.815,
+   "mono": 0.0,
+   "serif": 0.185
+  },
+  "containers": {
+   "large": 0.136,
+   "small": 0.364,
+   "sharp": 0.5
+  },
+  "controls": {
+   "pill": 0.24,
+   "small": 0.4,
+   "sharp": 0.36
+  },
+  "display_px": 59.2,
+  "body_px": 18,
+  "borders": 3,
+  "raw_ground": {
+   "white/near-white": 0.667,
+   "colour field": 0.333
+  },
+  "raw_hue": {
+   "neutral": 0.222,
+   "teal": 0.148,
+   "green": 0.148,
+   "blue": 0.148,
+   "red": 0.111,
+   "orange": 0.111,
+   "violet": 0.074,
+   "yellow": 0.037
+  },
+  "fonts": [
+   [
+    "Oswald",
+    1
+   ],
+   [
+    "Noto Sans",
+    1
+   ],
+   [
+    "Avenir",
+    1
+   ],
+   [
+    "GT America Compressed Bold",
+    1
+   ],
+   [
+    "GreenpeaceSans",
+    1
+   ]
+  ]
+ },
+ "climate": {
+  "zh": "气候 / 能源",
+  "n": 30,
+  "colour_level": {
+   "strong": 0.367,
+   "accent": 0.467,
+   "neutral": 0.167
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.042,
+   "teal": 0.167,
+   "magenta": 0.0,
+   "blue": 0.458,
+   "green": 0.083,
+   "yellow": 0.167,
+   "orange": 0.083
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.2,
+   "dark": 0.233,
+   "white": 0.567
+  },
+  "display_class": {
+   "sans": 0.767,
+   "mono": 0.033,
+   "serif": 0.2
+  },
+  "containers": {
+   "large": 0.25,
+   "small": 0.2,
+   "sharp": 0.55
+  },
+  "controls": {
+   "pill": 0.222,
+   "small": 0.481,
+   "sharp": 0.296
+  },
+  "display_px": 62.0,
+  "body_px": 18.0,
+  "borders": 2.5,
+  "raw_ground": {
+   "white/near-white": 0.567,
+   "dark": 0.233,
+   "colour field": 0.2
+  },
+  "raw_hue": {
+   "blue": 0.367,
+   "neutral": 0.2,
+   "teal": 0.133,
+   "yellow": 0.133,
+   "orange": 0.067,
+   "green": 0.067,
+   "red": 0.033
+  },
+  "fonts": [
+   [
+    "bebas-neue",
+    2
+   ],
+   [
+    "PT Sans Narrow",
+    1
+   ],
+   [
+    "Inter",
+    1
+   ],
+   [
+    "Ubuntu",
+    1
+   ],
+   [
+    "Poppins",
+    1
+   ]
+  ]
+ },
+ "science": {
+  "zh": "航天 / 科学",
+  "n": 26,
+  "colour_level": {
+   "strong": 0.154,
+   "accent": 0.692,
+   "neutral": 0.154
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.048,
+   "teal": 0.238,
+   "magenta": 0.0,
+   "blue": 0.524,
+   "green": 0.0,
+   "yellow": 0.0,
+   "orange": 0.19
+  },
+  "ground": {
+   "tinted": 0.038,
+   "colour": 0.077,
+   "dark": 0.154,
+   "white": 0.731
+  },
+  "display_class": {
+   "sans": 0.846,
+   "mono": 0.0,
+   "serif": 0.154
+  },
+  "containers": {
+   "large": 0.111,
+   "small": 0.278,
+   "sharp": 0.611
+  },
+  "controls": {
+   "pill": 0.286,
+   "small": 0.381,
+   "sharp": 0.333
+  },
+  "display_px": 41.0,
+  "body_px": 16.0,
+  "borders": 3.5,
+  "raw_ground": {
+   "white/near-white": 0.731,
+   "dark": 0.154,
+   "colour field": 0.077,
+   "tinted light": 0.038
+  },
+  "raw_hue": {
+   "blue": 0.423,
+   "neutral": 0.192,
+   "teal": 0.192,
+   "orange": 0.154,
+   "red": 0.038
+  },
+  "fonts": [
+   [
+    "Helvetica Now Display",
+    2
+   ],
+   [
+    "Open Sans",
+    2
+   ],
+   [
+    "inter",
+    1
+   ],
+   [
+    "NotesEsa",
+    1
+   ],
+   [
+    "Rubik",
+    1
+   ]
+  ]
+ },
+ "photography": {
+  "zh": "摄影",
+  "n": 19,
+  "colour_level": {
+   "strong": 0.211,
+   "accent": 0.526,
+   "neutral": 0.263
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.143,
+   "teal": 0.143,
+   "magenta": 0.0,
+   "blue": 0.143,
+   "green": 0.0,
+   "yellow": 0.0,
+   "orange": 0.571
+  },
+  "ground": {
+   "tinted": 0.105,
+   "colour": 0.0,
+   "dark": 0.211,
+   "white": 0.684
+  },
+  "display_class": {
+   "sans": 0.947,
+   "mono": 0.0,
+   "serif": 0.053
+  },
+  "containers": {
+   "large": 0.091,
+   "small": 0.0,
+   "sharp": 0.909
+  },
+  "controls": {
+   "pill": 0.25,
+   "small": 0.188,
+   "sharp": 0.562
+  },
+  "display_px": 34,
+  "body_px": 16,
+  "borders": 3,
+  "raw_ground": {
+   "white/near-white": 0.684,
+   "dark": 0.211,
+   "tinted light": 0.105
+  },
+  "raw_hue": {
+   "orange": 0.421,
+   "neutral": 0.263,
+   "blue": 0.105,
+   "red": 0.105,
+   "teal": 0.105
+  },
+  "fonts": [
+   [
+    "Roboto",
+    3
+   ],
+   [
+    "ui-sans-serif",
+    2
+   ],
+   [
+    "Poppins",
+    1
+   ],
+   [
+    "fira-sans",
+    1
+   ],
+   [
+    "Proxima Nova",
+    1
+   ]
+  ]
+ },
+ "music": {
+  "zh": "音乐",
+  "n": 25,
+  "colour_level": {
+   "strong": 0.24,
+   "accent": 0.56,
+   "neutral": 0.2
+  },
+  "hue": {
+   "red": 0.45,
+   "yellow": 0.1,
+   "teal": 0.1,
+   "magenta": 0.0,
+   "blue": 0.05,
+   "green": 0.0,
+   "violet": 0.1,
+   "orange": 0.2
+  },
+  "ground": {
+   "tinted": 0.08,
+   "colour": 0.08,
+   "dark": 0.44,
+   "white": 0.4
+  },
+  "display_class": {
+   "sans": 0.96,
+   "mono": 0.0,
+   "serif": 0.04
+  },
+  "containers": {
+   "large": 0.05,
+   "small": 0.2,
+   "sharp": 0.75
+  },
+  "controls": {
+   "pill": 0.261,
+   "small": 0.261,
+   "sharp": 0.478
+  },
+  "display_px": 48,
+  "body_px": 16,
+  "borders": 2,
+  "raw_ground": {
+   "dark": 0.44,
+   "white/near-white": 0.4,
+   "tinted light": 0.08,
+   "colour field": 0.08
+  },
+  "raw_hue": {
+   "red": 0.36,
+   "neutral": 0.2,
+   "orange": 0.16,
+   "violet": 0.08,
+   "yellow": 0.08,
+   "teal": 0.08,
+   "blue": 0.04
+  },
+  "fonts": [
+   [
+    "Helvetica Neue",
+    1
+   ],
+   [
+    "Univers-Condensed",
+    1
+   ],
+   [
+    "Söhne",
+    1
+   ],
+   [
+    "Deezer Brand",
+    1
+   ],
+   [
+    "univers",
+    1
+   ]
+  ]
+ },
+ "film": {
+  "zh": "电影 / 流媒体",
+  "n": 27,
+  "colour_level": {
+   "strong": 0.333,
+   "accent": 0.519,
+   "neutral": 0.148
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.273,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.182,
+   "green": 0.0,
+   "yellow": 0.045,
+   "orange": 0.5
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.074,
+   "dark": 0.481,
+   "white": 0.444
+  },
+  "display_class": {
+   "sans": 0.926,
+   "mono": 0.0,
+   "serif": 0.074
+  },
+  "containers": {
+   "large": 0.105,
+   "small": 0.316,
+   "sharp": 0.579
+  },
+  "controls": {
+   "pill": 0.381,
+   "small": 0.286,
+   "sharp": 0.333
+  },
+  "display_px": 42,
+  "body_px": 16,
+  "borders": 2,
+  "raw_ground": {
+   "dark": 0.481,
+   "white/near-white": 0.444,
+   "colour field": 0.074
+  },
+  "raw_hue": {
+   "orange": 0.407,
+   "red": 0.222,
+   "neutral": 0.185,
+   "blue": 0.148,
+   "yellow": 0.037
+  },
+  "fonts": [
+   [
+    "helveticaNeueLTPro",
+    1
+   ],
+   [
+    "Roboto",
+    1
+   ],
+   [
+    "Riforma",
+    1
+   ],
+   [
+    "Netflix Sans",
+    1
+   ],
+   [
+    "Inspire",
+    1
+   ]
+  ]
+ },
+ "games": {
+  "zh": "游戏 / 娱乐",
+  "n": 20,
+  "colour_level": {
+   "strong": 0.3,
+   "accent": 0.55,
+   "neutral": 0.15
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.25,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.5,
+   "green": 0.062,
+   "yellow": 0.0,
+   "orange": 0.188
+  },
+  "ground": {
+   "tinted": 0.1,
+   "colour": 0.05,
+   "dark": 0.5,
+   "white": 0.35
+  },
+  "display_class": {
+   "sans": 0.95,
+   "mono": 0.0,
+   "serif": 0.05
+  },
+  "containers": {
+   "large": 0.133,
+   "small": 0.533,
+   "sharp": 0.333
+  },
+  "controls": {
+   "pill": 0.588,
+   "small": 0.235,
+   "sharp": 0.176
+  },
+  "display_px": 38.0,
+  "body_px": 15.5,
+  "borders": 1.5,
+  "raw_ground": {
+   "dark": 0.5,
+   "white/near-white": 0.35,
+   "tinted light": 0.1,
+   "colour field": 0.05
+  },
+  "raw_hue": {
+   "blue": 0.4,
+   "red": 0.2,
+   "neutral": 0.2,
+   "orange": 0.15,
+   "green": 0.05
+  },
+  "fonts": [
+   [
+    "Poppins",
+    2
+   ],
+   [
+    "Motiva Sans",
+    2
+   ],
+   [
+    "Lato",
+    1
+   ],
+   [
+    "Segoe UI",
+    1
+   ],
+   [
+    "Lato GOG Latin",
+    1
+   ]
+  ]
+ },
+ "fintech": {
+  "zh": "金融科技",
+  "n": 19,
+  "colour_level": {
+   "strong": 0.316,
+   "accent": 0.474,
+   "neutral": 0.211
+  },
+  "hue": {
+   "red": 0.0,
+   "yellow": 0.0,
+   "teal": 0.071,
+   "magenta": 0.0,
+   "blue": 0.5,
+   "green": 0.214,
+   "violet": 0.143,
+   "orange": 0.071
+  },
+  "ground": {
+   "tinted": 0.105,
+   "colour": 0.421,
+   "dark": 0.263,
+   "white": 0.211
+  },
+  "display_class": {
+   "sans": 0.737,
+   "mono": 0.105,
+   "serif": 0.158
+  },
+  "containers": {
+   "large": 0.417,
+   "small": 0.333,
+   "sharp": 0.25
+  },
+  "controls": {
+   "pill": 0.368,
+   "small": 0.526,
+   "sharp": 0.105
+  },
+  "display_px": 72,
+  "body_px": 16,
+  "borders": 2,
+  "raw_ground": {
+   "colour field": 0.421,
+   "dark": 0.263,
+   "white/near-white": 0.211,
+   "tinted light": 0.105
+  },
+  "raw_hue": {
+   "blue": 0.368,
+   "neutral": 0.263,
+   "green": 0.158,
+   "violet": 0.105,
+   "teal": 0.053,
+   "orange": 0.053
+  },
+  "fonts": [
+   [
+    "Cash Sans",
+    1
+   ],
+   [
+    "N26-Extended",
+    1
+   ],
+   [
+    "Martina Plantijn",
+    1
+   ],
+   [
+    "tiempos",
+    1
+   ],
+   [
+    "Calibre",
+    1
+   ]
+  ]
+ },
+ "jobs": {
+  "zh": "招聘 / 求职",
+  "n": 29,
+  "colour_level": {
+   "strong": 0.448,
+   "accent": 0.379,
+   "neutral": 0.172
+  },
+  "hue": {
+   "red": 0.087,
+   "yellow": 0.043,
+   "teal": 0.217,
+   "magenta": 0.087,
+   "blue": 0.348,
+   "green": 0.0,
+   "violet": 0.087,
+   "orange": 0.13
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.276,
+   "dark": 0.207,
+   "white": 0.517
+  },
+  "display_class": {
+   "sans": 0.897,
+   "mono": 0.0,
+   "serif": 0.103
+  },
+  "containers": {
+   "large": 0.292,
+   "small": 0.583,
+   "sharp": 0.125
+  },
+  "controls": {
+   "pill": 0.448,
+   "small": 0.483,
+   "sharp": 0.069
+  },
+  "display_px": 60,
+  "body_px": 16,
+  "borders": 8,
+  "raw_ground": {
+   "white/near-white": 0.517,
+   "colour field": 0.276,
+   "dark": 0.207
+  },
+  "raw_hue": {
+   "blue": 0.276,
+   "neutral": 0.207,
+   "teal": 0.172,
+   "orange": 0.103,
+   "red": 0.069,
+   "violet": 0.069,
+   "magenta": 0.069,
+   "yellow": 0.034
+  },
+  "fonts": [
+   [
+    "-apple-system",
+    2
+   ],
+   [
+    "Arizona Flare",
+    2
+   ],
+   [
+    "Graphik",
+    1
+   ],
+   [
+    "Montserrat",
+    1
+   ],
+   [
+    "system-ui",
+    1
+   ]
+  ]
+ },
+ "real_estate": {
+  "zh": "房产",
+  "n": 28,
+  "colour_level": {
+   "strong": 0.107,
+   "accent": 0.679,
+   "neutral": 0.214
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.05,
+   "magenta": 0.0,
+   "blue": 0.45,
+   "green": 0.1,
+   "yellow": 0.0,
+   "orange": 0.4
+  },
+  "ground": {
+   "tinted": 0.036,
+   "colour": 0.107,
+   "dark": 0.107,
+   "white": 0.75
+  },
+  "display_class": {
+   "sans": 0.643,
+   "mono": 0.0,
+   "serif": 0.357
+  },
+  "containers": {
+   "large": 0.15,
+   "small": 0.4,
+   "sharp": 0.45
+  },
+  "controls": {
+   "pill": 0.346,
+   "small": 0.231,
+   "sharp": 0.423
+  },
+  "display_px": 52.0,
+  "body_px": 16.0,
+  "borders": 3.5,
+  "raw_ground": {
+   "white/near-white": 0.75,
+   "dark": 0.107,
+   "colour field": 0.107,
+   "tinted light": 0.036
+  },
+  "raw_hue": {
+   "blue": 0.321,
+   "neutral": 0.286,
+   "orange": 0.286,
+   "green": 0.071,
+   "teal": 0.036
+  },
+  "fonts": [
+   [
+    "Figtree",
+    2
+   ],
+   [
+    "Galano Grotesque Alt",
+    1
+   ],
+   [
+    "headingFont",
+    1
+   ],
+   [
+    "Inter",
+    1
+   ],
+   [
+    "Helvetica Neue",
+    1
+   ]
+  ]
+ },
+ "community": {
+  "zh": "社区 / 社交",
+  "n": 23,
+  "colour_level": {
+   "strong": 0.348,
+   "accent": 0.261,
+   "neutral": 0.391
+  },
+  "hue": {
+   "red": 0.077,
+   "yellow": 0.077,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.308,
+   "green": 0.0,
+   "violet": 0.154,
+   "orange": 0.385
+  },
+  "ground": {
+   "tinted": 0.174,
+   "colour": 0.261,
+   "dark": 0.13,
+   "white": 0.435
+  },
+  "display_class": {
+   "sans": 0.913,
+   "mono": 0.0,
+   "serif": 0.087
+  },
+  "containers": {
+   "large": 0.412,
+   "small": 0.059,
+   "sharp": 0.529
+  },
+  "controls": {
+   "pill": 0.471,
+   "small": 0.471,
+   "sharp": 0.059
+  },
+  "display_px": 32,
+  "body_px": 16,
+  "borders": 5,
+  "raw_ground": {
+   "white/near-white": 0.435,
+   "colour field": 0.261,
+   "tinted light": 0.174,
+   "dark": 0.13
+  },
+  "raw_hue": {
+   "neutral": 0.435,
+   "orange": 0.217,
+   "blue": 0.174,
+   "violet": 0.087,
+   "red": 0.043,
+   "yellow": 0.043
+  },
+  "fonts": [
+   [
+    "Inter",
+    4
+   ],
+   [
+    "Verdana",
+    2
+   ],
+   [
+    "ui-sans-serif",
+    1
+   ],
+   [
+    "Abcgintodiscordnord",
+    1
+   ],
+   [
+    "Salesforce-Avant-Garde",
+    1
+   ]
+  ]
+ },
+ "events": {
+  "zh": "活动 / 票务",
+  "n": 33,
+  "colour_level": {
+   "strong": 0.394,
+   "accent": 0.424,
+   "neutral": 0.182
+  },
+  "hue": {
+   "violet": 0.037,
+   "red": 0.148,
+   "teal": 0.074,
+   "magenta": 0.037,
+   "blue": 0.333,
+   "green": 0.037,
+   "yellow": 0.037,
+   "orange": 0.296
+  },
+  "ground": {
+   "tinted": 0.03,
+   "colour": 0.273,
+   "dark": 0.182,
+   "white": 0.515
+  },
+  "display_class": {
+   "sans": 0.939,
+   "mono": 0.0,
+   "serif": 0.061
+  },
+  "containers": {
+   "large": 0.2,
+   "small": 0.28,
+   "sharp": 0.52
+  },
+  "controls": {
+   "pill": 0.567,
+   "small": 0.1,
+   "sharp": 0.333
+  },
+  "display_px": 56,
+  "body_px": 16,
+  "borders": 5,
+  "raw_ground": {
+   "white/near-white": 0.515,
+   "colour field": 0.273,
+   "dark": 0.182,
+   "tinted light": 0.03
+  },
+  "raw_hue": {
+   "blue": 0.273,
+   "orange": 0.242,
+   "neutral": 0.182,
+   "red": 0.121,
+   "teal": 0.061,
+   "magenta": 0.03,
+   "yellow": 0.03,
+   "violet": 0.03,
+   "green": 0.03
+  },
+  "fonts": [
+   [
+    "-apple-system",
+    3
+   ],
+   [
+    "Inter",
+    2
+   ],
+   [
+    "EuclidCircularSemibold",
+    1
+   ],
+   [
+    "Foggy",
+    1
+   ],
+   [
+    "Graphik",
+    1
+   ]
+  ]
+ },
+ "pets": {
+  "zh": "宠物",
+  "n": 26,
+  "colour_level": {
+   "strong": 0.5,
+   "accent": 0.385,
+   "neutral": 0.115
+  },
+  "hue": {
+   "yellow": 0.045,
+   "red": 0.0,
+   "teal": 0.182,
+   "magenta": 0.0,
+   "blue": 0.318,
+   "green": 0.091,
+   "violet": 0.045,
+   "orange": 0.318
+  },
+  "ground": {
+   "tinted": 0.038,
+   "colour": 0.385,
+   "dark": 0.0,
+   "white": 0.577
+  },
+  "display_class": {
+   "sans": 0.923,
+   "mono": 0.0,
+   "serif": 0.077
+  },
+  "containers": {
+   "large": 0.292,
+   "small": 0.375,
+   "sharp": 0.333
+  },
+  "controls": {
+   "pill": 0.6,
+   "small": 0.32,
+   "sharp": 0.08
+  },
+  "display_px": 54.5,
+  "body_px": 16.0,
+  "borders": 3.5,
+  "raw_ground": {
+   "white/near-white": 0.577,
+   "colour field": 0.385,
+   "tinted light": 0.038
+  },
+  "raw_hue": {
+   "blue": 0.269,
+   "orange": 0.269,
+   "neutral": 0.154,
+   "teal": 0.154,
+   "green": 0.077,
+   "violet": 0.038,
+   "yellow": 0.038
+  },
+  "fonts": [
+   [
+    "Bogart-Semibold",
+    1
+   ],
+   [
+    "Arial",
+    1
+   ],
+   [
+    "new-hero",
+    1
+   ],
+   [
+    "Lexend-ExtraBold",
+    1
+   ],
+   [
+    "PlantinHead",
+    1
+   ]
+  ]
+ },
+ "kids": {
+  "zh": "儿童",
+  "n": 26,
+  "colour_level": {
+   "strong": 0.808,
+   "accent": 0.077,
+   "neutral": 0.115
+  },
+  "hue": {
+   "red": 0.13,
+   "yellow": 0.13,
+   "teal": 0.13,
+   "magenta": 0.0,
+   "blue": 0.304,
+   "green": 0.13,
+   "violet": 0.13,
+   "orange": 0.043
+  },
+  "ground": {
+   "tinted": 0.154,
+   "colour": 0.308,
+   "dark": 0.077,
+   "white": 0.462
+  },
+  "display_class": {
+   "sans": 1.0,
+   "mono": 0.0,
+   "serif": 0.0
+  },
+  "containers": {
+   "large": 0.238,
+   "small": 0.524,
+   "sharp": 0.238
+  },
+  "controls": {
+   "pill": 0.333,
+   "small": 0.381,
+   "sharp": 0.286
+  },
+  "display_px": 48.0,
+  "body_px": 16.0,
+  "borders": 3.5,
+  "raw_ground": {
+   "white/near-white": 0.462,
+   "colour field": 0.308,
+   "tinted light": 0.154,
+   "dark": 0.077
+  },
+  "raw_hue": {
+   "blue": 0.269,
+   "violet": 0.115,
+   "teal": 0.115,
+   "red": 0.115,
+   "green": 0.115,
+   "neutral": 0.115,
+   "yellow": 0.115,
+   "orange": 0.038
+  },
+  "fonts": [
+   [
+    "Sesame Sans",
+    2
+   ],
+   [
+    "sofia-pro-soft",
+    1
+   ],
+   [
+    "pbsKidsHeadlineBold",
+    1
+   ],
+   [
+    "Omnes",
+    1
+   ],
+   [
+    "Omnes-Bold",
+    1
+   ]
+  ]
+ },
+ "galleries": {
+  "zh": "灵感聚合站",
+  "n": 24,
+  "colour_level": {
+   "strong": 0.208,
+   "accent": 0.417,
+   "neutral": 0.375
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.067,
+   "magenta": 0.067,
+   "blue": 0.333,
+   "green": 0.267,
+   "yellow": 0.2,
+   "orange": 0.067
+  },
+  "ground": {
+   "tinted": 0.083,
+   "colour": 0.0,
+   "dark": 0.25,
+   "white": 0.667
+  },
+  "display_class": {
+   "sans": 0.958,
+   "mono": 0.0,
+   "serif": 0.042
+  },
+  "containers": {
+   "large": 0.238,
+   "small": 0.667,
+   "sharp": 0.095
+  },
+  "controls": {
+   "pill": 0.714,
+   "small": 0.238,
+   "sharp": 0.048
+  },
+  "display_px": 47.0,
+  "body_px": 14.5,
+  "borders": 7.5,
+  "raw_ground": {
+   "white/near-white": 0.667,
+   "dark": 0.25,
+   "tinted light": 0.083
+  },
+  "raw_hue": {
+   "neutral": 0.375,
+   "blue": 0.208,
+   "green": 0.167,
+   "yellow": 0.125,
+   "magenta": 0.042,
+   "teal": 0.042,
+   "orange": 0.042
+  },
+  "fonts": [
+   [
+    "Inter",
+    5
+   ],
+   [
+    "Geist",
+    2
+   ],
+   [
+    "Times New Roman",
+    1
+   ],
+   [
+    "Clash Grotesk",
+    1
+   ],
+   [
+    "walsheim",
+    1
+   ]
+  ]
+ },
+ "design_systems": {
+  "zh": "设计系统 / 组件库",
+  "n": 20,
+  "colour_level": {
+   "strong": 0.15,
+   "accent": 0.45,
+   "neutral": 0.4
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.909,
+   "green": 0.0,
+   "yellow": 0.091,
+   "orange": 0.0
+  },
+  "ground": {
+   "tinted": 0.1,
+   "colour": 0.05,
+   "dark": 0.0,
+   "white": 0.85
+  },
+  "display_class": {
+   "sans": 1.0,
+   "mono": 0.0,
+   "serif": 0.0
+  },
+  "containers": {
+   "large": 0.421,
+   "small": 0.474,
+   "sharp": 0.105
+  },
+  "controls": {
+   "pill": 0.333,
+   "small": 0.611,
+   "sharp": 0.056
+  },
+  "display_px": 68.0,
+  "body_px": 16.0,
+  "borders": 5.0,
+  "raw_ground": {
+   "white/near-white": 0.85,
+   "tinted light": 0.1,
+   "colour field": 0.05
+  },
+  "raw_hue": {
+   "blue": 0.5,
+   "neutral": 0.45,
+   "yellow": 0.05
+  },
+  "fonts": [
+   [
+    "Outfit",
+    3
+   ],
+   [
+    "SF Pro Display",
+    2
+   ],
+   [
+    "GDS Transport",
+    1
+   ],
+   [
+    "Google Sans",
+    1
+   ],
+   [
+    "Inter",
+    1
+   ]
+  ]
+ },
+ "web_toys": {
+  "zh": "网页实验 / 小玩具",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.409,
+   "accent": 0.318,
+   "neutral": 0.273
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.0,
+   "teal": 0.154,
+   "magenta": 0.0,
+   "blue": 0.385,
+   "green": 0.154,
+   "yellow": 0.154,
+   "orange": 0.154
+  },
+  "ground": {
+   "tinted": 0.045,
+   "colour": 0.273,
+   "dark": 0.227,
+   "white": 0.455
+  },
+  "display_class": {
+   "sans": 0.773,
+   "mono": 0.182,
+   "serif": 0.045
+  },
+  "containers": {
+   "large": 0.231,
+   "small": 0.231,
+   "sharp": 0.538
+  },
+  "controls": {
+   "pill": 0.462,
+   "small": 0.231,
+   "sharp": 0.308
+  },
+  "display_px": 23.75,
+  "body_px": 15.5,
+  "borders": 1.0,
+  "raw_ground": {
+   "white/near-white": 0.455,
+   "colour field": 0.273,
+   "dark": 0.227,
+   "tinted light": 0.045
+  },
+  "raw_hue": {
+   "neutral": 0.409,
+   "blue": 0.227,
+   "green": 0.091,
+   "yellow": 0.091,
+   "orange": 0.091,
+   "teal": 0.091
+  },
+  "fonts": [
+   [
+    "Google Sans",
+    2
+   ],
+   [
+    "Source Sans Pro",
+    2
+   ],
+   [
+    "Roboto Mono",
+    2
+   ],
+   [
+    "Lucida Grande",
+    1
+   ],
+   [
+    "Quicksand",
+    1
+   ]
+  ]
+ },
+ "designtools": {
+  "zh": "设计工具 / 组件库",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.227,
+   "accent": 0.318,
+   "neutral": 0.455
+  },
+  "hue": {
+   "red": 0.0,
+   "yellow": 0.0,
+   "teal": 0.091,
+   "magenta": 0.0,
+   "blue": 0.455,
+   "green": 0.0,
+   "violet": 0.273,
+   "orange": 0.182
+  },
+  "ground": {
+   "tinted": 0.045,
+   "colour": 0.045,
+   "dark": 0.273,
+   "white": 0.636
+  },
+  "display_class": {
+   "sans": 0.818,
+   "mono": 0.045,
+   "serif": 0.136
+  },
+  "containers": {
+   "large": 0.471,
+   "small": 0.235,
+   "sharp": 0.294
+  },
+  "controls": {
+   "pill": 0.238,
+   "small": 0.714,
+   "sharp": 0.048
+  },
+  "display_px": 55.0,
+  "body_px": 16.0,
+  "borders": 2.5,
+  "raw_ground": {
+   "white/near-white": 0.636,
+   "dark": 0.273,
+   "colour field": 0.045,
+   "tinted light": 0.045
+  },
+  "raw_hue": {
+   "neutral": 0.5,
+   "blue": 0.227,
+   "violet": 0.136,
+   "orange": 0.091,
+   "teal": 0.045
+  },
+  "fonts": [
+   [
+    "Geist",
+    2
+   ],
+   [
+    "Inter",
+    2
+   ],
+   [
+    "GT Walsheim Medium",
+    1
+   ],
+   [
+    "figmaSans",
+    1
+   ],
+   [
+    "CargoDiatypeVariable",
+    1
+   ]
+  ]
+ },
+ "productivity": {
+  "zh": "效率 / 笔记工具",
+  "n": 31,
+  "colour_level": {
+   "strong": 0.194,
+   "accent": 0.387,
+   "neutral": 0.419
+  },
+  "hue": {
+   "red": 0.118,
+   "yellow": 0.0,
+   "teal": 0.059,
+   "magenta": 0.0,
+   "blue": 0.471,
+   "green": 0.118,
+   "violet": 0.118,
+   "orange": 0.118
+  },
+  "ground": {
+   "tinted": 0.065,
+   "colour": 0.323,
+   "dark": 0.161,
+   "white": 0.452
+  },
+  "display_class": {
+   "sans": 0.806,
+   "mono": 0.0,
+   "serif": 0.194
+  },
+  "containers": {
+   "large": 0.458,
+   "small": 0.458,
+   "sharp": 0.083
+  },
+  "controls": {
+   "pill": 0.393,
+   "small": 0.5,
+   "sharp": 0.107
+  },
+  "display_px": 64,
+  "body_px": 16,
+  "borders": 3,
+  "raw_ground": {
+   "white/near-white": 0.452,
+   "colour field": 0.323,
+   "dark": 0.161,
+   "tinted light": 0.065
+  },
+  "raw_hue": {
+   "neutral": 0.452,
+   "blue": 0.258,
+   "orange": 0.065,
+   "violet": 0.065,
+   "red": 0.065,
+   "green": 0.065,
+   "teal": 0.032
+  },
+  "fonts": [
+   [
+    "Inter",
+    4
+   ],
+   [
+    "ui-sans-serif",
+    3
+   ],
+   [
+    "NotionInter",
+    1
+   ],
+   [
+    "Exposure VAR",
+    1
+   ],
+   [
+    "Graphik-1bbd4a4c7a2fb472",
+    1
+   ]
+  ]
+ },
+ "studio": {
+  "zh": "设计事务所",
+  "n": 19,
+  "colour_level": {
+   "strong": 0.263,
+   "accent": 0.474,
+   "neutral": 0.263
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.143,
+   "teal": 0.143,
+   "magenta": 0.0,
+   "blue": 0.5,
+   "green": 0.071,
+   "yellow": 0.0,
+   "orange": 0.143
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.105,
+   "dark": 0.211,
+   "white": 0.684
+  },
+  "display_class": {
+   "sans": 0.842,
+   "mono": 0.053,
+   "serif": 0.105
+  },
+  "containers": {
+   "large": 0.0,
+   "small": 0.273,
+   "sharp": 0.727
+  },
+  "controls": {
+   "pill": 0.182,
+   "small": 0.273,
+   "sharp": 0.545
+  },
+  "display_px": 50.4,
+  "body_px": 16,
+  "borders": 0,
+  "raw_ground": {
+   "white/near-white": 0.684,
+   "dark": 0.211,
+   "colour field": 0.105
+  },
+  "raw_hue": {
+   "blue": 0.368,
+   "neutral": 0.263,
+   "orange": 0.105,
+   "red": 0.105,
+   "teal": 0.105,
+   "green": 0.053
+  },
+  "fonts": [
+   [
+    "Plain",
+    1
+   ],
+   [
+    "Haas",
+    1
+   ],
+   [
+    "SctoGroteskA",
+    1
+   ],
+   [
+    "Instrument-Serif",
+    1
+   ],
+   [
+    "ClarendonBTWXX-Light",
+    1
+   ]
+  ]
+ },
+ "creative_tech": {
+  "zh": "创意技术 / WebGL",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.136,
+   "accent": 0.182,
+   "neutral": 0.682
+  },
+  "hue": {
+   "red": 0.143,
+   "yellow": 0.0,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.571,
+   "green": 0.0,
+   "violet": 0.143,
+   "orange": 0.143
+  },
+  "ground": {
+   "tinted": 0.0,
+   "colour": 0.045,
+   "dark": 0.455,
+   "white": 0.5
+  },
+  "display_class": {
+   "sans": 0.909,
+   "mono": 0.0,
+   "serif": 0.091
+  },
+  "containers": {
+   "large": 0.222,
+   "small": 0.0,
+   "sharp": 0.778
+  },
+  "controls": {
+   "pill": 0.5,
+   "small": 0.0,
+   "sharp": 0.5
+  },
+  "display_px": 34.0,
+  "body_px": 15.5,
+  "borders": 0.0,
+  "raw_ground": {
+   "white/near-white": 0.5,
+   "dark": 0.455,
+   "colour field": 0.045
+  },
+  "raw_hue": {
+   "neutral": 0.682,
+   "blue": 0.182,
+   "orange": 0.045,
+   "violet": 0.045,
+   "red": 0.045
+  },
+  "fonts": [
+   [
+    "nbarchitekt",
+    1
+   ],
+   [
+    "Fort-Medium",
+    1
+   ],
+   [
+    "neue-haas-grotesk-display",
+    1
+   ],
+   [
+    "avenir-next-lt-pro",
+    1
+   ],
+   [
+    "DM Sans",
+    1
+   ]
+  ]
+ },
+ "dataviz": {
+  "zh": "数据可视化 / 地图",
+  "n": 30,
+  "colour_level": {
+   "strong": 0.133,
+   "accent": 0.667,
+   "neutral": 0.2
+  },
+  "hue": {
+   "violet": 0.043,
+   "red": 0.174,
+   "teal": 0.13,
+   "magenta": 0.0,
+   "blue": 0.304,
+   "green": 0.087,
+   "yellow": 0.13,
+   "orange": 0.13
+  },
+  "ground": {
+   "tinted": 0.067,
+   "colour": 0.167,
+   "dark": 0.067,
+   "white": 0.7
+  },
+  "display_class": {
+   "sans": 0.767,
+   "mono": 0.0,
+   "serif": 0.233
+  },
+  "containers": {
+   "large": 0.208,
+   "small": 0.333,
+   "sharp": 0.458
+  },
+  "controls": {
+   "pill": 0.231,
+   "small": 0.615,
+   "sharp": 0.154
+  },
+  "display_px": 55.5,
+  "body_px": 16.0,
+  "borders": 5.5,
+  "raw_ground": {
+   "white/near-white": 0.7,
+   "colour field": 0.167,
+   "tinted light": 0.067,
+   "dark": 0.067
+  },
+  "raw_hue": {
+   "neutral": 0.233,
+   "blue": 0.233,
+   "red": 0.133,
+   "yellow": 0.1,
+   "orange": 0.1,
+   "teal": 0.1,
+   "green": 0.067,
+   "violet": 0.033
+  },
+  "fonts": [
+   [
+    "system-ui",
+    2
+   ],
+   [
+    "Playfair Display",
+    1
+   ],
+   [
+    "Gooper SemiCondensed",
+    1
+   ],
+   [
+    "Quicksand",
+    1
+   ],
+   [
+    "Canva Sans Variable",
+    1
+   ]
+  ]
+ },
+ "portfolio": {
+  "zh": "个人作品集 / 博客",
+  "n": 21,
+  "colour_level": {
+   "strong": 0.095,
+   "accent": 0.333,
+   "neutral": 0.571
+  },
+  "hue": {
+   "violet": 0.0,
+   "red": 0.222,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.333,
+   "green": 0.111,
+   "yellow": 0.111,
+   "orange": 0.222
+  },
+  "ground": {
+   "tinted": 0.095,
+   "colour": 0.143,
+   "dark": 0.143,
+   "white": 0.619
+  },
+  "display_class": {
+   "sans": 0.762,
+   "mono": 0.048,
+   "serif": 0.19
+  },
+  "containers": {
+   "large": 0.1,
+   "small": 0.4,
+   "sharp": 0.5
+  },
+  "controls": {
+   "pill": 0.125,
+   "small": 0.75,
+   "sharp": 0.125
+  },
+  "display_px": 40,
+  "body_px": 16,
+  "borders": 0,
+  "raw_ground": {
+   "white/near-white": 0.619,
+   "dark": 0.143,
+   "colour field": 0.143,
+   "tinted light": 0.095
+  },
+  "raw_hue": {
+   "neutral": 0.571,
+   "blue": 0.143,
+   "red": 0.095,
+   "orange": 0.095,
+   "yellow": 0.048,
+   "green": 0.048
+  },
+  "fonts": [
+   [
+    "__inter_20b187",
+    1
+   ],
+   [
+    "X",
+    1
+   ],
+   [
+    "MaisonNeue-Bold",
+    1
+   ],
+   [
+    "Newsreader",
+    1
+   ],
+   [
+    "Sans",
+    1
+   ]
+  ]
+ },
+ "type_foundry": {
+  "zh": "字体公司",
+  "n": 22,
+  "colour_level": {
+   "strong": 0.409,
+   "accent": 0.273,
+   "neutral": 0.318
+  },
+  "hue": {
+   "violet": 0.067,
+   "red": 0.133,
+   "teal": 0.0,
+   "magenta": 0.0,
+   "blue": 0.267,
+   "green": 0.0,
+   "yellow": 0.2,
+   "orange": 0.333
+  },
+  "ground": {
+   "tinted": 0.045,
+   "colour": 0.136,
+   "dark": 0.409,
+   "white": 0.409
+  },
+  "display_class": {
+   "sans": 0.909,
+   "mono": 0.0,
+   "serif": 0.091
+  },
+  "containers": {
+   "large": 0.25,
+   "small": 0.167,
+   "sharp": 0.583
+  },
+  "controls": {
+   "pill": 0.438,
+   "small": 0.25,
+   "sharp": 0.312
+  },
+  "display_px": 40.0,
+  "body_px": 15.31,
+  "borders": 1.5,
+  "raw_ground": {
+   "white/near-white": 0.409,
+   "dark": 0.409,
+   "colour field": 0.136,
+   "tinted light": 0.045
+  },
+  "raw_hue": {
+   "neutral": 0.318,
+   "orange": 0.227,
+   "blue": 0.182,
+   "yellow": 0.136,
+   "red": 0.091,
+   "violet": 0.045
+  },
+  "fonts": [
+   [
+    "Sentinel Bold",
+    2
+   ],
+   [
+    "HelveticaNowMTDisplayBold",
+    1
+   ],
+   [
+    "Monument Grotesk",
+    1
+   ],
+   [
+    "GT-Mechanik-Semi-Regular",
+    1
+   ],
+   [
+    "CF Basis",
+    1
+   ]
+  ]
+ }
+}

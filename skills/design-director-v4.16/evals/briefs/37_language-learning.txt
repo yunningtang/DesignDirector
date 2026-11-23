@@ -1,0 +1,1 @@
+Build an interactive language learning app with vocabulary lessons, pronunciation guidance using provided text, quizzes, progress tracking, and adaptive review using local sample data.

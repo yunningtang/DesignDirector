@@ -3,3 +3,6 @@ dist/
 output/
 *.log
 .claude/
+skills/*/data/photolib*/
+skills/*/data/refimg/
+__pycache__/

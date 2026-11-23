@@ -1,0 +1,1 @@
+Task 2: SaaS Dashboard Design and build a responsive analytics dashboard for a SaaS product that helps small businesses understand their performance. Include an overview of key metrics, interactive charts, date-range selection, data tables, filtering, and detailed views of individual metrics. Use realistic sample data and make the controls functional.
