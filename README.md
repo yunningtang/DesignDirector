@@ -14,6 +14,10 @@ Current version: **V4.16**. See [CHANGELOG.md](CHANGELOG.md) for every version a
 
 [中文说明](#中文说明)
 
+![Six brand and shop pages built from the same briefs: without the skill (top) and with Design Director V4.16 (bottom)](docs/images/overview.jpg)
+
+*Same model, same brief and the same budget (one check pass, one fix pass). Top: no skill. Bottom: Design Director V4.16. Real fonts, 1440×900 first screens.*
+
 ---
 
 ## Why
@@ -55,6 +59,25 @@ The benchmark has 70 briefs (in `evals/`). Every page was built by the same mode
 | Tool pages | sound; 3 of 8 on cream with a serif head | same structures, all white, slightly more direct forms |
 
 V4.16 reads more like real product sites, especially shops and bookings. The baseline still has more atmosphere on a few film, music and dream pages.
+
+### Side by side
+
+Each image shows the desktop first screen with the phone first screen beside it.
+
+**Architecture studio:** a drawn grey box becomes the building itself, photographed large.
+![Architecture studio](docs/images/compare-19.jpg)
+
+**Online exhibition:** an instruction card over a black screen becomes the 3D gallery you can walk through, on the first screen.
+![Online exhibition](docs/images/compare-05.jpg)
+
+**Coffee roaster shop:** cream, a serif italic head and a table become the beans themselves and the week's three coffees.
+![Coffee roaster shop](docs/images/compare-61.jpg)
+
+**Kyoto stays booking:** a drawn pagoda and sun become a real ryokan courtyard, with the date search kept beside it.
+![Kyoto stays booking](docs/images/compare-08.jpg)
+
+**Clinic booking (a tool/flow page):** both are sound. V4.16 keeps the same steps, drops the cream and the serif, and puts the choices in one plain list.
+![Clinic booking](docs/images/compare-62.jpg)
 
 **Blind vote, V4.16 vs V4.17 (20 tasks):** V4.16 won 10, V4.17 won 5, and 5 were ties. V4.17 tried forced head styles, a "mood" posture and type-led heroes when no on-subject photo existed. That lost, so V4.16 remains the current version.
 
@@ -159,6 +182,6 @@ data/                    Hallmark photo list (metadata only) and its MIT licence
 - 品牌和故事页用真实大照片、大字号标题、留白充足的首屏（V4.16 的高级感模式，改编自 Hallmark）；
 - 先写文案再做页面，最后用真实浏览器和真实字体截图检查：溢出、文字被挡、首屏任务、焦点框、手机 320px。
 
-在 28 道题上和不用 skill 的基线对比：V4.16 更像真实的产品网站，商店和预约类尤其明显，也没有横向溢出。基线在少数电影、音乐类页面上更有氛围。盲选中 V4.16 以 10:5（5 题平局）胜过 V4.17，所以 V4.16 是当前版本。
+在 28 道题上和不用 skill 的基线对比（见上方截图）：V4.16 更像真实的产品网站，商店和预约类尤其明显，也没有横向溢出。基线在少数电影、音乐类页面上更有氛围。盲选中 V4.16 以 10:5（5 题平局）胜过 V4.17，所以 V4.16 是当前版本。
 
 安装、照片库和用法见上面的英文部分。
