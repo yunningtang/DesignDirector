@@ -3863,5 +3863,50 @@
     1
    ]
   ]
+ },
+ "smallbiz_ops": {
+  "zh": "小生意运营（订单 / 预约 / 库存）",
+  "n": 0,
+  "blend": "productivity + oss_tools (no measured sample of its own yet)",
+  "colour_level": {
+   "neutral": 0.509,
+   "accent": 0.344,
+   "strong": 0.147
+  },
+  "hue": {
+   "blue": 0.2,
+   "green": 0.15,
+   "orange": 0.15,
+   "red": 0.15,
+   "teal": 0.1,
+   "violet": 0.1,
+   "yellow": 0.1,
+   "magenta": 0.05
+  },
+  "ground": {
+   "white": 0.7,
+   "tinted": 0.15,
+   "dark": 0.15,
+   "colour": 0.0
+  },
+  "display_class": {
+   "serif": 0.172,
+   "mono": 0.0,
+   "sans": 0.828
+  },
+  "containers": {
+   "large": 0.451,
+   "small": 0.396,
+   "sharp": 0.152
+  },
+  "controls": {
+   "pill": 0.328,
+   "small": 0.592,
+   "sharp": 0.08
+  },
+  "display_px": 63,
+  "body_px": 16,
+  "borders": 4,
+  "note": "hue and ground set by hand: staff use these screens all day in a shop or kitchen; the hue should come from the business itself"
  }
 }

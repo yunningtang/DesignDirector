@@ -23,6 +23,13 @@ rule:engine-prints-next   the remaining steps are printed below, with exact comm
 rule:no-object-in-flows   (V4.12) transact pages whose main job is a multi-step form or booking, and every government page, get no object.
 rule:colour-area          (V4.12) on operate/read/transact no flat colour block over about a third of the first screen.
 rule:atmospheric-imagery  (V4.12) item pictures on place, food, room, object and trip pages are varied drawn scenes, not repeated pictograms.
+rule:ref-kind            (V4.16.1) a reference is classified (working_ui / marketing / article / obstructed / logged_out); only working_ui anchors.
+rule:ref-fit             (V4.16.1) before following a reference, answer same_user / same_task / same_data in meta.json ref_fit.
+rule:ref-fallback        (V4.16.1) no same-kind working screen (they need a login): build from categories.md and modes.md alone, say so.
+rule:borrow-layers       (V4.16.1) STRUCTURE comes from the reference; SURFACE (colour, marks, selected states, tags, icons) from the subject's own world.
+rule:image-as-data       (V4.16.1) pictures of what a record is (the cake ordered, the photo filed) are content and allowed on tool pages.
+rule:nav-scale           (V4.16.1) nav draws that the content cannot use (menu button, search, tall bar) are dropped before drawing.
+rule:final-report        (V4.16.1) the last chat message lists references, their fit, fallbacks and every deviation from the draws.
 """
 import re, argparse, hashlib, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
@@ -180,14 +187,24 @@ NAV_LAY = {"links_right": "logo left, 4-7 links grouped at the right before any 
            "logo_centre": "logo centred; links split or on the left, utilities (search, account, bag) on the right",
            "logo_and_menu": "logo and a single Menu control (word, not just an icon) plus at most one action; the rest of the navigation opens in a full panel"}
 NAV_H = {"compact": "about 48-56px", "regular": "about 60-80px", "tall": "about 90-120px, or two rows (main row plus a row of sections)"}
-def draw_nav(key, cat, mode):
+def draw_nav(key, cat, mode, views=None, records=None, search=None):
     N = json.load(open(os.path.join(ROOT, "config", "nav_profiles.json")))
-    p = N.get(cat) or N["_all"]
+    p = json.loads(json.dumps(N.get(cat) or N["_all"]))
+    # V4.16.1 rule:nav-scale: options the content cannot use do not enter the draw
+    dropped = []
+    if views is not None and views <= 5:
+        if p["layout"].pop("logo_and_menu", None): dropped.append("menu-button layout (needs 6+ destinations)")
+        if p["height"].pop("tall", None): dropped.append("tall or two-row bar (needs a row of sections)")
+    if search is False or (search is None and records is not None and records < 50):
+        p["search_box"] = 0; dropped.append("visible search field (" + ("no free-text lookup in the brief" if search is False else f"only about {records} records") + ")")
+    if views is not None and views <= 5: p["links_median"] = min(p["links_median"], views)
     d = {"surface": weighted(p["surface"], (key, "nav_s")), "layout": weighted(p["layout"], (key, "nav_l")),
          "height": weighted(p["height"], (key, "nav_h")), "case": weighted(p["case"], (key, "nav_c")),
          "promo_bar": (H(key, "nav_p") % 100) < 60 * p["promo_bar"], "search_box": (H(key, "nav_q") % 100) < 100 * p["search_box"],
          "cta_button": (H(key, "nav_b") % 100) < 100 * p["cta_button"], "links": int(p["links_median"]), "link_px": int(p["link_px"])}
     if mode not in ("persuade", "experience") and d["surface"] == "over_image": d["surface"] = "light_plain"
+    if search is True: d["search_box"] = True
+    d["dropped"] = dropped
     return d
 
 def main():
@@ -195,6 +212,10 @@ def main():
     ap.add_argument("--candidates"); ap.add_argument("--task"); ap.add_argument("--mode"); ap.add_argument("--seed"); ap.add_argument("--category")
     ap.add_argument("--type", choices=["landing", "app"]); ap.add_argument("--state", default="assign_state.json")
     ap.add_argument("--flow", action="store_true", help="transact page whose main job is a multi-step form or booking"); ap.add_argument("--veto"); ap.add_argument("--check-name"); ap.add_argument("--brief", help="brief text or file, for the reference picker")
+    # V4.16.1 rule:nav-scale: the content's scale, so the navigation draw only offers what this page can use
+    ap.add_argument("--views", type=int, help="how many top-level views or sections the page has")
+    ap.add_argument("--records", type=int, help="about how many records or items a user scans (orders, products, notes)")
+    ap.add_argument("--search", choices=["yes", "no"], help="does the user need free-text search?")
     a = ap.parse_args()
     S, F, U, R = cfg("config/structure.json"), cfg("config/fonts.json"), cfg("config/used.json"), cfg("config/real_profiles.json")
     if a.check_name:
@@ -213,7 +234,7 @@ def main():
     if not a.candidates and not noobj: fail("give --candidates")
     flow = flow or (mode == "transact" and cat == "government")
     st = draw_type_corners(key, cat, S, F, R, mode, flow)
-    st["nav"] = draw_nav(key, cat, mode)
+    st["nav"] = draw_nav(key, cat, mode, a.views, a.records, None if a.search is None else a.search == "yes")
     brief = a.brief or (os.path.join(HERE, "..", "evals", "briefs", f"{a.task}.txt") if a.task else "")
     brief = open(brief).read() if brief and os.path.exists(brief) else (brief or "")
     try:
@@ -270,6 +291,10 @@ def main():
         products do well: the right panes and density, real-looking content, clear states, good keyboard and empty states,
         and the type and colour drawn below. A mark is allowed only if real products of this kind use it (a label chip, a
         status dot, a progress ring, an avatar) and only in its ordinary form.
+        IMAGES AS DATA (rule:image-as-data): the ban is on decoration, not on pictures. A picture of what a record IS (the
+        cake on an order, the photo in a library, the dish on a menu, the room in a booking, the product in stock) is
+        content: show it small on rows and larger in the detail view. A picture that stands for nothing in the data
+        (a scene, an illustration, a prop) is decoration and stays out.
 NEXT 1  write the contract into meta.json (direction.md step 5, with STRUCTURE and BORROW from categories.md "{cat}";
         OBJECT: none). Name the page and run: python3 {HERE}/assign.py --check-name '<name>'"""
     elif osr and not flow:
@@ -302,9 +327,16 @@ NEXT 1  direction.md step 4: three-line contract for each, score icon, atmospher
     anchor_txt = (f"""
         ANCHOR (rule:anchor): the first screen is the structure model for this tool. Follow its skeleton closely: which panes
         exist and their rough widths, where navigation and the main action sit, how dense rows and cells are, and where colour
-        sits and how much of it (the ground above already follows it). Write what you took into STRUCTURE. The anchor
-        does not give you its logo, copy, exact colours or brand.
-        FIT CHECK (rule:anchor-fit), before you follow it: would a regular user of the brief's product say "yes, this is the
+        sits and how much of it (the ground above already follows it). Write what you took into STRUCTURE.
+        BORROW LAYERS (rule:borrow-layers): take STRUCTURE from the anchor (panes, widths, where navigation and actions sit,
+        row density, how much colour). Take nothing of its SURFACE: its selected-state treatment (an edge bar, a pill, an
+        underline), tag and label colours, icon set, brand hue, wordmark and copy are that product's own language. Derive
+        SURFACE from the subject's own world (the business's sign, packaging, materials, its own states) and write it in
+        the contract's SURFACE line, separately from STRUCTURE.
+        FIT CHECK (rule:anchor-fit, rule:ref-fit), before you follow it: open it and write meta.json "ref_fit":
+        {"ref": file or URL, "page_kind": working_ui | marketing | article | obstructed | logged_out,
+         "same_user": yes/no + why, "same_task": yes/no + why, "same_data": yes/no + why}. It passes only as a working
+        screen with same_task and same_data both yes. Would a regular user of the brief's product say "yes, this is the
         same kind of product", not merely the same broad family? It FAILS when it is a marketing, pricing, checkout or docs
         page instead of the working screen; when it does a different job (a spreadsheet for a photo organiser, a code editor
         for a household app); or when it is a generic template (an admin kit, a UI demo) while products of this kind have a
@@ -329,7 +361,14 @@ NEXT 1c {"NO ANCHOR in the library" if need_live else "ONLY IF the FIT CHECK fai
         best with: python3 {Rt}/scripts/shoot_ref.py <url> {live_kind}
         It refuses blank, blocked and login pages and saves usable ones into the library. Read them, pick the one closest to
         the job as ANCHOR (follow its skeleton as in rule:anchor), and record `anchor` and `live_refs` in meta.json. If none
-        is usable after 5 tries, build from categories.md and say so in meta.json."""
+        is usable after 5 tries, build from categories.md and say so in meta.json.
+        shoot_ref.py prints the PAGE KIND; only a working_ui capture can be the anchor, and it still needs meta.json "ref_fit"
+        {{"ref", "page_kind", "same_user", "same_task", "same_data"}} (rule:ref-fit): anchor only with same_task and same_data yes.
+        Do not fill the slot with a different kind of product to have something to follow.
+        FALLBACK (rule:ref-fallback): when the real products of this kind need a login (order back offices, POS, booking
+        books, clinic systems, internal tools) and no public working screen passes ref_fit, stop searching: build the
+        STRUCTURE from categories.md "{cat}" and modes.md "{mode}" alone, write "ref_fallback": "<why>" in meta.json,
+        and say it in the final report (NEXT 6)."""
     IMG = ("""
         PICTURES: see NEXT 3c PREMIUM below (photos.py library, one treatment, big or not at all).""" if st.get("premium") else "") + ("""
         PICTURES (rule:atmospheric-imagery, rule:photo-library): """ + ("first look in the photo library (python3 " + HERE + "/photos.py '<subject>'; it lists file, author, licence, source) and use real photographs that fit your items, embedded as data URIs and credited in one footer line; " if mode == "transact" else "") + """where no photo fits, each item's picture is its own drawn scene (SVG or canvas) with light, depth and 3+
@@ -380,9 +419,14 @@ NEXT 3  faces: display {f['display']} / body {f['body']}{(' / mono ' + f['mono']
         use the body face; the display face is for headlines and may letter the wordmark.
         Corners: containers {st['containers']} ({out['assigned']['containers_px']}), controls {st['controls']} ({out['assigned']['controls_px']}); media square unless containers are large.
         Type size: {"see SCALE in NEXT 3c (premium page)" if st.get("premium") else f"display about {big}px over body {max(16, p['body_px'])}px ({out['type_size']['note']})"}.{PREM}
-NEXT 3b navigation (rule:real-nav; {'APP BAR, not a website nav: copy the ANCHOR screen. One slim row with the product name and the tool controls the job needs (search, primary action, account, at most one segmented view switch); NO row of text links in the bar at all, not even links to the app’s own views. Views and sections live in a side rail or a tab row inside the work area, as on the anchor.' if anchor else 'drawn from real ' + cat + ' sites'}):
-        {'' if anchor else 'surface: ' + NAV_SURF[st['nav']['surface']] + '. layout: ' + NAV_LAY[st['nav']['layout']] + '. height: ' + NAV_H[st['nav']['height']] + '.'}
-        {'' if anchor else ('links: inside the menu panel; in the bar at ' if st['nav']['layout'] == 'logo_and_menu' else 'links: about ' + str(st['nav']['links']) + ' at ') + str(st['nav']['link_px']) + 'px, ' + ('UPPERCASE, tracked' if st['nav']['case'] == 'upper' else 'normal case') + '; ' + ('a thin promo or notice strip above it' if st['nav']['promo_bar'] else 'no strip above it') + '; ' + ('a visible search field' if st['nav']['search_box'] else 'search as one control or none') + '; ' + ('one filled action button' if st['nav']['cta_button'] else 'no filled button in the bar') + '.'}
+NEXT 3b navigation (rule:real-nav, rule:nav-scale; {'APP BAR, not a website nav: copy the ANCHOR screen (or, with no anchor, the standard structure in categories.md). One slim row with the product name and the tool controls the job needs (search, primary action, account, at most one segmented view switch); NO row of text links in the bar at all, not even links to the app’s own views. Views and sections live in a side rail or a tab row inside the work area, as on the anchor.' if (anchor or mode == 'operate') else 'drawn from real ' + cat + ' sites'}):
+        {'' if (anchor or mode == 'operate') else 'surface: ' + NAV_SURF[st['nav']['surface']] + '. layout: ' + NAV_LAY[st['nav']['layout']] + '. height: ' + NAV_H[st['nav']['height']] + '.'}
+        {'' if (anchor or mode == 'operate') else ('links: inside the menu panel; in the bar at ' if st['nav']['layout'] == 'logo_and_menu' else 'links: about ' + str(st['nav']['links']) + ' at ') + str(st['nav']['link_px']) + 'px, ' + ('UPPERCASE, tracked' if st['nav']['case'] == 'upper' else 'normal case') + '; ' + ('a thin promo or notice strip above it' if st['nav']['promo_bar'] else 'no strip above it') + '; ' + ('a visible search field' if st['nav']['search_box'] else 'search as one control or none') + '; ' + ('one filled action button' if st['nav']['cta_button'] else 'no filled button in the bar') + '.'}
+        {('Dropped before the draw for this content scale: ' + '; '.join(st['nav']['dropped']) + '.') if st['nav'].get('dropped') else ''}
+        SCALE (rule:nav-scale): {'' if (a.views is not None or a.records is not None or a.search) else 'you did not pass --views/--records/--search, so: '}a Menu button needs 6+ destinations, a visible search field needs
+        50+ records or real free-text lookup, a tall or two-row bar needs a row of sections. If the draw gives you one of these and
+        the page cannot use it, leave it out and list it in meta.json "nav_dropped" (one line, no essay); better, rerun with
+        --views N --records N --search yes|no before you build.
         Wordmark: lettered through the face itself (weight, width, case, spacing, a ligature or a cut), not a generic app
         icon in a rounded square next to plain text, and with no ornament stuck on: no coloured dot or full stop after the
         name, no tick, bar, dashed perforation, superscript box, and no split: the whole name in ONE weight and ONE colour
@@ -394,6 +438,15 @@ NEXT 5  check pass, only now: read {Rt}/references/review.md and {Rt}/references
         with REAL FONTS (rule:real-fonts-in-shots: import sys; sys.path.insert(0, "{HERE}"); import fontroute; fontroute.attach(context)
         or await fontroute.attach_async(context) before page.goto; never abort font requests),
         run python3 {HERE}/check.py <index.html>, and list up to 8 fixes ordered by harm, including deletions (review.md section 2).
-        Make them in your one fix pass, then run check.py once more (script only, no new screenshots) and fix anything it still prints.""")
+        Make them in your one fix pass, then run check.py once more (script only, no new screenshots) and fix anything it still prints.
+        check.py also checks the default looks it can measure (accent edge bars on any block, identical card rows, dotted meta
+        strings, tracked caps labels above heads); fix those like any other finding. Pages that need a server: run the app and
+        pass --url http://localhost:PORT/... instead of a file. Real data from the brief (not invented): add --real-data.
+NEXT 6  final report in the chat (rule:final-report), not only in meta.json. End your last message with:
+        - References: each file or URL you used, its page kind, and ref_fit (same user / task / data); or "none: fallback, <why>".
+        - Structure from the reference / surface from the subject: one line each.
+        - Deviations: every drawn value or printed rule you did not follow (ground, faces, corners, nav items, colour place,
+          a check.py finding left in place), each with its reason in a few words. "None" if none.
+        - check.py: what it still prints, or "nothing found".""")
 
 if __name__ == "__main__": main()

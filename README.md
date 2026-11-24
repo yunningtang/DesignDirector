@@ -10,7 +10,7 @@ Give Claude a brief for a landing page, a shop, a booking flow, a dashboard, a l
 - write the copy first, then build;
 - check the result in a real browser before handing it back.
 
-Current version: **V4.16**. See [CHANGELOG.md](CHANGELOG.md) for every version and the reason each rule exists.
+Current version: **V4.16.1** (V4.16's design rules plus workflow fixes: reference classification and fit, structure/surface split, style checks in check.py, `--url` for apps, a final report). See [CHANGELOG.md](CHANGELOG.md) for every version and the reason each rule exists.
 
 [中文说明](#中文说明)
 
@@ -155,7 +155,7 @@ config/                  real-site profiles, fonts, nav profiles, structure, use
 scripts/
   assign.py              draws mode, ground, faces, corners and nav; prints the NEXT steps
   palette.py             colour tokens, contrast, default-palette warnings
-  check.py               browser checks (--primary, --core, --premium)
+  check.py               browser checks (--primary, --core, --premium, --url, --real-data, --no-style)
   photos.py              ranks the offline photo library
   fetch_photos.py        builds the offline photo library
   fontroute.py           real Google Fonts in Playwright screenshots

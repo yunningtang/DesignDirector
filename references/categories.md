@@ -137,6 +137,15 @@ Across all sites: about a quarter use almost no colour on the page itself (colou
 - **Borrow:** The real interface with real-looking data as the hero.
 - **Do not borrow:** Soft pastel gradient + centred headline + floating UI cards is the most model-like look on the web; never borrow it for a non-software brief.
 
+## smallbiz_ops: Small-business operations: orders, bookings, inventory (V4.16.1; no measured sample yet)
+For the back office of one small business: a bakery's order and pickup board, a salon's appointment book, a café's stock list, a repair shop's job queue. Not the public shop page (that is food, restaurants, beauty...), and not a general productivity app.
+- **Typical page:** A staff screen used all day on a laptop or tablet at the counter: today's list first (orders, bookings or jobs by time or status), a detail pane for the selected record, a few large actions (mark ready, check in, reorder), filters by day and status. Few views (2-5) and tens to a few hundred records, so a short top bar or a narrow rail; search only when there are many records.
+- **Colour:** mostly white or a light tint (daylight, a busy counter); the hue comes from the business itself (its sign, packaging, uniform, product), not from software-brand blue; state colours (new, in progress, ready, late) carry most of the colour.
+- **Type and form:** body 16px or larger (read at arm's length); large tap targets (44px+) for touch at the counter; times, quantities and prices in tabular figures.
+- **Borrow:** the structure of the best real tools (Square, Toast, Shopify POS orders, Fresha, Vagaro, Shopify order lists): a time-ordered list plus a detail pane, status columns or chips, big confirm actions. These need a login, so a public working screen is rarely available: build from this section (rule:ref-fallback) and say so in the final report.
+- **Pictures:** photos of what was ordered or booked (the cake, the bouquet, the service) are content, not decoration: show them small on rows and larger in the detail pane (rule:image-as-data).
+- **Do not borrow:** a SaaS marketing look (gradient, floating cards); a generic admin template's chrome; another product's brand surface (its selected-state bar, tag colours, icons).
+
 ## fitness: Fitness and sport (n=16)
 - **Typical page:** White or dark with one energetic colour, athlete photography, big numbers, large card corners.
 - **Colour:** level accent 56%, strong 25%, neutral 19%; hue blue 40%, red 30%, green 10%, teal 10%; ground white 62%, colour 19%, tinted 12%.
