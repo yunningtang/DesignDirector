@@ -39,6 +39,7 @@ APP_WORDS = [
     ('course', r'course|curriculum|syllabus|module|progress|enrol|lecture|school'),
     ('learn', r'learn|tutor|study|student'),
     ('game', r'game|puzzle|play'),
+    ('orders', r'orders?\b|pickup|pick-up|deliver(y|ies)|inventory|stock level|walk-in|point of sale|\bpos\b|bakery|caf[eé]|salon'),
     ('commerce', r'shop|store|cart|product|buy|order'),
 ]
 GOOD = {   # screens that show the working interior of that kind of tool, preferred as the anchor
@@ -55,10 +56,10 @@ GOOD = {   # screens that show the working interior of that kind of tool, prefer
     'map': ['openstreetmap', 'felt.com', 'kepler', 'windy', 'citymapper'],
     'media': ['open.spotify', 'soundcloud', 'youtube'],
 }
-NOTE = ('Look at each with the Read tool before writing the contract. Take only conventions: where navigation and the main '
-        'controls sit, how dense the screen is, where colour sits (band, rail, field, content only), corner and border habits, '
-        'how much imagery. Do not copy a logo, wordmark, copy text, exact colours or a whole layout, and do not let them '
-        'replace your own direction: the object or image you build still comes from your candidates.')
+NOTE = ('Look at each with the Read tool before writing the contract. Borrow STRUCTURE only (rule:borrow-layers): which panes '
+        'exist and their rough widths, where navigation and the main controls sit, how dense rows are, how much colour and imagery. '
+        'Do not borrow SURFACE: the selected-state treatment, tag and label colours, icon set, brand colour, wordmark or copy are '
+        'that product\'s own language; derive yours from the subject\'s world.')
 
 
 def app_types(text):
@@ -80,7 +81,10 @@ def spread(pool, n, rnd):
 
 
 def pick(mode, category, brief, seed, n=4, flow=False):
-    idx = json.load(open(f'{LIB}/index.json'))
+    p = f'{LIB}/index.json'
+    if not os.path.exists(p): return [], app_types(brief)   # V4.16.1: no local library installed
+    # V4.16.1 rule:ref-kind: a live capture that is not a working screen never anchors
+    idx = [dict(x, anchor_ok=False) if x.get('page_kind') not in (None, 'working_ui') else x for x in json.load(open(p))]
     rnd = random.Random(int(hashlib.sha256(f'{seed}|{mode}|{category}'.encode()).hexdigest()[:12], 16))
     home = [x for x in idx if x['lib'] == 'home' and x['key'] == category]
     app = [x for x in idx if x['lib'] == 'app']

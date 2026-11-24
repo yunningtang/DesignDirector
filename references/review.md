@@ -63,3 +63,11 @@ Answer these from the 1440 screenshot before listing fixes:
 - Does anything read as a template: a centred stack, a pill or label above the head, a gradient blob, an empty coloured box where a picture should be, a small drawn illustration, two filled buttons side by side, a row of stats?
 - Delete the picture in your head: if the screen still says the same thing, the picture is too weak or too small.
 - Squint: with the words blurred, does each section still have a shape and the page a rhythm of heavy and light?
+
+
+## V4.16.1 rows (references, surface, report)
+- **Reference fit:** every reference you followed is a `working_ui` capture with `ref_fit` same_task and same_data yes; otherwise meta.json has `ref_fallback` and the report says so.
+- **Surface:** nothing on the page repeats the reference's own surface: its selected-state treatment, tag colours, icons or brand hue. Selected items are marked by ground, weight or ink, never by an edge bar (check.py flags edge bars on any element).
+- **Images as data:** on tool pages, the things the records are about (products ordered, photos filed, dishes, rooms) are shown as pictures where a real product of this kind shows them.
+- **Nav scale:** no Menu button with 5 or fewer views, no visible search field with a few dozen records, no tall bar without a row of sections.
+- **Report:** your last chat message carries the references, fit or fallback, structure/surface lines, deviations and check.py's remaining output (SKILL.md step 7).
